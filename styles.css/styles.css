@@ -1,0 +1,282 @@
+.background{
+    position: relative;
+    z-index: 5;
+    background-image: url("/views/images/logoGrande.svg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1212px;
+    height: 1460px;
+}
+
+@media print {
+    body{
+       -webkit-print-color-adjust:exact;
+       -moz-print-color-adjust:exact;
+       -ms-print-color-adjust:exact;
+       -webkit-print-color-adjust: economy  } 
+}
+.central{
+    width:1020px ;
+    margin-left:auto ;
+    margin-right: auto; 
+    padding-top:30px; 
+    border-style: ridge; 
+    height: 1480px; 
+    
+   }
+
+.logo{
+    padding-right: 40px;
+
+}
+#logo{
+    width:50%;
+}
+
+#firstRow{
+    width:758px;  
+}
+
+#firstRow1{
+    width:18%;
+    padding-left:13px;
+}
+#firstRow2{
+    width:17%;
+    border-width: 1px;
+    text-align:center;
+    border-color: grey;
+}
+#firstRow3{
+    width:22%;
+}
+#firstRow4{
+    width:43%;
+    border-width: 1px;
+    text-align: initial;
+    border-color: grey;
+}
+#secondRow{
+    margin-top:10px;
+}
+#secondRow1{
+    width:13%;
+    padding-left:13px;
+}
+#secondRow2{
+    width:13%;
+    border-width: 1px;
+    text-align:center;
+}
+#secondRow3{
+    width:8%;
+}
+#secondRow4{
+    width:33%;
+    border-width: 1px;
+    text-align: initial;
+}
+#secondRow5{
+    width:5%;
+}
+#secondRow6{
+    width:31%;
+    border-width: 1px;
+    text-align: initial;
+}
+#thirdRow{
+    margin-top:3px;
+}
+#thirdRow1{
+    width:13%;
+    padding-left:13px;
+}
+#thirdRow2{
+    width:13%;
+    border-width: 1px;
+    text-align:center;
+}
+#thirdRow3{
+    width:8%;
+}
+#thirdRow4{
+    width:66%;
+    border-width: 1px;
+    text-align: initial;
+}
+#fourthRow1{
+    width:11%;
+    padding-left:13px; 
+}
+#fourthRow2{
+    width:11%;
+    border-width: 1px;
+    text-align:center;
+}
+#fourthRow3{
+    width:7%;
+}
+#fourthRow4{
+    width:13%;
+    border-width: 1px;
+    text-align: initial;
+}
+#fourthRow5{
+    width:6%;
+}
+#fourthRow6{
+    width:17%;
+    border-width: 1px;
+    text-align: initial;
+}
+#fourthRow7{
+    width:2%;
+}
+#fourthRow8{
+    width:14%;
+    border-width: 1px;
+    text-align: initial;
+}
+#fifthRow{
+    width:1010px; 
+    margin-top: 22px;
+    margin-left:16px
+}
+#fifthRow1{
+    padding-left:16px;
+    height:30px;
+    border-width: 1px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-color: #afd9da;
+    opacity: 0.9;
+
+}
+#fifthRow2{
+    height:120px;
+    padding-left:16px;
+    border-width: 1px;
+    text-align: initial;
+}
+#sixthRow{
+    width:1010px; 
+    margin-top: 22px;
+    margin-left:16px;
+    height: 40px;
+    border-width: 1px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border-style: solid; 
+}
+#sixthRow1{
+    border-width: 1px;
+    text-align: center;
+    width:10%;
+}
+#sixthRow2{
+    border-width: 1px;
+    text-align: center;
+    width:70%;
+}
+#sixthRow3{
+    border-width: 1px;
+    text-align: center;
+    width:6%;
+    font-size: small;
+}
+.seventhRow{
+    width:1010px; 
+    margin-left:16px;
+    height: 450px;
+    border-style: solid; 
+    border-width: 1px;
+}
+#seventhRow{
+    width:1010px; 
+    margin-left:-13px;
+    height: 450px;
+}
+#seventhRow1{
+    border-width: 1px;
+    text-align: initial;
+    width:10%;
+}
+#seventhRow2{
+    border-width: 1px;
+    text-align: initial;
+    width:70%;
+}
+#seventhRow3{
+    border-width: 1px;
+    text-align: center;
+    width:6%;  
+}
+.eighthRow{
+    width:1011px; 
+    margin-left:16px;
+    height: 50px; 
+    
+}
+#eighthRow{
+    width:1011px; 
+    margin-left:-13px;
+    height: 20px;
+}
+#eighthRow1{
+    width:10%;
+}
+#eighthRow2{
+    width:70%;
+}
+#eighthRow3{
+    border-width: 1px;
+    text-align: initial;
+    width:12%; 
+}
+#eighthRow4{
+    border-width: 1px;
+    text-align: center;
+    width:6%; 
+}
+#eighthRow5{
+    border-width: 1px;
+    text-align: center;
+    width:6%; 
+}
+#ninethRow{
+    width:1011px; 
+    margin-left:16px;
+    height: 20px; 
+    border-style: solid; 
+    border-width: 1px;  
+}
+#ninethRow1{
+   
+    padding-left: 20px; 
+    background-color: #afd9da; 
+    opacity: 0.8;
+    font-weight: bold; 
+}
+#ninethRow2{
+    height:195px ;
+    
+}
+#tenthRow{
+    width:1011px; 
+    margin-left:16px;
+    height: 30px; 
+    border-style: solid; 
+    border-width: 1px; 
+    text-align: center;
+}
+#tenthRow1{
+    border-width: 1px; 
+    text-align: center;
+}
+.row{
+    border-collapse: inherit;
+    width:1026px; 
+}
