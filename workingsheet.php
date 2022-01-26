@@ -85,41 +85,42 @@
             </tr>
           </table>
         </div>
-        <div class="row">
-          <table id="sixthRow">   
-            <tr>
-              <td id="sixthRow1">Fecha</td>
-              <td id="sixthRow2">Descripción</td>
-              <td id="sixthRow3">Hora entrada</td>
-              <td id="sixthRow3">Hora salida</td>
-              <td id="sixthRow3">Tiempo efectivo</td>
-            </tr>
-          </table>
-        </div>
-        <div class="row">
-          <div class="seventhRow">
-            <table id="seventhRow">   
+        <div class="resume">
+          <div class="row">
+            <table id="sixthRow">   
               <tr>
-               <td class="align-top" id="seventhRow1">01-01-2022</td>
-               <td class="align-top"id="seventhRow2">Reparacion piloto automatico en puerto, Salir a navegar para comprobar estado de piloto, y verificar funcionamiento</td>
-                <td class="align-top"id="seventhRow3">09:00</td>
-                <td class="align-top"id="seventhRow3">14:00</td>
-                <td class="align-top"id="seventhRow3">4</td>
-             </tr>
+                <td id="sixthRow1">Fecha</td>
+                <td id="sixthRow2">Descripción</td>
+                <td id="sixthRow3">Hora entrada</td>
+                <td id="sixthRow3">Hora salida</td>
+                <td id="sixthRow3">Tiempo efectivo</td>
+              </tr>
             </table>
           </div>
-        </div>
-        <div class="row">
-          <div class="eighthRow">
-            <table id="eighthRow">   
-              <tr>
-               <td class="align-top" id="eighthRow1"></td>
-               <td class="align-top"id="eighthRow2"></td>
-                <td class="align-top"id="eighthRow3">Total horas</td>
-                
-                <td class="align-top"id="eighthRow5">4</td>
-             </tr>
-            </table>
+          <div class="row">
+            <div class="seventhRow">
+              <table id="seventhRow">   
+                <tr class="align-top">
+                <td  id="seventhRow1"></td>
+                <td id="seventhRow2"></td>
+                  <td id="seventhRow3"></td>
+                  <td id="seventhRow3"></td>
+                  <td id="seventhRow3"></td>
+              </tr>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="eighthRow">
+              <table id="eighthRow">   
+                <tr>
+                  <td  id="eighthRow1"></td>
+                  <td id="eighthRow2"></td>
+                  <td id="eighthRow3">Total horas</td>
+                  <td id="eighthRow5"></td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
         <div class="row">
