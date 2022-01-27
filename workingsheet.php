@@ -13,68 +13,70 @@
 <body >
   <div class="background" >
     
-      <div class="central" >
-        <div class="row">
-          <div class="col">
-            <div class="fs-2 lh-1 fw-bold">
-              <p>JM Electronáutica S.L.</p>
+      <div class="central">
+        <div class="header">  
+          <div class="row">
+            <div class="col">
+              <div class="fs-1 lh-3 fw-bold">
+                JM Electronáutica S.L.
+              </div>
+              <div class="lh-1">
+                Muelle deportivo Las Palmas</br>
+                Tel: (+34)654535612</br>
+                B05448063</br>
+                info@jmelectronautica.com</br>
+              </div>
             </div>
-            <div class="fs-5 lh-1">
-              Muelle deportivo Las Palmas</br>
-              Tel: (+34)654535612</br>
-              B05448063</br>
-              info@jmelectronautica.com</br>
-            </div>
+            <div class="col">
+              <div class="logo">
+                <img id="logo" src="images/logo.png"  class="float-end" alt="JMElectronautica" >
+              </div>
+            </div>    
           </div>
-          <div class="col">
-            <div class="logo">
-              <img id="logo" src="images/logo.png"  class="float-end" alt="JMElectronautica" >
-            </div>
-          </div>    
-        </div>
-    
-        <div class="row">
-          <table id="firstRow"> 
-            <tr>
-              <td id="firstRow1">PROYECTO Nº</td>
-              <td id="firstRow2">   </td>
-              <td id="firstRow3">Nombre Embarcación</td>
-              <td id="firstRow4">   </td>
-            </tr>
-          </table>
-        </div>      
-        <div class="row"  >
-          <table id="secondRow">
-            <tr>
-              <td id="secondRow1">Fecha</td>
-              <td id="secondRow2">   </td>
-              <td id="secondRow3">Nombre</td>
-              <td id="secondRow4">   </td>
-              <td id="secondRow5">Email</td>
-              <td id="secondRow6">   </td>
-            </tr>
-          </table>
-          <table id="thirdRow"> 
-            <tr> 
-              <td id="thirdRow1">Marina</td>
-              <td id="thirdRow2">   </td>
-              <td id="thirdRow3">Dirección</td>
-              <td id="thirdRow4">  </td>
-            </tr>
-          </table> 
-          <table id="thirdRow"> 
-            <tr> 
-              <td id="fourthRow1">Forma de pago</td> 
-              <td id="fourthRow2">    </td>
-              <td id="fourthRow3">País</td>
-              <td id="fourthRow4">   </td>
-              <td id="fourthRow5">Teléfono</td>
-              <td id="fourthRow6">   </td>
-              <td id="fourthRow7">DNI/Pass</td>
-              <td id="fourthRow8">   </td>
-            </tr>
-          </table>
-        </div>   
+      
+          <div class="row">
+            <table id="firstRow"> 
+              <tr>
+                <td id="firstRow1">PROYECTO Nº</td>
+                <td id="firstRow2">   </td>
+                <td id="firstRow3">Nombre Embarcación</td>
+                <td id="firstRow4">   </td>
+              </tr>
+            </table>
+          </div>      
+          <div class="row"  >
+            <table id="secondRow">
+              <tr>
+                <td id="secondRow1">Fecha</td>
+                <td id="secondRow2">   </td>
+                <td id="secondRow3">Nombre</td>
+                <td id="secondRow4">   </td>
+                <td id="secondRow5">Email</td>
+                <td id="secondRow6">   </td>
+              </tr>
+            </table>
+            <table id="thirdRow"> 
+              <tr> 
+                <td id="thirdRow1">Marina</td>
+                <td id="thirdRow2">   </td>
+                <td id="thirdRow3">Dirección</td>
+                <td id="thirdRow4">  </td>
+              </tr>
+            </table> 
+            <table id="thirdRow"> 
+              <tr> 
+                <td id="fourthRow1">Forma de pago</td> 
+                <td id="fourthRow2">    </td>
+                <td id="fourthRow3">País</td>
+                <td id="fourthRow4">   </td>
+                <td id="fourthRow5">Teléfono</td>
+                <td id="fourthRow6">   </td>
+                <td id="fourthRow7">DNI/Pass</td>
+                <td id="fourthRow8">   </td>
+              </tr>
+            </table>
+          </div>
+        </div>     
         <div class="row">
           <table id="fifthRow">
             <tr>

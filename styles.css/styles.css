@@ -181,15 +181,28 @@
     text-align: center;
     width:10%;
 }
+
 #sixthRow2{
     border-width: 1px;
     text-align: center;
-    width:70%;
+    width:60%;
 }
 #sixthRow3{
     border-width: 1px;
     text-align: center;
     width:6%;
+    font-size: small;
+}
+#sixthRow3-1{
+    border-width: 1px;
+    text-align: center;
+    width:12%;
+    font-size: small;
+}
+#sixthRow3-2{
+    border-width: 1px;
+    text-align: center;
+    width:5%;
     font-size: small;
 }
 .seventhRow{
@@ -205,7 +218,7 @@
     
 }
 #seventhRow1{
-    height: 450px;
+    height: 700px;
     border-width: 1px;
     text-align: initial;
     width:10%;
@@ -213,12 +226,22 @@
 #seventhRow2{
     border-width: 1px;
     text-align: initial;
-    width:70%;
+    width:60%;
 }
 #seventhRow3{
     border-width: 1px;
     text-align: center;
     width:6%;  
+}
+#seventhRow3-1{
+    
+    border-width: 1px;
+    
+    width:12%;
+    font-size: small;
+}
+#seventhRow3-2{
+    width:5%;
 }
 .eighthRow{
     width:1011px; 
@@ -226,13 +249,24 @@
     height: 50px; 
     
 }
+#eighthRow-1{
+    
+}
 #eighthRow{
-    width:1011px; 
+    width:1011px; margin-top: 40px;
     margin-left:-13px;
     height: 20px;
 }
 #eighthRow1{
     width:10%;
+
+}
+#eighthRow1-1{
+     width:500px;
+     height: 200px;
+    border-style: solid; 
+    border-width: 1px;
+}
 }
 #eighthRow2{
     width:70%;
