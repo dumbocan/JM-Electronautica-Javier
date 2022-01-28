@@ -83,97 +83,55 @@
               <td id="fifthRow1">Trabajos a realizar</td>
             </tr>
             <tr> 
-              <td class="align-top" id="fifthRow2">fallo en veleta y antena de gps.</td>
-            </tr>
+            <td class="align-top" id="fifthRow2">fallo en veleta y antena de gps.</td>            </tr>
           </table>
         </div>
-        <div class="resume">
-          <div class="row">
-            <table id="sixthRow">   
-              <tr>
-                <td id="sixthRow1">Fecha</td>
-                <td id="sixthRow2">Descripción</td>
-                <td id="sixthRow3">Hora entrada</td>
-                <td id="sixthRow3">Hora salida</td>
-                <td id="sixthRow3">Tiempo efectivo</td>
-              </tr>
-            </table>
-          </div>
-          <div class="row">
-            <div class="seventhRow">
-              <table id="seventhRow">   
-                <tr class="align-top">
-                  <td  id="seventhRow1">
-                    25-01-2022
-                    </br>
-                    </br>
-                    25-01-2022
-                  </td>
-                  <td id="seventhRow2">
-                    comprobar piloto remoto conectado a seatalk.
-                    Comprobar veleta y red seatalk NG (la red va muy lenta). 
-                    tanto en itc-5 como en base de mastil.
-                    </br>
-                    subir a palo para comprobar veleta de pruebas en tope de palo  
-                    (funciona, asi que el cable del palo y toda la instalacion funciona 
-                    solo falla veleta) y bajar veleta antigua para comprobar
-                  </td>
-                  <td id="seventhRow3">
-                    12:00
-                    </br>
-                    </br>
-                    16:30
-                  </td>
-                  <td id="seventhRow3">
-                    14:00
-                    </br>
-                    </br>
-                    18:00
-                  </td>
-                  <td id="seventhRow3">
-                    2
-                    </br>
-                    </br>
-                    1.5
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="row">
-            <div class="eighthRow">
-              <table id="eighthRow">   
+        <div class="col">
+          <div class="center">
+              <table>   
                 <tr>
-                  <td  id="eighthRow1"></td>
-                  <td id="eighthRow2"></td>
-                  <td id="eighthRow3">Total horas</td>
-                  <td id="eighthRow5"></td>
+                  <th id="sixthRow1">Fecha</td>
+                  <th id="sixthRow2">Descripción</td>
+                  <th id="sixthRow3">Hora entrada</td>
+                  <th id="sixthRow3">Hora salida</td>
+                  <th id="sixthRow3">Tiempo efectivo</td>
+                </tr>
+               
+                <tr class="align-initial" >
+                  <td id="sixthRow1">25-01-2022</td>
+                  <td id="sixthRow2">comprobar piloto remoto conectado a seatalk.
+                    Comprobar veleta y red seatalk NG (la red va muy lenta). 
+                    tanto en itc-5 como en base de mastil.</td>
+                  <td id="sixthRow3">12:00</td>
+                  <td id="sixthRow3">14:00</td>
+                  <td id="sixthRow3"> 2</td>
+                </tr>
+              </table>
+          </div>  
+        </div>  
+            <div class="row">
+              <table id="ninethRow">
+                <tr>
+                  <td id="ninethRow1">Ovservaciones. Material utilizado</td>
+                </tr>
+                <tr> 
+                  <td class="align-top" id="ninethRow2"></td>
                 </tr>
               </table>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <table id="ninethRow">
-            <tr>
-              <td id="ninethRow1">Ovservaciones. Material utilizado</td>
-            </tr>
-            <tr> 
-              <td class="align-top" id="ninethRow2"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="row">
-          <table id="tenthRow">
-            <tr>
-              <td id="tenthRow1">firma tecnico</td><td id="tenthRow2">firma cliente</td>
-            </tr>
+            <div class="row">
+              <table id="tenthRow">
+                <tr>
+                  <td id="tenthRow1">firma tecnico</td><td id="tenthRow2">firma cliente</td>
+                </tr>
             
-          </table>
-        </div>
-      </div>
+              </table>
+            </div>
+          </div>
+        </div>    
+      </div>    
   </div>    
-  
+ 
  
       
     

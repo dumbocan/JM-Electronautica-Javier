@@ -301,7 +301,7 @@
     font-weight: bold; 
 }
 #ninethRow2{
-    height:195px ;
+    height:185px ;
     
 }
 #tenthRow{
@@ -319,4 +319,12 @@
 .row{
     border-collapse: inherit;
     width:1026px; 
+}
+
+.center{
+    margin-left: 4px;
+    width:1011px;
+    height: 550px;
+    border-style: solid; 
+    border-width: 1px; 
 }
