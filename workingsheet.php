@@ -1,191 +1,150 @@
-<!DOCTYPE html>
+<doctipe<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles.css/styles.css"  />
-   
-    <title>Workingsheet</title>
-   
+<link rel="stylesheet" type="text/css" href="styles.css/styles.css"/>
+<title>Workingsheet</title>
 </head>
-<body >
-  <div class="background" >
-    
-      <div class="central">
-        <div class="header">  
-          <div class="row">
-            <div class="col">
-              <div class="fs-1 lh-3 fw-bold">
-                JM Electronáutica S.L.
-              </div>
-              <div class="lh-1">
-                Muelle deportivo Las Palmas</br>
-                Tel: (+34)654535612</br>
-                B05448063</br>
-                info@jmelectronautica.com</br>
-              </div>
-            </div>
-            <div class="col">
-              <div class="logo">
-                <img id="logo" src="images/logo.png"  class="float-end" alt="JMElectronautica" >
-              </div>
-            </div>    
-          </div>
-      
-          <div class="row">
-            <table id="firstRow"> 
-              <tr>
-                <td id="firstRow1">PROYECTO Nº</td>
-                <td id="firstRow2">22-01-007</td>
-                <td id="firstRow3">Nombre Embarcación</td>
-                <td id="firstRow4">Mango tree</td>
-              </tr>
-            </table>
-          </div>      
-          <div class="row">
-            <table id="secondRow">
-              <tr>
-                <td id="secondRow1">Fecha</td>
-                <td id="secondRow2">25-01-2022</td>
-                <td id="secondRow3">Nombre</td>
-                <td id="secondRow4">Alvaro Garat</td>
-                <td id="secondRow5">Email</td>
-                <td id="secondRow6">cocotheonly@gmail.com</td>
-              </tr>
-            </table>
-            <table id="thirdRow"> 
-              <tr> 
-                <td id="thirdRow1">Marina</td>
-                <td id="thirdRow2">Muelle deportivo</td>
-                <td id="thirdRow3">Dirección</td>
-                <td id="thirdRow4">Calle Padre Cueto 10   35008  Las Palmas de Gran Canaria</td>
-              </tr>
-            </table> 
-            <table id="thirdRow"> 
-              <tr> 
-                <td id="fourthRow1">Forma de pago</td> 
-                <td id="fourthRow2"></td>
-                <td id="fourthRow3">País</td>
-                <td id="fourthRow4">España</td>
-                <td id="fourthRow5">Teléfono</td>
-                <td id="fourthRow6">(+34) 622 03 84 23</td>
-                <td id="fourthRow7">DNI/Pass</td>
-                <td id="fourthRow8">52313356V</td>
-              </tr>
-            </table>
-          </div>
-        </div>     
-        <div class="row">
-          <table id="fifthRow">
-            <tr>
-              <td id="fifthRow1">Trabajos a realizar</td>
-            </tr>
-            <tr> 
-              <td class="align-top" id="fifthRow2">fallo en veleta y antena de gps.</td>
-            </tr>
-          </table>
-        </div>
-        <div class="resume">
-          <div class="row">
-            <table id="sixthRow">   
-              <tr>
-                <td id="sixthRow1">Fecha</td>
-                <td id="sixthRow2">Descripción</td>
-                <td id="sixthRow3">Hora entrada</td>
-                <td id="sixthRow3">Hora salida</td>
-                <td id="sixthRow3">Tiempo efectivo</td>
-              </tr>
-            </table>
-          </div>
-          <div class="row">
-            <div class="seventhRow">
-              <table id="seventhRow">   
-                <tr class="align-top">
-                  <td  id="seventhRow1">
-                    25-01-2022
-                    </br>
-                    </br>
-                    25-01-2022
-                  </td>
-                  <td id="seventhRow2">
-                    comprobar piloto remoto conectado a seatalk.
-                    Comprobar veleta y red seatalk NG (la red va muy lenta). 
-                    tanto en itc-5 como en base de mastil.
-                    </br>
-                    subir a palo para comprobar veleta de pruebas en tope de palo  
-                    (funciona, asi que el cable del palo y toda la instalacion funciona 
-                    solo falla veleta) y bajar veleta antigua para comprobar
-                  </td>
-                  <td id="seventhRow3">
-                    12:00
-                    </br>
-                    </br>
-                    16:30
-                  </td>
-                  <td id="seventhRow3">
-                    14:00
-                    </br>
-                    </br>
-                    18:00
-                  </td>
-                  <td id="seventhRow3">
-                    2
-                    </br>
-                    </br>
-                    1.5
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="row">
-            <div class="eighthRow">
-              <table id="eighthRow">   
-                <tr>
-                  <td  id="eighthRow1"></td>
-                  <td id="eighthRow2"></td>
-                  <td id="eighthRow3">Total horas</td>
-                  <td id="eighthRow5"></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <table id="ninethRow">
-            <tr>
-              <td id="ninethRow1">Ovservaciones. Material utilizado</td>
-            </tr>
-            <tr> 
-              <td class="align-top" id="ninethRow2"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="row">
-          <table id="tenthRow">
-            <tr>
-              <td id="tenthRow1">firma tecnico</td><td id="tenthRow2">firma cliente</td>
-            </tr>
-            
-          </table>
-        </div>
+<body>
+  <div class="background"> 
+    <div class="header">
+      <div class="name"> 
+        <h1>JM Electronáutica S.L.</h1>
+        <h4>
+          Muelle deportivo Las Palmas</br>
+          Tel: (+34)654535612</br>
+          B05448063</br>
+          info@jmelectronautica.com</br>
+        </h4>  
       </div>
-  </div>    
-  
- 
-      
-    
-
-
-
-
-
+      <div class="logo">
+        <img id="logo" src="images/logo.png" alt="JMElectronautica" >
+      </div>
+    </div>
+    <div class="center">
+      <div class="data">
+        <table id="line1">
+          <tr >
+            <td class="line1-1">PROYECTO Nº</td> 
+            <td class="line1-2">      </td>
+            <td class="line1-3">Nombre embarcación</td >
+            <td class="line1-4">      </td>  
+          </tr>
+        </table> 
+        <table id="line2"> 
+          <tr >
+            <td class="line2-1">Fecha </td> 
+            <td class="line2-2">      </td>
+            <td class="line2-3">Nombre</td>
+            <td class="line2-4">      </td>
+            <td class="line2-5">Telefono</td>
+            <td class="line2-6">      </td>    
+          </tr>
+        </table>
+        <table id="line3">
+          <tr >
+            <td class="line3-1">Marina   </td> 
+            <td class="line3-2">         </td>
+            <td class="line3-3">Dirección</td>
+            <td class="line3-4">         </td>
+            <td class="line3-5">DNI/Pass</td>
+            <td class="line3-6">         </td>   
+          </tr>
+        </table>
+        <table id="line3">
+          <tr >
+            <td class="line4-1">Pais</td>
+            <td class="line4-2">         </td>
+            <td class="line4-3">Forma de pago</td> 
+            <td class="line4-4">         </td> 
+            <td class="line4-5">E-mail</td> 
+            <td class="line4-6">         </td>
+          </tr>
+        </table>
+      </div>
+      <div class="work">
+        <table>
+          <tr>
+            <th>Trabajos a relalizar</th>
+          <tr>
+            <td><!--descripcion trabajos a relizar entre <li>--> 
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="description">
+        <table >
+          <tr>
+            <th class="line5-1">Fecha</th>
+            <th class="line5-2">Descripción</th>
+            <th class="line5-3">Hora entrada</th>
+            <th class="line5-4">Hora salida</th>
+            <th class="line5-5">Tiempo efectivo</th>            
+          </tr>
+          <tr >
+            <td class="output"><!-- fecha--> </td>
+            <td class="desc"><!-- descripcion--> </td>   
+            <td class="output"><!--hora entrada--></td>
+            <td class="output"><!--hora salida--></td>
+            <td class="output"><!--tiempo efectivo--></td>  
+          </tr>
+        </table>
+      </div> 
+      <table class="total">
+          <tr>
+            <td class="line6-1">
+              total horas
+            </td>
+            <td class="line6-2">
+              <!-- total horas-->
+            </td>
+          </tr>
+        </table>
+      <div class="observations">
+        <table>
+          <tr>
+            <th>
+              Observaciones y material utilizado
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <!-- observaciones y material entre <li>-->
+                
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div id="tecnico">
+        <table id="firm">
+          <tr>
+            <th id="tecnico">
+              Firma tecnico
+            </th>
+          </tr>
+          <tr >
+            <td id="firm">
+             <!--firma aqui-->
+            </td>
+          </tr>
+        </table>
+      </div >
+      <div id="cliente">
+      <table id="firm">
+          <tr>
+            <th id="tecnico">
+              Firma tecnico
+            </th>
+          </tr>
+          <tr id="firm">
+            <td >
+             <!--firma aqui-->
+            </td>
+          </tr>
+      </table>
+      </div>   
+    </div>
+  </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</html>
-
-
-<?php
-?>
+</html>    
