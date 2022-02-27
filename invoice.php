@@ -6,60 +6,76 @@
 </head>
   <body>
     <div class="background"> 
-      <div class="header">
-        <div class="name"> 
-          <h1>JM Electronáutica S.L.</h1>
-          <h4>
-            Muelle deportivo Las Palmas</br>
-            Tel: (+34)654535612</br>
-            B05448063</br>
-            info@jmelectronautica.com</br>
-          </h4>  
-        </div>
-        <div class="logo">
-          <img id="logo" src="images/logo.png" alt="JMElectronautica" >
-        </div>
+      <?php include 'header.php'; ?>
+      <?php include 'data.php'; ?>
+      <div class="in-description">
+        <table >
+          <tr>
+            <th class="in-amount">Cantidad</th>
+            <th class="in-info">Descripción</th>
+            <th class="in-price">Valor unidad</th>
+            <th class="in-desc">Desc.</th>
+            <th class="in-price">Valor total</th>            
+          </tr>
+          <tr >
+            <td class="in-output"><!-- cantidad--> </td>
+            <td class="desc"><!-- descripcion--> </td>   
+            <td class="in-output"><!--precio unitario--></td>
+            <td class="in-output"><!--descuento--></td>
+            <td class="in-output"><!--precio total--></td>  
+          </tr>
+        </table>
       </div>
-      <div class="center">
-        <div class="data">
-          <table id="line1">
-            <tr >
-              <td class="line1-1">PROYECTO Nº</td> 
-              <td class="line1-2">      </td>
-              <td class="line1-3">Nombre embarcación</td >
-              <td class="line1-4">      </td>  
+      <div class="in-footer"> 
+        <div class="comments">
+          <table>
+            <tr>
+              <th>
+                Observaciones.
+              </th>
             </tr>
-          </table> 
-          <table id="line2"> 
-            <tr >
-              <td class="line2-1">Fecha </td> 
-              <td class="line2-2">      </td>
-              <td class="line2-3">Nombre</td>
-              <td class="line2-4">      </td>
-              <td class="line2-5">Telefono</td>
-              <td class="line2-6">      </td>    
+            <tr>
+              <td>
+                <!-- Observaciones-->
+              </td>
             </tr>
           </table>
-          <table id="line3">
-            <tr >
-              <td class="line3-1">Marina   </td> 
-              <td class="line3-2">         </td>
-              <td class="line3-3">Dirección</td>
-              <td class="line3-4">         </td>
-              <td class="line3-5">DNI/Pass</td>
-              <td class="line3-6">         </td>   
+        </div>  
+        <div class="final">
+          <table>
+          <tr>
+              <th>
+                Base imponible.
+              </th>
+              <th>
+                % IGIC
+              </th>
+              <th>
+                Imponible IGIC.
+              </th>
+              <th>
+                Total factura.
+              </th>
+            </tr>
+            <tr>
+              <td class="in-final">
+                <!-- Subtotal-->
+              </td>
+              <td class="in-final">7
+                <!-- %IGIC-->
+              </td>
+              <td class="in-final">
+                <!-- Total IGIC-->
+              </td>
+              <td class="in-final">
+                <!-- Precio final-->
+              </td>
+              
             </tr>
           </table>
-          <table id="line3">
-            <tr >
-              <td class="line4-1">Pais</td>
-              <td class="line4-2">         </td>
-              <td class="line4-3">Forma de pago</td> 
-              <td class="line4-4">         </td> 
-              <td class="line4-5">E-mail</td> 
-              <td class="line4-6">         </td>
-            </tr>
-          </table>
+        </div>
+        <div class="cuenta">
+        Cuenta JM Electronáutica    ES90 2080 1047 1030 4004 2205 
         </div>
       </div>
     </div>
