@@ -1,8 +1,8 @@
 
   <div class="data">
     <table id="line1">
-      <tr >
-        <td class="line1-1">PROYECTO Nº</td> 
+      <tr>
+        <td class="line1-1"><?=$type?></td>
         <td class="line1-2">      </td>
         <td class="line1-3">Nombre embarcación</td >
         <td class="line1-4">      </td>  

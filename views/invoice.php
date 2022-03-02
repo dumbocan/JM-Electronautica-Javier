@@ -1,11 +1,3 @@
-<doctipe<!DOCTYPE html>
-<html lang="en">
-<head>
-<link rel="stylesheet" type="text/css" href="styles.css/styles.css"/>
-<title>Workingsheet</title>
-</head>
-  <body>
-    <div class="background"> 
       <?php include 'header.php'; ?>
       <?php include 'data.php'; ?>
       <div class="in-description">
