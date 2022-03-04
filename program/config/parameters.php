@@ -1,5 +1,5 @@
 <?php
 
-define("base_url", "http://localhost/views/views/");
-define("controller_default", "productoController");
-define("action_default", "index");
+define('base_url', 'http://localhost/electronautica/program/');
+define('controller_default', 'productoController');
+define('action_default', 'index');
