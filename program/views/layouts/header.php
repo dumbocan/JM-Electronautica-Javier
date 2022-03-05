@@ -1,7 +1,7 @@
 <doctipe<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="../styles.css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="./styles.css/styles.css"/>
 <?php $type = 'PROYECTO Nº'; ?>
 <title>Workingsheet</title>
 </head>
@@ -18,6 +18,6 @@
           </h4>  
         </div>
       <div class="logo">
-        <img id="logo" src="../images/logo.png" alt="JMElectronautica" >
+        <img id="logo" src="./images/logo.png" alt="JMElectronautica" >
       </div>
     </div>
