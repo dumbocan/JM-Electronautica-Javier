@@ -1,6 +1,7 @@
 <doctipe<!DOCTYPE html>
 <html lang="en">
 <head>
+  
 <link rel="stylesheet" type="text/css" href="../styles.css/styles.css"/>
 <?php $type="PROYECTO Nº"?>
 <title>Workingsheet</title>

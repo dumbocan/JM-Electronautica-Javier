@@ -8,8 +8,9 @@ require_once 'config/db.php';
 require_once 'config/parameters.php';
 require_once 'helpers/utils.php';
 require_once 'views/layouts/header.php';
-require_once 'views/layouts/login.php';
-//require_once 'views/layouts/central.php';
+require_once 'views/layouts/bar.php';
+require_once 'views/user/login.php';
+require_once 'views/layouts/footer.php';
 
 function show_error()
 {

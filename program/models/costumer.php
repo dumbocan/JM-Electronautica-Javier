@@ -9,6 +9,7 @@ class Costumer
     private $country;
     private $telephone;
     private $email;
+
     private $db;
 
     //conexion base de datos
@@ -90,8 +91,6 @@ class Costumer
 
     public function save()
     {
-        
-
         $sql = "INSERT INTO costumer VALUES (null,
                                             '{$this->getCostumer_name()}',
                                             '{$this->getAddress()}',   
@@ -102,11 +101,12 @@ class Costumer
                                             );";
 
         $save = $this->db->query($sql);
-
+        $_SESSION['costumer_id'] = $this->db->insert_id;
         $result = false;
         if ($save) {
             $result = true;
         }
+        $id = mysqli_insert_id($this->db);
 
         return $result;
     }
