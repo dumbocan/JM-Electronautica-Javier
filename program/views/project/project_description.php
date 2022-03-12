@@ -18,6 +18,8 @@
 <?php endif; ?>
 <br/>
 <?php
+echo $p_number;
+echo $a;
 
-$date = $this-> description();
-echo $date;
+
+?>

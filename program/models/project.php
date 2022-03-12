@@ -1,93 +1,126 @@
 <?php
 
-class Project{
-    
-    private $project_number;     
-    private $project_date;        
-    private $project_desciption;  
-    private $project_state;       
-    private $project_comments;     
-    private $pictures;            
-    private $files;               
-    private $boat_id;             
-    private $invoice_id;          
+class Project
+{
+    private $project_number;
+    private $project_date;
+    private $project_desciption;
+    private $project_state;
+    private $project_comments;
+    private $pictures;
+    private $files;
+    private $boat_id;
+    private $invoice_id;
 
-    function getProject_number() {
+    private $db;
+
+    //conexion base de datos
+
+    public function __construct()
+    {
+        $this->db = Database::connect();
+    }
+
+    public function getProject_number()
+    {
         return $this->project_number;
     }
 
-    function getProject_date() {
+    public function getProject_date()
+    {
         return $this->project_date;
     }
 
-    function getProject_desciption() {
+    public function getProject_desciption()
+    {
         return $this->project_desciption;
     }
 
-    function getProject_state() {
+    public function getProject_state()
+    {
         return $this->project_state;
     }
 
-    function getProject_comments() {
+    public function getProject_comments()
+    {
         return $this->project_comments;
     }
 
-    function getPictures() {
+    public function getPictures()
+    {
         return $this->pictures;
     }
 
-    function getFiles() {
+    public function getFiles()
+    {
         return $this->files;
     }
 
-    function getBoat_id() {
+    public function getBoat_id()
+    {
         return $this->boat_id;
     }
 
-    function getInvoice_id() {
+    public function getInvoice_id()
+    {
         return $this->invoice_id;
     }
 
-    function setProject_number($project_number) {
+    public function setProject_number($project_number)
+    {
         $this->project_number = $project_number;
     }
 
-    function setProject_date($project_date) {
+    public function setProject_date($project_date)
+    {
         $this->project_date = $project_date;
     }
 
-    function setProject_desciption($project_desciption) {
+    public function setProject_desciption($project_desciption)
+    {
         $this->project_desciption = $project_desciption;
     }
 
-    function setProject_state($project_state) {
+    public function setProject_state($project_state)
+    {
         $this->project_state = $project_state;
     }
 
-    function setProject_comments($project_comments) {
+    public function setProject_comments($project_comments)
+    {
         $this->project_comments = $project_comments;
     }
 
-    function setPictures($pictures) {
+    public function setPictures($pictures)
+    {
         $this->pictures = $pictures;
     }
 
-    function setFiles($files) {
+    public function setFiles($files)
+    {
         $this->files = $files;
     }
 
-    function setBoat_id($boat_id) {
+    public function setBoat_id($boat_id)
+    {
         $this->boat_id = $boat_id;
     }
 
-    function setInvoice_id($invoice_id) {
+    public function setInvoice_id($invoice_id)
+    {
         $this->invoice_id = $invoice_id;
     }
 
-  
+    public function getNumber()
+    {
+        $sql = 'SELECT  count(*) as projects  FROM project';
+        $count = $this->db->query($sql);
+        while($co = $count->fetch_assoc()){
+            
+            $number=$co['projects'];
+        }
 
-
-
-
+        return $number;
+    }
 }
 //SELECT MonthName(fecha) AS mes, count(*) AS numFilas FROM usuario GROUP BY mes
