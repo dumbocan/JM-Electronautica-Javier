@@ -45,6 +45,6 @@ class BoatController{
         header('location:'.base_url.'boat/register');
     }
                 
-
+    
             
 }

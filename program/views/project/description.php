@@ -17,9 +17,18 @@
 <strong id="fallo">Registro fallido, introduce bien los datos</strong>
 <?php endif; ?>
 <br/>
-<?php
-echo $p_number;
-echo $a;
+<?php echo $a;?></br>
+<?=$getData->boat_name?></br>
+<?=$getData->costumer_name?></br>
+<?=$getData->address?></br>
+<?=$getData->marina?></br>
+<?=$getData->country?></br>
+<?=$getData->email?></br>
+<?=$getData->passport?></br>
+<?=$getData->telephone?></br>
+<?=$getData->type?></br>
 
 
-?>
+
+
+ 

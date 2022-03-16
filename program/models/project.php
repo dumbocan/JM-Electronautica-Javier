@@ -113,14 +113,19 @@ class Project
 
     public function getNumber()
     {
+        $date = date_create();
+        $p_date = date_format($date, 'y-m');
         $sql = 'SELECT  count(*) as projects  FROM project';
-        $count = $this->db->query($sql);
-        while($co = $count->fetch_assoc()){
-            
-            $number=$co['projects'];
-        }
+        $query = $this->db->query($sql);
+        $count = $query->fetch_assoc();
+        $number = $count['projects'];
 
-        return $number;
+        $p_number = $p_date.'-'.$number;
+
+        return $p_number;
     }
+
+   
 }
+
 //SELECT MonthName(fecha) AS mes, count(*) AS numFilas FROM usuario GROUP BY mes

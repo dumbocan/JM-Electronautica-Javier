@@ -37,7 +37,7 @@ class CostumerController
                 $costumer->setCountry($country);
                 $costumer->setTelephone($telephone);
                 $costumer->setEmail($email);
-
+               
                 $boat = new Boat();
                 $boat->setBoat_name($boat_name);
                 $boat->setMarina($marina);
@@ -45,7 +45,7 @@ class CostumerController
                 $boat->setCostumer_id($_SESSION['costumer_id']);
 
                 $save = $costumer->save();
-
+ 
                 $saveBoat = $boat->save();
 
                 if ($save && $saveBoat) {
@@ -62,7 +62,16 @@ class CostumerController
         if ($_SESSION['register'] == 'complete') {
             header('location:'.base_url.'project/description');
         } else {
-            header('location:'.base_url.'costumer/register');
+            header('location:'.base_url.'costumer/costumer_register');
         }
+    }
+    public function get_data()
+    {
+        $project=new Costumer;
+        //$data_boat=new Boat;
+        $data=$project->getData();
+       
+        require_once 'views/project/description.php';
+        
     }
 }
