@@ -1,6 +1,6 @@
 <?php
 
-class Costumer 
+class Costumer
 {
     private $costumer_id;
     private $costumer_name;
@@ -101,29 +101,15 @@ class Costumer
                                             );";
 
         $save = $this->db->query($sql);
-        $_SESSION['costumer_id'] = $this->db->insert_id;
-        
+        //$_SESSION['costumer_id'] = $this->db->insert_id;
+        //var_dump($_SESSION['costumer_id']);
         $result = false;
         if ($save) {
             $result = true;
         }
-        //$id = mysqli_insert_id($this->db);
+        $id = mysqli_insert_id($this->db);
+        $iduser = $this->setCostumer_id($id);
 
-        return $result;
+        return $result.$iduser;
     }
-    public function getData()
-    {
-        $boatId = $_SESSION['costumer_id']-1;
-        $sql="select * from costumer co
-              INNER JOIN boat bo 
-              ON co.costumer_id = bo.costumer_id 
-              WHERE co.costumer_id={$boatId}";
-             
-        $query = $this->db->query($sql);
-        return $query->fetch_object();
-        
-        
-        
-    }
-    
 }

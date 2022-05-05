@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once 'models/boat.php';
 class BoatController{
     public function index()
@@ -47,4 +47,4 @@ class BoatController{
                 
     
             
-}
+}*/

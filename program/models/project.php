@@ -111,6 +111,7 @@ class Project
         $this->invoice_id = $invoice_id;
     }
 
+    
     public function getNumber()
     {
         $date = date_create();

@@ -2,6 +2,7 @@
 
 require_once 'models/costumer.php';
 require_once 'models/boat.php';
+require_once 'models/project.php';
 class CostumerController
 {
     public function index()
@@ -37,15 +38,18 @@ class CostumerController
                 $costumer->setCountry($country);
                 $costumer->setTelephone($telephone);
                 $costumer->setEmail($email);
-               
+
+                $save = $costumer->save();
+
+                $id = $costumer->getCostumer_id();
+                $_SESSION['id']=$id;
                 $boat = new Boat();
+
                 $boat->setBoat_name($boat_name);
                 $boat->setMarina($marina);
                 $boat->setType($type);
-                $boat->setCostumer_id($_SESSION['costumer_id']);
+                $boat->setCostumer_id($id);
 
-                $save = $costumer->save();
- 
                 $saveBoat = $boat->save();
 
                 if ($save && $saveBoat) {
@@ -53,6 +57,12 @@ class CostumerController
                 } else {
                     $_SESSION['register'] = 'failed';
                 }
+
+                /*$project = new Project();
+                $number = $project->getNumber();
+                $project->setProject_number($number);
+              
+                $projectNumber=$project->getProject_number();*/
             } else {
                 $_SESSION['register'] = 'failed';
             }
@@ -60,18 +70,21 @@ class CostumerController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
+            
             header('location:'.base_url.'project/description');
         } else {
+        
             header('location:'.base_url.'costumer/costumer_register');
         }
     }
-    public function get_data()
+
+    /*public function get_data()
     {
-        $project=new Costumer;
+        $project = new Boat();
         //$data_boat=new Boat;
-        $data=$project->getData();
-       
+        $id = $this->costumer_id;
+        $data = $project->getData($id);
+
         require_once 'views/project/description.php';
-        
-    }
+    }*/
 }
