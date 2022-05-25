@@ -1,6 +1,6 @@
 <?php
 
-class Costumer
+class Costumer 
 {
     private $costumer_id;
     private $costumer_name;
@@ -101,8 +101,7 @@ class Costumer
                                             );";
 
         $save = $this->db->query($sql);
-        //$_SESSION['costumer_id'] = $this->db->insert_id;
-        //var_dump($_SESSION['costumer_id']);
+        
         $result = false;
         if ($save) {
             $result = true;

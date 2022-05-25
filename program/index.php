@@ -11,7 +11,11 @@ require_once 'views/layouts/header.php';
 require_once 'views/layouts/bar.php';
 require_once 'views/user/login.php';
 require_once 'views/layouts/footer.php';
+$work = 'work';
+$invoice = 'invoice';
 
+Utils::setEvent($work);
+Utils::setEvent($invoice);
 function show_error()
 {
     $error = new errorController();

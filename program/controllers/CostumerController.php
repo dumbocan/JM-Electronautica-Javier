@@ -1,9 +1,9 @@
 <?php
 
 require_once 'models/costumer.php';
-require_once 'models/boat.php';
+
 require_once 'models/project.php';
-class CostumerController
+class CostumerController extends BoatController
 {
     public function index()
     {
@@ -30,7 +30,7 @@ class CostumerController
             $marina = isset($_POST['marina']) ? $_POST['marina'] : false;
             $type = isset($_POST['type']) ? $_POST['type'] : false;
 
-            if ($costumer_name && $address && $passport && $country && $telephone && $email && $boat_name && $marina && $type) {
+            if ($costumer_name && $address && $passport && $country && $telephone &&  $boat_name && $marina && $type) {
                 $costumer = new Costumer();
                 $costumer->setCostumer_name($costumer_name);
                 $costumer->setAddress($address);
@@ -42,7 +42,7 @@ class CostumerController
                 $save = $costumer->save();
 
                 $id = $costumer->getCostumer_id();
-                $_SESSION['id']=$id;
+                $_SESSION['id'] = $id;
                 $boat = new Boat();
 
                 $boat->setBoat_name($boat_name);
@@ -61,7 +61,7 @@ class CostumerController
                 /*$project = new Project();
                 $number = $project->getNumber();
                 $project->setProject_number($number);
-              
+
                 $projectNumber=$project->getProject_number();*/
             } else {
                 $_SESSION['register'] = 'failed';
@@ -70,10 +70,9 @@ class CostumerController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            
+            //require_once 'views/project/description.php';
             header('location:'.base_url.'project/description');
         } else {
-        
             header('location:'.base_url.'costumer/costumer_register');
         }
     }

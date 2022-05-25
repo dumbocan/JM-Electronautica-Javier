@@ -1,6 +1,6 @@
 <?php
 
-class Boat
+class Boat 
 {
     private $boat_id;
     private $boat_name;
@@ -88,16 +88,15 @@ class Boat
 
     public function getData($id)
     {
-        
-       
         $sql = "select * from costumer co
               INNER JOIN boat bo 
               ON co.costumer_id = bo.costumer_id 
               WHERE co.costumer_id={$id}";
 
         $query = $this->db->query($sql);
-        $var=$query->fetch_object();
+        $var = $query->fetch_object();
         
+
         return $var;
     }
 }

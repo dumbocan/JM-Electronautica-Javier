@@ -10,7 +10,7 @@ class Project
     private $pictures;
     private $files;
     private $boat_id;
-    private $invoice_id;
+    private $timestamp;
 
     private $db;
 
@@ -31,7 +31,7 @@ class Project
         return $this->project_date;
     }
 
-    public function getProject_desciption()
+    public function getProject_description()
     {
         return $this->project_desciption;
     }
@@ -61,9 +61,9 @@ class Project
         return $this->boat_id;
     }
 
-    public function getInvoice_id()
+    public function getTimestamp()
     {
-        return $this->invoice_id;
+        return $this->timestamp;
     }
 
     public function setProject_number($project_number)
@@ -76,7 +76,7 @@ class Project
         $this->project_date = $project_date;
     }
 
-    public function setProject_desciption($project_desciption)
+    public function setProject_description($project_desciption)
     {
         $this->project_desciption = $project_desciption;
     }
@@ -106,27 +106,85 @@ class Project
         $this->boat_id = $boat_id;
     }
 
-    public function setInvoice_id($invoice_id)
+    public function setTimestamp($timestamp)
     {
-        $this->invoice_id = $invoice_id;
+        $this->timestamp = $timestamp;
     }
 
-    
+    public function save()
+    {
+        $sql = "INSERT INTO project VALUES (null, 
+        '{$this->getProject_number()}',
+        '{$this->getProject_date()}',   
+        '{$this->getProject_description()}',
+        '{$this->getProject_state()}',
+        '{$this->getProject_comments()}',
+        '{$this->getPictures()}',
+        '{$this->getFiles()}',
+        '{$this->getBoat_id()}',
+        NOW()
+        );";
+        
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
     public function getNumber()
     {
-        $date = date_create();
-        $p_date = date_format($date, 'y-m');
-        $sql = 'SELECT  count(*) as projects  FROM project';
-        $query = $this->db->query($sql);
-        $count = $query->fetch_assoc();
-        $number = $count['projects'];
+        $sql = 'select work_number as number from work_number ORDER BY id DESC LIMIT 1';
+        $save = $this->db->query($sql);
+        $number = $save->fetch_object();
 
-        $p_number = $p_date.'-'.$number;
-
-        return $p_number;
+        return $number;
     }
 
-   
+    /*este funciona
+
+    INSERT INTO numero (id,fecha) SELECT NULL, CONCAT(DATE_FORMAT(NOW(),"%y-%m-"),LPAD(COUNT(*)+1,3,'0')) FROM numero
+
+    SET @id=(SELECT LPAD(COUNT(*),3,'0') FROM numero);
+    insert INTO numero (id, fecha) VALUES (null, (concat(date_format(now(),"%y-%m-"),(lpad((@id+1), 3, '0')))));
+
+
+    SET GLOBAL event_scheduler = ON;
+
+    CREATE EVENT reset
+    ON SCHEDULE EVERY 1 MONTH STARTS '2022-06-01 00:00:01'
+
+    DO truncate table numero;
+
+    otra forma:
+        SET GLOBAL event_scheduler = ON;
+
+    CREATE EVENT reset
+    ON SCHEDULE EVERY 1 MONTH STARTS (select adddate(last_day(curdate()), 1))
+
+    DO truncate table numero;
+
+
+    SHOW events;
+
+    eliminar
+    DROP EVENT nombre_evento;
+
+    primer dia del mes siguiente
+    select adddate(last_day(curdate()), 1)
+
+       --------------------------------------------
+    SELECT minute(tiempo) from tiempo
+    INSERT INTO `tiempo`(`id`, `tiempo`) VALUES (null,curtime());
+    SELECT minute(tiempo) AS minutos FROM tiempo WHERE minute(tiempo) < 5;
+    SELECT second(tiempo) AS segundos FROM tiempo WHERE second(tiempo) < 5;
+
+
+
+    */
 }
 
 //SELECT MonthName(fecha) AS mes, count(*) AS numFilas FROM usuario GROUP BY mes

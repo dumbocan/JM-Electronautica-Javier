@@ -1,7 +1,8 @@
 <?php
-/*
+
 require_once 'models/boat.php';
-class BoatController{
+class BoatController
+{
     public function index()
     {
         echo 'Controlador boat, accion index';
@@ -20,7 +21,6 @@ class BoatController{
             $boat_name = isset($_POST['boat_name']) ? $_POST['boat_name'] : false;
             $marina = isset($_POST['marina']) ? $_POST['marina'] : false;
             $type = isset($_POST['type']) ? $_POST['type'] : false;
-            
 
             if ($boat_name && $marina && $type) {
                 $boat = new Boat();
@@ -44,7 +44,4 @@ class BoatController{
         //exit();
         header('location:'.base_url.'boat/register');
     }
-                
-    
-            
-}*/
+}
