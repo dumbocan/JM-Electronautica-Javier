@@ -1,6 +1,6 @@
 <?php
 
-class Boat 
+class Boat
 {
     private $boat_id;
     private $boat_name;
@@ -86,6 +86,24 @@ class Boat
         return $result;
     }
 
+    public function search_db()
+    {
+        $name = $this->getBoat_name();
+        $sql = "SELECT * FROM `boat` WHERE boat_name LIKE '%$name%'";
+        $result = $this->db->query($sql);
+   
+        return $result; 
+    }
+
+  public function boat_name($data)
+  {
+    $sql = "SELECT * FROM boat b INNER JOIN costumer c ON c.costumer_id = b.costumer_id WHERE boat_id = '$data'";
+    $get_result = $this->db->query($sql);
+    $result=mysqli_fetch_object($get_result);
+   
+    return $result;
+  }
+
     public function getData($id)
     {
         $sql = "select * from costumer co
@@ -95,8 +113,11 @@ class Boat
 
         $query = $this->db->query($sql);
         $var = $query->fetch_object();
-        
 
         return $var;
+    }
+
+    public function update()
+    {
     }
 }

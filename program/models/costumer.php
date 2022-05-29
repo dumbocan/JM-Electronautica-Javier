@@ -1,6 +1,6 @@
 <?php
 
-class Costumer 
+class Costumer
 {
     private $costumer_id;
     private $costumer_name;
@@ -89,6 +89,24 @@ class Costumer
         $this->email = $email;
     }
 
+    public function search_db()
+    {
+        $name = $this->getCostumer_name();
+        $sql = "SELECT * FROM `costumer` WHERE costumer_name LIKE '%$name%'";
+        $result = $this->db->query($sql);
+   
+        return $result; 
+    }
+
+  public function costumer_name($data)
+  {
+    $sql = "SELECT * FROM costumer c INNER JOIN boat b ON b.costumer_id = c.costumer_id WHERE costumer_name = '$data'";
+    $get_result = $this->db->query($sql);
+    $result=mysqli_fetch_object($get_result);
+   
+    return $result;
+  }
+
     public function save()
     {
         $sql = "INSERT INTO costumer VALUES (null,
@@ -101,7 +119,7 @@ class Costumer
                                             );";
 
         $save = $this->db->query($sql);
-        
+
         $result = false;
         if ($save) {
             $result = true;
@@ -110,5 +128,9 @@ class Costumer
         $iduser = $this->setCostumer_id($id);
 
         return $result.$iduser;
+    }
+
+    public function getOne()
+    {
     }
 }

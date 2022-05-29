@@ -10,10 +10,70 @@ class CostumerController extends BoatController
         echo 'Controlador costumer, accion indexado';
     }
 
+    public function edit()
+    {
+        if (isset($_POST['costumer_name'])) {
+            $name = $_POST['costumer_name'];
+            $edit = true;
+
+            $costumer = new Costumer();
+            $costumer->setcostumer_name($name);
+            $pro = $costumer->search_db();
+            $data = $pro->fetch_object();
+            require_once 'views/costumer/costumer_register.php';
+        } elseif (isset($_POST['boat_name'])) {
+            $boat_name = $_POST['boat_name'];
+            $boat = new Boat();
+            $boat->setBoat_name($boat_name);
+            $pro = $boat->search_db();
+            $data = $pro->fetch_object();
+            require_once 'views/costumer/costumer_register.php';
+        } else {
+            header('Location:'.base_url.'costumer/index');
+        }
+    }
+
+    public function delete()
+    {
+        echo'delete costumer';
+    }
+
     public function register()
     {
         Utils::isAdmin();
         require_once 'views/costumer/costumer_register.php';
+    }
+
+    public function search()
+    {
+        Utils::isAdmin();
+        require_once 'views/costumer/costumer_search.php';
+    }
+
+    public function search_db()
+    {
+        Utils::isAdmin();
+       
+
+        if (isset($_POST['costumer']) == 'costumer') {
+            $name = $_POST['costumer_name'];
+            $costumer = new Costumer();
+            $costumer->setcostumer_name($name);
+            $search = $costumer->search_db();
+            require_once 'views/costumer/costumer_gest.php';
+
+        } elseif (isset($_POST['boat'])== "boat") {
+            $boat_name = $_POST['boat_name'];
+            
+            $boat = new Boat();
+            $boat->setBoat_name($boat_name);
+            $search = $boat->search_db();
+
+            require_once 'views/boat/boat_gest.php';
+
+        } else {
+            header('Location:'.base_url.'costumer/index');
+        }
     }
 
     public function save()
@@ -30,7 +90,7 @@ class CostumerController extends BoatController
             $marina = isset($_POST['marina']) ? $_POST['marina'] : false;
             $type = isset($_POST['type']) ? $_POST['type'] : false;
 
-            if ($costumer_name && $address && $passport && $country && $telephone &&  $boat_name && $marina && $type) {
+            if ($costumer_name && $address && $passport && $country && $telephone && $boat_name && $marina && $type) {
                 $costumer = new Costumer();
                 $costumer->setCostumer_name($costumer_name);
                 $costumer->setAddress($address);
@@ -57,12 +117,6 @@ class CostumerController extends BoatController
                 } else {
                     $_SESSION['register'] = 'failed';
                 }
-
-                /*$project = new Project();
-                $number = $project->getNumber();
-                $project->setProject_number($number);
-
-                $projectNumber=$project->getProject_number();*/
             } else {
                 $_SESSION['register'] = 'failed';
             }
@@ -76,14 +130,4 @@ class CostumerController extends BoatController
             header('location:'.base_url.'costumer/costumer_register');
         }
     }
-
-    /*public function get_data()
-    {
-        $project = new Boat();
-        //$data_boat=new Boat;
-        $id = $this->costumer_id;
-        $data = $project->getData($id);
-
-        require_once 'views/project/description.php';
-    }*/
 }

@@ -1,0 +1,37 @@
+<html>
+<h1>gestion</h1>
+<?php while ($pro = $search->fetch_object()): ?>
+<?php $data=$pro->costumer_name;  ?>
+<?php $name=$costumer->costumer_name($data);  ?>
+<?php var_dump($name);?>
+   
+   
+   
+    <div class="costumer_gest">
+            <tr>
+                <!--<td class="id"><?= $name->costumer_id; ?></td>-->
+                <td class="id"><?= $name->costumer_name; ?></td>
+                <!--<td class="id"><?= $name->address; ?></td>-->
+                <!--<td class="id"><?= $name->passport; ?></td>-->
+                <!--<td class="id"><?= $name->country; ?></td>-->
+                <td class="id"><?= $name->telephone; ?></td>
+                <!--<td class="id"><?= $name->email; ?></td>-->
+                <td class="id"><?= $name->boat_name; ?></td>
+                <td class="id"><?= $name->marina; ?></td>
+                <td class="id"><?= $name->type; ?></td>
+                
+                <form method="POST" action="<?=base_url; ?>costumer/edit">
+                <td class="editar">
+                    <input type="hidden" value="<?= $name->costumer_name; ?>" name="costumer_name" id="costumer_name">  
+                    <input class="button-small-green" type="submit" value="Editar"></td>
+            </form>
+            <form method="POST" action="<?= base_url; ?>costumer/delete">
+                <td class="eliminar">
+                    <input type="hidden" value="<?= $name->costumer_name; ?>" name="costumer_name" id="costumer_name">
+                    <input class="button-small-red" type="submit" value="Eliminar"></td>
+                    
+            </form>
+            </tr>
+
+    </div>
+<?php endwhile; ?>
