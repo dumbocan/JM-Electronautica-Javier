@@ -25,6 +25,7 @@
                     <input type="hidden" value="<?= $name->costumer_name; ?>" name="costumer_name" id="costumer_name">  
                     <input class="button-small-green" type="submit" value="Editar"></td>
             </form>
+            
             <form method="POST" action="<?= base_url; ?>costumer/delete">
                 <td class="eliminar">
                     <input type="hidden" value="<?= $name->costumer_name; ?>" name="costumer_name" id="costumer_name">
