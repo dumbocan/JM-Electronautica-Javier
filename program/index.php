@@ -9,19 +9,23 @@ require_once 'config/parameters.php';
 require_once 'helpers/utils.php';
 require_once 'views/layouts/header.php';
 require_once 'views/layouts/bar.php';
-require_once 'views/user/login.php';
+//require_once 'views/user/login.php';
 require_once 'views/layouts/footer.php';
 $work = 'work';
 $invoice = 'invoice';
 
+// empezar el set de la base de datos para el inicializar
+// el numero de factura y hoja de trabajo cada mes
 Utils::setEvent($work);
 Utils::setEvent($invoice);
+
 function show_error()
 {
     $error = new errorController();
     $error->index();
 }
 
+// Direccionamiento de URL amistosa de MVC
 if (isset($_GET['controller'])) {
     $nombre_controlador = $_GET['controller'].'controller';
 } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {

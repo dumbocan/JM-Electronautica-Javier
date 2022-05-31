@@ -4,11 +4,14 @@ require_once 'models/user.php';
 
 class UserController
 {
+    //Primera pagina en mostrarse por default
     public function index()
     {
-        echo 'Controlador Usuarios, accion index';
+        //echo 'Controlador Usuarios, accion index';
+        require_once 'views/user/login.php';
     }
 
+    // Manda a la vista para registrar
     public function register()
     {
         require_once 'views/user/register.php';

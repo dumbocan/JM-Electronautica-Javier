@@ -11,6 +11,12 @@
             </form>
 
         <?php else : ?>
-            <h3><?= $_SESSION['identity']->nombre.' '.$_SESSION['identity']->apellidos; ?></h3>        
+            <h3><?= $_SESSION['identity']->nombre.' '.$_SESSION['identity']->apellidos; ?></h3>
+            <?php
+                if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
+                <strong id="ok">Registro completado correctamente</strong>
+                <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed'):?>
+                <strong id="fallo">Registro fallido, introduce bien los datos</strong>
 
+            <?php endif; ?>
         <?php endif; ?>

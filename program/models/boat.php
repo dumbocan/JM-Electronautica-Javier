@@ -119,5 +119,24 @@ class Boat
 
     public function update()
     {
+        
+
+    $sql = "UPDATE boat SET 
+    
+    boat_name = '{$this->getBoat_name()}',
+    marina = '{$this->getMarina()}',   
+    type = '{$this->getType()}',
+    costumer_id = '{$this->getCostumer_id()}'
+    
+    WHERE costumer_id = '{$this->getCostumer_id()}';";
+   
+    $save = $this->db->query($sql);
+
+    
+        if ($save) {
+            $result = true;
+        }
+            return $result;
+
     }
 }

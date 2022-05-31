@@ -107,6 +107,28 @@ class Costumer
     return $result;
   }
 
+public function update()
+{
+    $sql = "UPDATE costumer SET 
+    
+    costumer_name = '{$this->getCostumer_name()}',
+    address = '{$this->getAddress()}',   
+    passport = '{$this->getPassport()}',
+    country = '{$this->getCountry()}',
+    telephone = '{$this->getTelephone()}',
+    email = '{$this->getEmail()}'
+    WHERE costumer_id = '{$this->getCostumer_id()}';";
+    
+    $save = $this->db->query($sql);
+
+    $result = false;
+        if ($save) {
+            $result = true;
+        }
+            return $result;
+}
+
+
     public function save()
     {
         $sql = "INSERT INTO costumer VALUES (null,
