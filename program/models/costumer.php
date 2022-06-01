@@ -89,27 +89,36 @@ class Costumer
         $this->email = $email;
     }
 
+    public function delete($name)
+    {
+        $sql = "DELETE FROM costumer WHERE costumer_name = '$name'";
+        $result = $this->db->query($sql);
+        var_dump($sql);
+
+        return $result;
+    }
+
     public function search_db()
     {
         $name = $this->getCostumer_name();
         $sql = "SELECT * FROM `costumer` WHERE costumer_name LIKE '%$name%'";
         $result = $this->db->query($sql);
-   
-        return $result; 
+
+        return $result;
     }
 
-  public function costumer_name($data)
-  {
-    $sql = "SELECT * FROM costumer c INNER JOIN boat b ON b.costumer_id = c.costumer_id WHERE costumer_name = '$data'";
-    $get_result = $this->db->query($sql);
-    $result=mysqli_fetch_object($get_result);
-   
-    return $result;
-  }
+    public function costumer_name($data)
+    {
+        $sql = "SELECT * FROM costumer c INNER JOIN boat b ON b.costumer_id = c.costumer_id WHERE costumer_name = '$data'";
+        $get_result = $this->db->query($sql);
+        $result = mysqli_fetch_object($get_result);
 
-public function update()
-{
-    $sql = "UPDATE costumer SET 
+        return $result;
+    }
+
+    public function update()
+    {
+        $sql = "UPDATE costumer SET 
     
     costumer_name = '{$this->getCostumer_name()}',
     address = '{$this->getAddress()}',   
@@ -118,16 +127,16 @@ public function update()
     telephone = '{$this->getTelephone()}',
     email = '{$this->getEmail()}'
     WHERE costumer_id = '{$this->getCostumer_id()}';";
-    
-    $save = $this->db->query($sql);
 
-    $result = false;
+        $save = $this->db->query($sql);
+
+        $result = false;
         if ($save) {
             $result = true;
         }
-            return $result;
-}
 
+        return $result;
+    }
 
     public function save()
     {

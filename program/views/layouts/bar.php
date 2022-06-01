@@ -5,3 +5,4 @@
 <a href="<?=base_url; ?>boat/search">Buscar barco</a>
 
 <?php endif; ?>
+<a href="<?=base_url; ?>user/login">login</a>

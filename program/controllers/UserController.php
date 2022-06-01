@@ -17,6 +17,11 @@ class UserController
         require_once 'views/user/register.php';
     }
 
+    public function ok()
+    {
+        require_once 'views/costumer/costumer_ok.php';
+    }
+
     public function save()
     {
         if (isset($_POST)) {

@@ -10,6 +10,12 @@ class CostumerController extends BoatController
         echo 'Controlador costumer, accion indexado';
     }
 
+public function ok()
+{
+    require_once 'views/costumer/costumer_ok.php';
+
+}
+
     public function edit()
     {
         if (isset($_POST['costumer_name'])) {
@@ -68,13 +74,6 @@ class CostumerController extends BoatController
                 $updateBoat = $boat->update();
 
 
-                
-
-                
-                
-
-                
-
                 if ($updateCostumer && $updateBoat) {
                     $_SESSION['register'] = 'complete';
                 } else {
@@ -88,16 +87,36 @@ class CostumerController extends BoatController
         }
         if ($_SESSION['register'] == 'complete') {
             //require_once 'views/project/description.php';
-            header('location:'.base_url.'user/index');
+            header('location:'.base_url.'costumer/ok');
         } else {
             header('location:'.base_url.'costumer/costumer_register');
         }
     
     }
+    public function ask_delete()
+    {
+        Utils::isAdmin();
+       
+            $name=$_POST['costumer_name'];
+            require_once 'views/costumer/costumer_delete.php';
+    }
+    
     public function delete()
     {
-        echo'delete costumer';
+            if(isset($_POST['costumer_name']))
+            $name=$_POST['costumer_name'];
+            $costumer=new Costumer;
+            $delete=$costumer->delete($name);
+            if($delete){
+                $_SESSION['register'] = 'complete';
+                } else {
+                    $_SESSION['register'] = 'failed';
+                }
+            header('Location:'.base_url.'costumer/index');
+
     }
+        
+    
 
     public function register()
     {
@@ -187,7 +206,7 @@ class CostumerController extends BoatController
         }
         if ($_SESSION['register'] == 'complete') {
             //require_once 'views/project/description.php';
-            header('location:'.base_url.'project/description');
+            header('location:'.base_url.'costumer/ok');
         } else {
             header('location:'.base_url.'costumer/costumer_register');
         }

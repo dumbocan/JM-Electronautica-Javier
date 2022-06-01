@@ -71,9 +71,14 @@ class projectController extends BoatController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            header('location:'.base_url);
+            header('location:'.base_url.'project/project_ok');
         } else {
             header('location:'.base_url.'costumer/fdsregister');
         }
+    }
+
+    public function project_ok()
+    {
+        require_once 'views/project/project_ok.php';
     }
 }
