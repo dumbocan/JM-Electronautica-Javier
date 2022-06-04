@@ -73,7 +73,7 @@ class projectController extends BoatController
         if ($_SESSION['register'] == 'complete') {
             header('location:'.base_url.'project/project_ok');
         } else {
-            header('location:'.base_url.'costumer/fdsregister');
+            header('location:'.base_url.'project/register');
         }
     }
 
