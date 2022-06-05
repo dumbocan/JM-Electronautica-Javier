@@ -31,6 +31,13 @@
                     <input class="button-small-red" type="submit" value="Eliminar"></td>
                     
             </form>
+
+            <form method="POST" action="<?= base_url; ?>project/description">
+                <td class="proyecto">
+                    <input type="hidden" value="<?= $name->costumer_id; ?>" name="costumer_id" id="costumer_id">
+                    <input class="button-small-red" type="submit" value="Añadir proyecto"></td>
+                    
+            </form>
             </tr>
 
     </div>

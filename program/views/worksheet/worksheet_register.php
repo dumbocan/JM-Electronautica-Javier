@@ -9,7 +9,7 @@
     <input type="date" name="worksheet_date" >
     <br>
     <label for="worksheet_desc">Trabajo realizado</label>
-    <input type="text" name="worksheet_desc" >
+    <textarea type="text" name="worksheet_desc" ></textarea>
     <br>
     <label for="start_time">Hora de entrada</label>
     <input type="time" name="start_time" >

@@ -6,28 +6,32 @@ class projectController extends BoatController
 {
     public $boat;
 
-    public function __construct()
-    {
-    }
-
     public function index()
     {
         require_once 'views/layouts/header.php';
         echo'<h1>PROJECT CONTROLLER / INDEX</h1>';
     }
 
+    // saco el nombre del barco segun $_SESSION id y el numero de proyecto
     public function description()
     {
+        if(isset($_POST['costumer_id'])){
+            $id=$_POST['costumer_id'];
+           
+        }else{
+            $id = ($_SESSION['id']);
+        }
         $boat = new boat();
-        $id = ($_SESSION['id']);
+         
         $data = $boat->getData($id);
+       
         $boat_id = $data->boat_id;
 
         $project = new project();
         Utils::insertNumber();
 
         $number = $project->getNumber();
-        var_dump($number);
+
         require_once 'views/project/description.php';
     }
 
@@ -80,5 +84,16 @@ class projectController extends BoatController
     public function project_ok()
     {
         require_once 'views/project/project_ok.php';
+    }
+
+    public function find_projects($state)
+    {
+        $project=new project;
+       
+        $get=$project->getState($state);
+        
+
+
+        return $get;
     }
 }

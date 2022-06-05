@@ -19,6 +19,7 @@
                 <td class="id"><?= $name->boat_name; ?></td>
                 <td class="id"><?= $name->marina; ?></td>
                 <td class="id"><?= $name->type; ?></td>
+                <td class="id"><?= $name->boat_id; ?></td>
                 
                 <form method="POST" action="<?=base_url; ?>costumer/edit">
                 <td class="editar">
@@ -32,6 +33,14 @@
                     <input class="button-small-red" type="submit" value="Eliminar"></td>
                     
             </form>
+
+            <form method="POST" action="<?= base_url; ?>project/description">
+                <td class="proyecto">
+                    <input type="hidden" value="<?= $name->costumer_id; ?>" name="costumer_id" id="costumer_id">
+                    <input class="button-small-red" type="submit" value="Añadir proyecto"></td>
+                    
+            </form>
+
             </tr>
 
     </div>

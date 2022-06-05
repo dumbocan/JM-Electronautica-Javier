@@ -109,7 +109,7 @@ class Boat
         $sql = "select * from costumer co
               INNER JOIN boat bo 
               ON co.costumer_id = bo.costumer_id 
-              WHERE co.costumer_id={$id}";
+              WHERE co.costumer_id='$id'";
 
         $query = $this->db->query($sql);
         $var = $query->fetch_object();

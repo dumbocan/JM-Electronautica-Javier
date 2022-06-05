@@ -31,9 +31,9 @@
     <label for="project_description">Trabajo a realizar</label>
     <input type="text" name="project_description" >
     <br>
-    <input type="radio" name="project_state" value="S" /> Empezado
-    <input type="radio" name="project_state" value="E" /> Terminado
-    <input type="radio" name="project_state" value="W" /> En espera
+    <input type="radio" name="project_state" value="s" /> Empezado
+    <input type="radio" name="project_state" value="f" /> Terminado
+    <input type="radio" name="project_state" value="w" /> En espera
     <br>
     <label for="project_comments">Observaciones</label>
     <input type="text" name="project_comments" >
@@ -43,13 +43,13 @@
     <br>
     <label for="files">Archivos</label>
     <input type="file" name="files" >
-    <input type="hidden" name="boat_id" value="<?=$boat_id; ?>">
-    
+    <input type="hidden" name="boat_id" value="<?=$data->boat_id?>">
+
     <br>
     <br>
     <input type="submit" value="Enviar"/>
     <br>
-    <?= $boat_id; ?>
+   
     
 </form>
  

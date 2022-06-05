@@ -111,6 +111,7 @@ class Project
         $this->timestamp = $timestamp;
     }
 
+    // introduce los valores en tabla project y retorna boolean
     public function save()
     {
         $sql = "INSERT INTO project VALUES (null, 
@@ -124,7 +125,7 @@ class Project
         '{$this->getBoat_id()}',
         NOW()
         );";
-        
+
         $save = $this->db->query($sql);
 
         $result = false;
@@ -135,6 +136,7 @@ class Project
         return $result;
     }
 
+    //busca el numero de trabajo en tabla work_number y retorna como objeto
     public function getNumber()
     {
         $sql = 'select work_number as number from work_number ORDER BY id DESC LIMIT 1';
@@ -142,6 +144,26 @@ class Project
         $number = $save->fetch_object();
 
         return $number;
+    }
+
+    public function getState($state)
+    {
+        
+        $sql="SELECT * FROM `project` p 
+                  INNER JOIN boat b 
+                          ON b.boat_id 
+                           = p.boat_id 
+                       WHERE project_state = '$state'";
+        
+        $save = $this->db->query($sql);
+         
+        $array = []; 
+        while ($pro = $save->fetch_object())
+        { 
+             $array[] = $pro->project_number." ".$pro->boat_name; 
+        }
+        return $array;
+
     }
 
     /*este funciona
