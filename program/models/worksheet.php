@@ -84,4 +84,35 @@ class worksheet
     {
         $this->project_id = $project_id;
     }
+
+    public function save_worksheet()
+    {
+        $sql = "INSERT INTO worksheet VALUES (null,
+        '{$this->getWorksheet_date()}',
+        '{$this->getWorksheet_desc()}',   
+        '{$this->getStart_time()}',
+        '{$this->getFinish_time()}',
+        '{$this->getEfective_time()}',
+        '{$this->getProject_id()}',
+        now()
+        );";
+var_dump($sql);
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) 
+        {
+            $result = true;
+        }
+        
+
+        return $result;
+    }
+
+
+    
+
+
 }
+
+

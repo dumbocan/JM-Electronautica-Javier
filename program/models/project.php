@@ -166,6 +166,21 @@ class Project
 
     }
 
+    public function getProject($number)
+    {
+        $sql="SELECT * FROM `project` p 
+                  INNER JOIN boat b 
+                          ON b.boat_id 
+                           = p.boat_id 
+                       WHERE project_number = '$number'";
+        
+        $save = $this->db->query($sql);
+        $data = $save->fetch_object();
+        
+        return $data;
+
+    }
+
     /*este funciona
 
     INSERT INTO numero (id,fecha) SELECT NULL, CONCAT(DATE_FORMAT(NOW(),"%y-%m-"),LPAD(COUNT(*)+1,3,'0')) FROM numero

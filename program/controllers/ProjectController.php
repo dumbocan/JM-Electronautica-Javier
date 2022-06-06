@@ -86,14 +86,21 @@ class projectController extends BoatController
         require_once 'views/project/project_ok.php';
     }
 
-    public function find_projects($state)
+    public function find_projects_state($state)
     {
         $project=new project;
        
         $get=$project->getState($state);
         
-
-
         return $get;
     }
+    public function find_projects_number($number)
+    {
+        $project=new project;
+       
+        $get=$project->getProject($number);
+        
+        return $get;
+    }
+
 }
