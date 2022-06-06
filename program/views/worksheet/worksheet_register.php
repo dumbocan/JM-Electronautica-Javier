@@ -1,7 +1,29 @@
+<h1>Trabajos realizados en proyecto <?= $search->project_number;?> <?=$search->boat_name; ?></h1>
+
+<?php foreach($search_worksheet as $key => $value): ?>
+ 
+  <label for="project">proyecto <?=$value;?></label>
+
+  <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">
+    <input type="submit" name="<?=$value ?>" value="Cambiar" >
+  </form>
+<?php endforeach; ?>
+
+<br>
+<br>
 <h1>Trabajo realizado en <?=$search->boat_name; ?></h1>
 <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
 
-    
+    <?=$search->project_state; ?>
+    <br>
+    <!--(condition ? action_if_true: action_if_false;) -->
+    <?php ($search->project_state == "s" ? $value = "checked" : $value = " "); ?>
+    <input type="radio" name="project_state" value="s" <?=$value; ?> /> Empezado
+    <?php ($search->project_state == "f" ? $value = "checked" : $value = " "); ?>
+    <input type="radio" name="project_state" value="f" <?=$value; ?>/> Terminado
+    <?php ($search->project_state == "w" ? $value = "checked" : $value = " "); ?>
+    <input type="radio" name="project_state" value="w" <?=$value; ?>/> En espera
+    <br>
     <label for="worksheet_id">Numero de proyecto <?= $search->project_number; ?></label>
     <input type="hidden" name="project_id" value="<?= $search->project_id; ?>">
     <br>

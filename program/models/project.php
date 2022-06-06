@@ -148,37 +148,44 @@ class Project
 
     public function getState($state)
     {
-        
-        $sql="SELECT * FROM `project` p 
+        $sql = "SELECT * FROM `project` p 
                   INNER JOIN boat b 
                           ON b.boat_id 
                            = p.boat_id 
                        WHERE project_state = '$state'";
-        
-        $save = $this->db->query($sql);
-         
-        $array = []; 
-        while ($pro = $save->fetch_object())
-        { 
-             $array[] = $pro->project_number." ".$pro->boat_name; 
-        }
-        return $array;
 
+        $save = $this->db->query($sql);
+
+        $array = [];
+        while ($pro = $save->fetch_object()) {
+            $array[] = $pro->project_number.' '.$pro->boat_name;
+        }
+
+        return $array;
+    }
+
+    public function update_state($project_id)
+    {
+        $sql = "UPDATE project 
+        SET project_state = '{$this->getProject_state()}' 
+        WHERE project_id = {$project_id};";
+       
+       $save = $this->db->query($sql);
+       return $save;
     }
 
     public function getProject($number)
     {
-        $sql="SELECT * FROM `project` p 
+        $sql = "SELECT * FROM `project` p 
                   INNER JOIN boat b 
                           ON b.boat_id 
                            = p.boat_id 
                        WHERE project_number = '$number'";
-        
+
         $save = $this->db->query($sql);
         $data = $save->fetch_object();
-        
-        return $data;
 
+        return $data;
     }
 
     /*este funciona
