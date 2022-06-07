@@ -1,20 +1,22 @@
+<?php if($search_worksheet== !null):?>
 <h1>Trabajos realizados en proyecto <?= $search->project_number;?> <?=$search->boat_name; ?></h1>
 
 <?php foreach($search_worksheet as $key => $value): ?>
  
-  <label for="project">proyecto <?=$value;?></label>
-
+  <label for="project"> <?=$value;?></label>
+<!--botones de accion sobre los proyectos -->
   <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">
     <input type="submit" name="<?=$value ?>" value="Cambiar" >
   </form>
-<?php endforeach; ?>
+<?php endforeach; endif?>
 
 <br>
 <br>
+<?php if($search->project_state != "f" ):?>
 <h1>Trabajo realizado en <?=$search->boat_name; ?></h1>
 <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
 
-    <?=$search->project_state; ?>
+    
     <br>
     <!--(condition ? action_if_true: action_if_false;) -->
     <?php ($search->project_state == "s" ? $value = "checked" : $value = " "); ?>
@@ -49,10 +51,18 @@
     
     <br>
     <br>
-    <input type="submit" value="Enviar"/>
-    <br>
-       
+    <input type="submit" value="Enviar"/> 
 </form>
+<form action="<?=base_url; ?>worksheet/finish_project" method="POST">
+    <input type="hidden" name="project_state" value="f" >
+    <input type="hidden" name="project_id" value="<?=$search->project_id?>" >
+    <?php ?>
+    <input type="submit" value="Terminar proyecto"/> 
+</form>
+<br>
+<?php  endif?>
+  
+
 <datalist id="listahorasdeseadas">
   <option value="07:00"><option value="07:30">
   <option value="08:00"><option value="08:30">

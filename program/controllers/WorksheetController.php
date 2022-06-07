@@ -85,7 +85,7 @@ class worksheetController extends projectController
                 $worksheet->setproject_id($project_id);
 
                 $save = $worksheet->save_worksheet();
-
+                
                 $project = new Project();
                 $project->setProject_state($project_state);
                 $update = $project->update_state($project_id);
@@ -108,6 +108,16 @@ class worksheetController extends projectController
             header('location:'.base_url);
         }
     }
+
+    public function finish_project()
+    {
+        $state=$_POST['project_state'];
+        $project_id=$_POST['project_id'];
+        $project = new Project();
+        $project->setProject_state($state);
+        $update = $project->update_state($project_id);
+        
+    } 
 
     public function worksheet_ok()
     {

@@ -96,36 +96,27 @@ class worksheet
         '{$this->getProject_id()}',
         now()
         );";
-var_dump($sql);
+        
         $save = $this->db->query($sql);
 
         $result = false;
-        if ($save) 
-        {
+        if ($save) {
             $result = true;
         }
-        
 
         return $result;
     }
 
     public function get_worksheet($id)
-    {
-        $sql="SELECT * FROM worksheet WHERE project_id = {$id} ORDER BY worksheet_date";
-        
-        $save = $this->db->query($sql); 
+    {   $values = [];
+        $sql = "SELECT * FROM worksheet WHERE project_id = {$id} ORDER BY worksheet_date";
+
+        $save = $this->db->query($sql);
         while ($data = $save->fetch_object()) {
-           $values[]= $data->worksheet_date." ".$data->worksheet_desc." ".$data->start_time." ".$data->finish_time." ".$data->efective_time; 
+            $values[] = $data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;
         }
-
-     return $values;
         
+
+        return $values;
     }
-
-
-    
-
-
 }
-
-
