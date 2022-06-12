@@ -1,29 +1,32 @@
-<?php if($search_worksheet== !null):?>
-<h1>Trabajos realizados en proyecto <?= $search->project_number;?> <?=$search->boat_name; ?></h1>
-
-<?php foreach($search_worksheet as $key => $value): ?>
- 
-  <label for="project"> <?=$value;?></label>
-<!--botones de accion sobre los proyectos -->
-  <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">
-    <input type="submit" name="<?=$value ?>" value="Cambiar" >
-  </form>
-<?php endforeach; endif?>
+<?php if ($search_worksheet == !null):?>
+    <h1>Trabajos realizados en proyecto <?= $search->project_number; ?> <?=$search->boat_name; ?></h1>
+    <!-- recorre la variable $search_worksheet que es un array y imprime cada array -->
+    <?php  foreach ($search_worksheet as $key => $value): ?>
+        <label for="project"> <?=$value; ?></label>
+        <!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
+        <?php $array=(explode(" ",$value));?>
+        <!--botones de accion sobre los proyectos -->
+          <form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
+            <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
+            <input type="hidden" value="<?=$array[0]; ?>" name="id">
+            <input type="submit" name="boton" value="Editar" >
+        </form>
+<?php endforeach; endif; ?>
 
 <br>
 <br>
-<?php if($search->project_state != "f" ):?>
+<?php if ($search->project_state != 'f'):?>
 <h1>Trabajo realizado en <?=$search->boat_name; ?></h1>
 <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
 
     
     <br>
     <!--(condition ? action_if_true: action_if_false;) -->
-    <?php ($search->project_state == "s" ? $value = "checked" : $value = " "); ?>
+    <?php ($search->project_state == 's' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="s" <?=$value; ?> /> Empezado
-    <?php ($search->project_state == "f" ? $value = "checked" : $value = " "); ?>
+    <?php ($search->project_state == 'f' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="f" <?=$value; ?>/> Terminado
-    <?php ($search->project_state == "w" ? $value = "checked" : $value = " "); ?>
+    <?php ($search->project_state == 'w' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="w" <?=$value; ?>/> En espera
     <br>
     <label for="worksheet_id">Numero de proyecto <?= $search->project_number; ?></label>
@@ -53,14 +56,15 @@
     <br>
     <input type="submit" value="Enviar"/> 
 </form>
+
 <form action="<?=base_url; ?>worksheet/finish_project" method="POST">
     <input type="hidden" name="project_state" value="f" >
-    <input type="hidden" name="project_id" value="<?=$search->project_id?>" >
-    <?php ?>
+    <input type="hidden" name="project_id" value="<?=$search->project_id; ?>" >
     <input type="submit" value="Terminar proyecto"/> 
 </form>
+
 <br>
-<?php  endif?>
+<?php  endif; ?>
   
 
 <datalist id="listahorasdeseadas">

@@ -77,6 +77,10 @@ class worksheet
 
     public function setefective_time($efective_time)
     {
+       /* $sql = "SELECT round(hour  ( timediff( finish_time, start_time ) )
+        + minute( timediff( finish_time, start_time ) )/60,2) diferencia
+        FROM worksheet
+        WHERE worksheet_id = '$worksheet_id'";*/
         $this->efective_time = $efective_time;
     }
 
@@ -96,7 +100,7 @@ class worksheet
         '{$this->getProject_id()}',
         now()
         );";
-        
+
         $save = $this->db->query($sql);
 
         $result = false;
@@ -107,15 +111,48 @@ class worksheet
         return $result;
     }
 
+    public function update_worksheet($worksheet_id)
+    {
+        $sql = "UPDATE worksheet SET 
+        worksheet_date = '{$this->getWorksheet_date()}',
+        worksheet_desc ='{$this->getWorksheet_desc()}',   
+        start_time = '{$this->getStart_time()}',
+        finish_time = '{$this->getFinish_time()}',
+        efective_time = '{$this->getEfective_time()}',
+       
+        time_worksheet = now()
+        WHERE worksheet_id = '{$worksheet_id}'
+        ;";
+var_dump($sql);
+        $save = $this->db->query($sql);
+        var_dump($save);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+    // mete en un objeto los datos de un worksheet segun el worksheet_id
+    public function get_worksheet_object($id)
+    {
+        $sql = "SELECT * FROM worksheet WHERE worksheet_id= {$id} ";
+        $save = $this->db->query($sql); 
+        $data = $save->fetch_object();
+        return $data;
+    }
+    // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya 
     public function get_worksheet($id)
-    {   $values = [];
+    {
+        $values = [];
+       
         $sql = "SELECT * FROM worksheet WHERE project_id = {$id} ORDER BY worksheet_date";
 
         $save = $this->db->query($sql);
         while ($data = $save->fetch_object()) {
-            $values[] = $data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;
+            $values[] = ($data->worksheet_id.' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time);
+            
         }
-        
 
         return $values;
     }

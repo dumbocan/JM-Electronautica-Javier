@@ -6,18 +6,19 @@ require_once 'models/project.php';
 class CostumerController extends BoatController
 {
     public function index()
-    {
+    {    Utils::isAdmin();
         echo 'Controlador costumer, accion indexado';
     }
 
-public function ok()
-{
-    require_once 'views/costumer/costumer_ok.php';
-
-}
+    public function ok()
+    { Utils::isAdmin();
+        Utils::isAdmin();
+        require_once 'views/costumer/costumer_ok.php';
+    }
 
     public function edit()
-    {
+    { Utils::isAdmin();
+        Utils::isAdmin();
         if (isset($_POST['costumer_name'])) {
             $name = $_POST['costumer_name'];
             $edit = true;
@@ -25,7 +26,7 @@ public function ok()
             $costumer = new Costumer();
             $costumer->setcostumer_name($name);
             $pro = $costumer->search_db();
-            $cos=$costumer->costumer_name($name);
+            $cos = $costumer->costumer_name($name);
             require_once 'views/costumer/costumer_register.php';
         } elseif (isset($_POST['boat_name'])) {
             $boat_name = $_POST['boat_name'];
@@ -40,7 +41,7 @@ public function ok()
     }
 
     public function update()
-    {
+    { 
         Utils::isAdmin();
         if (isset($_POST)) {
             $costumer_id = isset($_POST['costumer_id']) ? $_POST['costumer_id'] : false;
@@ -73,7 +74,6 @@ public function ok()
 
                 $updateBoat = $boat->update();
 
-
                 if ($updateCostumer && $updateBoat) {
                     $_SESSION['register'] = 'complete';
                 } else {
@@ -91,32 +91,31 @@ public function ok()
         } else {
             header('location:'.base_url.'costumer/costumer_register');
         }
-    
     }
+
     public function ask_delete()
-    {
+    { 
         Utils::isAdmin();
-       
-            $name=$_POST['costumer_name'];
-            require_once 'views/costumer/costumer_delete.php';
+
+        $name = $_POST['costumer_name'];
+        require_once 'views/costumer/costumer_delete.php';
     }
-    
+
     public function delete()
     {
-            if(isset($_POST['costumer_name']))
-            $name=$_POST['costumer_name'];
-            $costumer=new Costumer;
-            $delete=$costumer->delete($name);
-            if($delete){
-                $_SESSION['register'] = 'complete';
-                } else {
-                    $_SESSION['register'] = 'failed';
-                }
-            header('Location:'.base_url.'costumer/index');
-
+        Utils::isAdmin();
+        if (isset($_POST['costumer_name'])) {
+            $name = $_POST['costumer_name'];
+        }
+        $costumer = new Costumer();
+        $delete = $costumer->delete($name);
+        if ($delete) {
+            $_SESSION['register'] = 'complete';
+        } else {
+            $_SESSION['register'] = 'failed';
+        }
+        header('Location:'.base_url.'costumer/index');
     }
-        
-    
 
     public function register()
     {
@@ -133,25 +132,22 @@ public function ok()
     public function search_db()
     {
         Utils::isAdmin();
-       
 
         if (isset($_POST['costumer']) == 'costumer') {
             $name = $_POST['costumer_name'];
             $costumer = new Costumer();
             $costumer->setcostumer_name($name);
             $search = $costumer->search_db();
-            $pro=$costumer->costumer_name($name);
+            $pro = $costumer->costumer_name($name);
             require_once 'views/costumer/costumer_gest.php';
-
-        } elseif (isset($_POST['boat'])== "boat") {
+        } elseif (isset($_POST['boat']) == 'boat') {
             $boat_name = $_POST['boat_name'];
-            
+
             $boat = new Boat();
             $boat->setBoat_name($boat_name);
             $search = $boat->search_db();
 
             require_once 'views/boat/boat_gest.php';
-
         } else {
             header('Location:'.base_url.'costumer/index');
         }

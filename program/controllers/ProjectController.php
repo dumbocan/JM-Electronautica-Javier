@@ -3,18 +3,18 @@
 require_once 'models/project.php';
 
 class projectController extends BoatController
-{
+{  
     public $boat;
 
     public function index()
-    {
+    { Utils::isAdmin();
         require_once 'views/layouts/header.php';
         echo'<h1>PROJECT CONTROLLER / INDEX</h1>';
     }
 
     // saco el nombre del barco segun $_SESSION id y el numero de proyecto
     public function description()
-    {
+    { Utils::isAdmin();
         if(isset($_POST['costumer_id'])){
             $id=$_POST['costumer_id'];
            
@@ -82,12 +82,12 @@ class projectController extends BoatController
     }
 
     public function project_ok()
-    {
+    { Utils::isAdmin();
         require_once 'views/project/project_ok.php';
     }
 
     public function find_projects_state($state)
-    {
+    { Utils::isAdmin();
         $project=new project;
        
         $get=$project->getState($state);
@@ -95,7 +95,7 @@ class projectController extends BoatController
         return $get;
     }
     public function find_projects_number($number)
-    {
+    { Utils::isAdmin();
         $project=new project;
        
         $get=$project->getProject($number);

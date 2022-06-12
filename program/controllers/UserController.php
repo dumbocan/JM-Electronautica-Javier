@@ -13,17 +13,17 @@ class UserController
 
     // Manda a la vista para registrar
     public function register()
-    {
+    { Utils::isAdmin();
         require_once 'views/user/register.php';
     }
 
     public function ok()
-    {
+    { Utils::isAdmin();
         require_once 'views/costumer/costumer_ok.php';
     }
 
     public function save()
-    {
+    { Utils::isAdmin();
         if (isset($_POST)) {
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
             $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
@@ -81,7 +81,7 @@ class UserController
     }
 
     public function logOut()
-    {
+    { Utils::isAdmin();
         if (isset($_SESSION['identity'])) {
             unset($_SESSION['identity']);
         }

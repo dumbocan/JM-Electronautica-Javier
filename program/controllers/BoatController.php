@@ -2,9 +2,9 @@
 
 require_once 'models/boat.php';
 class BoatController 
-{
+{   
     public function index()
-    {
+    { Utils::isAdmin();
         echo 'Controlador boat, accion index';
     }
 
@@ -21,7 +21,7 @@ class BoatController
     }
 */
     public function update()
-    {
+    {   Utils::isAdmin();
         if(isset($_POST)){
         $boat_name = isset($_POST['boat_name']) ? $_POST['boat_name'] : false;
         $marina = isset($_POST['marina']) ? $_POST['marina'] : false;
