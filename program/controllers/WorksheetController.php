@@ -12,10 +12,12 @@ class worksheetController extends projectController
         $data = array_pop($array);
         //Quita todas las letras del string $data y se queda con los numeros,
         //para buscar en la base de datos el proyecto con el numero que queda con preg_replace.
-        $number = preg_replace('/[a-zA-Z]/', '', $data);
-
+        //$number = preg_replace('/[a-zA-Z]/', '', $data);
+        // utilizo explode para sacar el numero_id del array
+        $numb = (explode(' ', $data));
+        $number = $numb[3];
         $search = self::find_project_number($number);
-
+       
         $worksheet = new worksheet();
         $search_worksheet = $worksheet->get_worksheet($search->project_id);
         //var_dump($search_worksheet);
@@ -37,7 +39,7 @@ class worksheetController extends projectController
             $stateW = 'w';
             $searchW = self::find_project_state($stateW);
 
-            require_once 'views/worksheet/worksheet_project.php';
+            require_once 'views/project/project_project.php';
         }
     }
 
@@ -86,7 +88,7 @@ class worksheetController extends projectController
                 $worksheet->setStart_time($start_time);
                 $worksheet->setFinish_time($finish_time);
                 $worksheet->setEfective_time($efective_time);
-                
+
                 $worksheet->setproject_id($project_id);
                 var_dump($worksheet);
                 $save = $worksheet->save_worksheet();
@@ -130,7 +132,7 @@ class worksheetController extends projectController
             $finish_time = isset($_POST['finish_time']) ? $_POST['finish_time'] : false;
             $efective_time = isset($_POST['efective_time']) ? $_POST['efective_time'] : false;
             $worksheet_id = isset($_POST['worksheet_id']) ? $_POST['worksheet_id'] : false;
-           
+
             if ($worksheet_date && $worksheet_desc && $start_time && $finish_time && $efective_time && $worksheet_id) {
                 $worksheet = new Worksheet();
 
@@ -139,12 +141,8 @@ class worksheetController extends projectController
                 $worksheet->setStart_time($start_time);
                 $worksheet->setFinish_time($finish_time);
                 $worksheet->setEfective_time($efective_time);
-                
-               
-                
-                $save = $worksheet->update_worksheet($worksheet_id);
 
-               
+                $save = $worksheet->update_worksheet($worksheet_id);
 
                 if ($save) {
                     $_SESSION['register'] = 'complete';
@@ -152,7 +150,6 @@ class worksheetController extends projectController
                     $_SESSION['register'] = 'failed';
                 }
             } else {
-
                 $_SESSION['register'] = 'failed';
             }
         } else {
@@ -162,16 +159,17 @@ class worksheetController extends projectController
             //require_once 'views/project/description.php';
             header('location:'.base_url.'worksheet/worksheet_ok');
         } else {
-            echo "no se ha grabado";
+            echo 'no se ha grabado';
             //header('location:'.base_url);
         }
     }
+
     public function show_worksheet()
     {
-    
-        $project_id=$_POST['id'];var_dump($_POST['id']);
+        $project_id = $_POST['id'];
+        var_dump($_POST['id']);
         $worksheet = new worksheet();
-        
+
         $search_worksheet_object = $worksheet->get_worksheet_object($project_id);
         var_dump($search_worksheet_object);
         require_once 'views/worksheet/worksheet_update.php';

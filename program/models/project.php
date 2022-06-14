@@ -146,19 +146,20 @@ class Project
         return $number;
     }
 
+    //busca el numero de proyecto y nombre de barco dependiendo del estado (w/s/f) y retorna un string (YY-MM-XXX nombre barco)
     public function getState($state)
     {
         $sql = "SELECT * FROM `project` p 
                   INNER JOIN boat b 
                           ON b.boat_id 
                            = p.boat_id 
-                       WHERE project_state = '$state'";
+                       WHERE project_state = '$state' ORDER BY project_date";
 
         $save = $this->db->query($sql);
 
         $array = [];
         while ($pro = $save->fetch_object()) {
-            $array[] = $pro->project_number.' '.$pro->boat_name;
+            $array[] = $pro->project_date.' /  '.$pro->project_number.' '.$pro->boat_name;
         }
 
         return $array;
@@ -169,9 +170,10 @@ class Project
         $sql = "UPDATE project 
         SET project_state = '{$this->getProject_state()}' 
         WHERE project_id = {$project_id};";
-       
-       $save = $this->db->query($sql);
-       return $save;
+
+        $save = $this->db->query($sql);
+
+        return $save;
     }
 
     public function getProject($number)

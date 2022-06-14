@@ -3,28 +3,29 @@
 require_once 'models/project.php';
 
 class projectController extends BoatController
-{  
+{
     public $boat;
 
     public function index()
-    { Utils::isAdmin();
+    {
+        Utils::isAdmin();
         require_once 'views/layouts/header.php';
         echo'<h1>PROJECT CONTROLLER / INDEX</h1>';
     }
 
     // saco el nombre del barco segun $_SESSION id y el numero de proyecto
     public function description()
-    { Utils::isAdmin();
-        if(isset($_POST['costumer_id'])){
-            $id=$_POST['costumer_id'];
-           
-        }else{
+    {
+        Utils::isAdmin();
+        if (isset($_POST['costumer_id'])) {
+            $id = $_POST['costumer_id'];
+        } else {
             $id = ($_SESSION['id']);
         }
         $boat = new boat();
-         
+
         $data = $boat->getData($id);
-       
+
         $boat_id = $data->boat_id;
 
         $project = new project();
@@ -32,7 +33,23 @@ class projectController extends BoatController
 
         $number = $project->getNumber();
 
-        require_once 'views/project/description.php';
+        require_once 'views/project/project_description.php';
+    }
+
+    public function update_project()
+    {
+        // me llega un array, lo despiezo y recojo el numero de proyecto
+        $array = $_POST;
+        $data = array_pop($array);
+        $numb = (explode(' ', $data));
+        $number = ($numb[3]);
+        $project = new project();
+
+        $data = $project->getProject($number);
+
+        $boat_id = $data->boat_id;
+        //self::description();
+        require_once 'views/project/project_update.php';
     }
 
     public function save()
@@ -82,25 +99,28 @@ class projectController extends BoatController
     }
 
     public function project_ok()
-    { Utils::isAdmin();
+    {
+        Utils::isAdmin();
         require_once 'views/project/project_ok.php';
     }
 
     public function find_projects_state($state)
-    { Utils::isAdmin();
-        $project=new project;
-       
-        $get=$project->getState($state);
-        
-        return $get;
-    }
-    public function find_projects_number($number)
-    { Utils::isAdmin();
-        $project=new project;
-       
-        $get=$project->getProject($number);
-        
+    {
+        Utils::isAdmin();
+        $project = new project();
+
+        $get = $project->getState($state);
+
         return $get;
     }
 
+    public function find_projects_number($number)
+    {
+        Utils::isAdmin();
+        $project = new project();
+
+        $get = $project->getProject($number);
+
+        return $get;
+    }
 }
