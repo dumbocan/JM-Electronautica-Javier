@@ -2,6 +2,7 @@
 
 class Project
 {
+    private $project_id;
     private $project_number;
     private $project_date;
     private $project_desciption;
@@ -19,6 +20,11 @@ class Project
     public function __construct()
     {
         $this->db = Database::connect();
+    }
+
+    public function getProject_id()
+    {
+        return $this->project_id;
     }
 
     public function getProject_number()
@@ -64,6 +70,12 @@ class Project
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    public function setProject_id($project_id)
+    {
+         $this->project_id = $project_id;
+
     }
 
     public function setProject_number($project_number)
@@ -136,6 +148,45 @@ class Project
         return $result;
     }
 
+
+    public function update()
+    {
+        $sql = "UPDATE project SET 
+        project_number = '{$this->getProject_number()}',
+        project_date ='{$this->getProject_date()}',
+        project_desc = '{$this->getProject_description()}',
+        project_state =  '{$this->getProject_state()}',
+       
+        project_comments='{$this->getProject_comments()}',
+        pictures='{$this->getPictures()}',
+        files='{$this->getFiles()}',
+        boat_id='{$this->getBoat_id()}',
+        timestamp_project=NOW()
+        WHERE project_id = '{$this->getProject_id()}'
+        ;";
+var_dump($sql);
+        $save = $this->db->query($sql);
+        var_dump($save);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+
+    
+     
+       
+
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
     //busca el numero de trabajo en tabla work_number y retorna como objeto
     public function getNumber()
     {
@@ -179,10 +230,12 @@ class Project
     public function getProject($number)
     {
         $sql = "SELECT * FROM `project` p 
-                  INNER JOIN boat b 
-                          ON b.boat_id 
-                           = p.boat_id 
-                       WHERE project_number = '$number'";
+        INNER JOIN boat b 
+                ON b.boat_id  = p.boat_id 
+        INNER JOIN costumer c		
+                  ON b.costumer_id = c.costumer_id
+                 
+             WHERE project_number = '$number'";
 
         $save = $this->db->query($sql);
         $data = $save->fetch_object();

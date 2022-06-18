@@ -38,18 +38,71 @@ class projectController extends BoatController
 
     public function update_project()
     {
+        echo "update_project";
+        Utils::isAdmin();
         // me llega un array, lo despiezo y recojo el numero de proyecto
         $array = $_POST;
         $data = array_pop($array);
         $numb = (explode(' ', $data));
-        $number = ($numb[3]);
+        $numb = ($numb[3]);
         $project = new project();
 
-        $data = $project->getProject($number);
-
-        $boat_id = $data->boat_id;
-        //self::description();
+        $data = $project->getProject($numb);
+       
+        var_dump($data);
         require_once 'views/project/project_update.php';
+    }
+
+    public function update()
+    {
+       
+        Utils::isAdmin();
+      
+        if (isset($_POST)) {
+            
+            $project_number = isset($_POST['project_number']) ? $_POST['project_number'] : false;
+            
+            $project_date = isset($_POST['project_date']) ? $_POST['project_date'] : false;
+            $project_description = isset($_POST['project_desc']) ? $_POST['project_desc'] : false;
+            $project_state = isset($_POST['project_state']) ? $_POST['project_state'] : false;
+            $project_comments = isset($_POST['project_comments']) ? $_POST['project_comments'] : false;
+            $pictures = isset($_POST['pictures']) ? $_POST['pictures'] : false;
+            $files = isset($_POST['files']) ? $_POST['files'] : false;
+            $project_id = isset($_POST['project_id']) ? $_POST['project_id'] : false;
+            $boat_id = isset($_POST['boat_id']) ? $_POST['boat_id'] : false;
+
+ 
+            if ($project_date && $project_description && $project_state && $project_comments) {
+                $project = new Project();
+
+                $project->setProject_id($project_id);
+                $project->setProject_number($project_number);
+                $project->setProject_date($project_date);
+                $project->setProject_description($project_description);
+                $project->setProject_state($project_state);
+                $project->setProject_comments($project_comments);
+                $project->setPictures($pictures);
+                $project->setFiles($files);
+                $project->setBoat_id($boat_id);
+
+                $update = $project->update();
+
+                if ($update) {
+                    $_SESSION['register'] = 'complete';
+                } else {
+                    $_SESSION['register'] = 'failed';
+                }
+            } else {
+                $_SESSION['register'] = 'failed';
+            }
+        } else {
+            $_SESSION['register'] = 'failed';
+        }
+        if ($_SESSION['register'] == 'complete') {
+            header('location:'.base_url.'project/project_ok');
+        } else {
+            die; header('location:'.base_url.'project/register');
+        }
     }
 
     public function save()
