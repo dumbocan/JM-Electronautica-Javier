@@ -156,4 +156,13 @@ var_dump($sql);
 
         return $values;
     }
+
+    public function delete($id)
+{
+    $sql="DELETE FROM worksheet WHERE worksheet_id = '$id'";
+    $result = $this->db->query($sql);
+        
+
+        return $result;
+}
 }

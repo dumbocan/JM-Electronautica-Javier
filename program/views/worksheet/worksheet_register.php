@@ -1,16 +1,24 @@
 <?php if ($search_worksheet == !null):?>
+
     <h1>Trabajos realizados en proyecto <?= $search->project_number; ?> <?=$search->boat_name; ?></h1>
     <!-- recorre la variable $search_worksheet que es un array y imprime cada array -->
     <?php  foreach ($search_worksheet as $key => $value): ?>
-        <label for="project"> <?=$value; ?></label>
-        <!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
-        <?php $array=(explode(" ",$value));?>
-        <!--botones de accion sobre los proyectos -->
-          <form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
-            <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
-            <input type="hidden" value="<?=$array[0]; ?>" name="id">
-            <input type="submit" name="boton" value="Editar" >
-        </form>
+      	<div class="nameboat">
+        	<label for="project"> <?=$value; ?></label>
+        	<!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
+        	<?php $array=(explode(" ",$value));?>
+        	<!--botones de accion sobre los proyectos -->
+          	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
+        		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
+        		<input class="buttons" type="submit" name="boton" value="Editar" >
+        		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        	</form>
+        	<form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
+        		<input class="buttons" type="submit" value="borrar hoja de trabajo" name="boton">
+        		<input type="hidden"  value="<?=$array[0]; ?>" name="id" >
+				<input type="hidden"  value="<?=$array[1]; ?>" name="date" >
+    		</form>  
+      	</div>  
 <?php endforeach; endif; ?>
 
 <br>

@@ -20,6 +20,7 @@ class Project
     public function __construct()
     {
         $this->db = Database::connect();
+        $this->project_comments = " ";
     }
 
     public function getProject_id()
@@ -164,7 +165,6 @@ class Project
         timestamp_project=NOW()
         WHERE project_id = '{$this->getProject_id()}'
         ;";
-var_dump($sql);
         $save = $this->db->query($sql);
         var_dump($save);
         $result = false;
@@ -173,13 +173,7 @@ var_dump($sql);
         }
 
         return $result;
-
-    
-     
-       
-
         $save = $this->db->query($sql);
-
         $result = false;
         if ($save) {
             $result = true;
@@ -242,6 +236,19 @@ var_dump($sql);
 
         return $data;
     }
+
+public function delete($number)
+{
+    $sql="DELETE FROM project WHERE project_number = '$number'";
+    $result = $this->db->query($sql);
+        
+
+        return $result;
+}
+
+
+
+
 
     /*este funciona
 

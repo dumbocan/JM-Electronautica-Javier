@@ -38,7 +38,7 @@ class projectController extends BoatController
 
     public function update_project()
     {
-        echo "update_project";
+        echo 'update_project';
         Utils::isAdmin();
         // me llega un array, lo despiezo y recojo el numero de proyecto
         $array = $_POST;
@@ -48,20 +48,17 @@ class projectController extends BoatController
         $project = new project();
 
         $data = $project->getProject($numb);
-       
-        var_dump($data);
+
         require_once 'views/project/project_update.php';
     }
 
     public function update()
     {
-       
         Utils::isAdmin();
-      
+
         if (isset($_POST)) {
-            
             $project_number = isset($_POST['project_number']) ? $_POST['project_number'] : false;
-            
+
             $project_date = isset($_POST['project_date']) ? $_POST['project_date'] : false;
             $project_description = isset($_POST['project_desc']) ? $_POST['project_desc'] : false;
             $project_state = isset($_POST['project_state']) ? $_POST['project_state'] : false;
@@ -71,7 +68,6 @@ class projectController extends BoatController
             $project_id = isset($_POST['project_id']) ? $_POST['project_id'] : false;
             $boat_id = isset($_POST['boat_id']) ? $_POST['boat_id'] : false;
 
- 
             if ($project_date && $project_description && $project_state && $project_comments) {
                 $project = new Project();
 
@@ -101,7 +97,8 @@ class projectController extends BoatController
         if ($_SESSION['register'] == 'complete') {
             header('location:'.base_url.'project/project_ok');
         } else {
-            die; header('location:'.base_url.'project/register');
+            die;
+            header('location:'.base_url.'project/register');
         }
     }
 
@@ -114,12 +111,12 @@ class projectController extends BoatController
             $project_date = isset($_POST['project_date']) ? $_POST['project_date'] : false;
             $project_description = isset($_POST['project_description']) ? $_POST['project_description'] : false;
             $project_state = isset($_POST['project_state']) ? $_POST['project_state'] : false;
-            $project_comments = isset($_POST['project_comments']) ? $_POST['project_comments'] : false;
+            $project_comments = isset($_POST['project_comments']) ? $_POST['project_comments'] : " ";
             $pictures = isset($_POST['pictures']) ? $_POST['pictures'] : false;
             $files = isset($_POST['files']) ? $_POST['files'] : false;
             $boat_id = isset($_POST['boat_id']) ? $_POST['boat_id'] : false;
 
-            if ($project_date && $project_description && $project_state && $project_comments) {
+            if ($project_date && $project_description && $project_state) {
                 $project = new Project();
 
                 $project->setProject_number($project_number);
@@ -175,5 +172,32 @@ class projectController extends BoatController
         $get = $project->getProject($number);
 
         return $get;
+    }
+    public function delete_project()
+    {
+        Utils::isAdmin();
+        
+        $array=($_POST);
+        $data = array_pop($array);
+        $numb = (explode(' ', $data));
+        $number = $numb[3];
+       
+        $project = new Project();
+        $delete = $project->delete($number);
+        
+        if ($delete) {
+            $_SESSION['register'] = 'complete';
+        } else {
+            $_SESSION['register'] = 'failed';
+        }
+        header('Location:'.base_url.'project/project_ok');
+
+    }
+
+    public function ask_delete()
+    { 
+        Utils::isAdmin();
+        $name=$_POST['name'];
+        require_once 'views/project/project_delete.php';
     }
 }

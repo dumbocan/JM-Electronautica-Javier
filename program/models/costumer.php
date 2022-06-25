@@ -93,7 +93,7 @@ class Costumer
     {
         $sql = "DELETE FROM costumer WHERE costumer_name = '$name'";
         $result = $this->db->query($sql);
-        var_dump($sql);
+        
 
         return $result;
     }
