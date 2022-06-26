@@ -7,7 +7,16 @@ class worksheetController extends projectController
     public function prepare_worksheet()
     {
         Utils::isAdmin();
+        if(isset($_POST['id'])){
+            $number = $_POST['id'];
+        }elseif(isset($_POST['return'])){
+            $id = $_POST['return'];
+            $worksheet = new worksheet();
+             $numb=$worksheet-> get_project_by_id($id);
+            $number=$numb->project_number;
+        }else{
         $array = $_POST;
+        
         //Saca del array $array, un string que es $data con array_pop.
         $data = array_pop($array);
         //Quita todas las letras del string $data y se queda con los numeros,
@@ -16,6 +25,9 @@ class worksheetController extends projectController
         // utilizo explode para sacar el numero_id del array
         $numb = (explode(' ', $data));
         $number = $numb[3];
+        }
+       
+       
         $search = self::find_project_number($number);
 
         $worksheet = new worksheet();
@@ -74,21 +86,28 @@ class worksheetController extends projectController
             $worksheet_desc = isset($_POST['worksheet_desc']) ? $_POST['worksheet_desc'] : false;
             $start_time = isset($_POST['start_time']) ? $_POST['start_time'] : false;
             $finish_time = isset($_POST['finish_time']) ? $_POST['finish_time'] : false;
-            $efective_time = isset($_POST['efective_time']) ? $_POST['efective_time'] : false;
+            if ($_POST['efective_time'] == '') {
+                $efective_time = '0';
+            } else {
+                $efective_time = $_POST['efective_time'];
+            }
 
-            if ($project_state && $project_id && $worksheet_date && $worksheet_desc && $start_time && $finish_time && $efective_time) {
+            if ($project_state && $project_id && $worksheet_date && $worksheet_desc && $start_time && $finish_time) {
                 $worksheet = new Worksheet();
 
                 $worksheet->setWorksheet_date($worksheet_date);
                 $worksheet->setWorksheet_desc($worksheet_desc);
                 $worksheet->setStart_time($start_time);
                 $worksheet->setFinish_time($finish_time);
-                $worksheet->setEfective_time($efective_time);
-
                 $worksheet->setproject_id($project_id);
-                var_dump($worksheet);
+                $worksheet->setefective_time($efective_time);
+
                 $save = $worksheet->save_worksheet();
-                var_dump($save);
+                $work_id = $worksheet->get_last_id();
+                if ($efective_time == '0') {
+                    $worksheet->efective_time($work_id);
+                }
+
                 $project = new Project();
                 $project->setProject_state($project_state);
                 $update = $project->update_state($project_id);
@@ -105,8 +124,9 @@ class worksheetController extends projectController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            //require_once 'views/project/description.php';
-            header('location:'.base_url.'worksheet/worksheet_ok');
+            $proid=$worksheet->getproject_id();
+           // header('location:'.base_url.'worksheet/worksheet_ok');
+           require_once 'views/worksheet/worksheet_ok.php';
         } else {
             header('location:'.base_url);
         }
@@ -116,7 +136,7 @@ class worksheetController extends projectController
     public function update_worksheet()
     {
         Utils::isAdmin();
-
+        var_dump($_POST);
         if (isset($_POST)) {
             $worksheet_date = isset($_POST['worksheet_date']) ? $_POST['worksheet_date'] : false;
             $worksheet_desc = isset($_POST['worksheet_desc']) ? $_POST['worksheet_desc'] : false;
@@ -187,28 +207,34 @@ class worksheetController extends projectController
     public function ask_delete()
     {
         Utils::isAdmin();
-        $id=$_POST['id'];
-        $date=$_POST['date'];
+        $id = $_POST['id'];
+        $date = $_POST['date'];
         require_once 'views/worksheet/worksheet_delete.php';
     }
 
     public function delete_worksheet()
     {
         Utils::isAdmin();
-        
-        if(isset($_POST['id'])){
-           $id=($_POST['id']); 
-        } 
-        $worksheet = new Worksheet();
-        $delete = $worksheet->delete($id);
-        
-        if ($delete) {
-            $_SESSION['register'] = 'complete';
-        } else {
-            $_SESSION['register'] = 'failed';
-        }
-        header('Location:'.base_url.'worksheet/worksheet_ok');
 
+        if (isset($_POST['id'])) {
+            $id = ($_POST['id']);
+        }
+        $worksheet = new Worksheet();
+
+        $project_id = $worksheet->get_worksheet_object($id);
+
+        $res = $project_id->project_id;
+        $data = $worksheet->get_project_by_id($res);
+        $sdata=$data->project_number;
+        
+        $delete = $worksheet->delete($id);
+        if ($delete) {
+            $_SESSION['delete'] = 'complete';
+        } else {
+            $_SESSION['delete'] = 'failed';
+        }
+        // header('Location:'.base_url.'worksheet/worksheet_ok');
+        require_once 'views/worksheet/worksheet_ok.php';
     }
 }
 

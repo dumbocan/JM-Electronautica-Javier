@@ -75,13 +75,20 @@ class worksheet
         $this->finish_time = $finish_time;
     }
 
-    public function setefective_time($efective_time)
+    public function setefective_time($worksheet_id)
     {
-       /* $sql = "SELECT round(hour  ( timediff( finish_time, start_time ) )
-        + minute( timediff( finish_time, start_time ) )/60,2) diferencia
-        FROM worksheet
-        WHERE worksheet_id = '$worksheet_id'";*/
-        $this->efective_time = $efective_time;
+        $this->efective_time = $worksheet_id;
+    }
+
+    public function efective_time($worksheet_id)
+    {
+        $id = ($worksheet_id['worksheet_id']);
+        $sql = "UPDATE worksheet SET 
+        efective_time =  (select round(hour  ( timediff( finish_time, start_time ) )
+        + minute( timediff( finish_time, start_time ) )/60,2) diferencia)
+        WHERE worksheet_id = '$id';";
+
+        $this->db->query($sql);
     }
 
     public function setproject_id($project_id)
@@ -91,15 +98,16 @@ class worksheet
 
     public function save_worksheet()
     {
-        $sql = "INSERT INTO worksheet VALUES (null,
-        '{$this->getWorksheet_date()}',
-        '{$this->getWorksheet_desc()}',   
-        '{$this->getStart_time()}',
-        '{$this->getFinish_time()}',
-        '{$this->getEfective_time()}',
-        '{$this->getProject_id()}',
-        now()
-        );";
+        $sql = "INSERT INTO worksheet SET 
+        worksheet_id=null,
+        worksheet_date='{$this->getWorksheet_date()}',
+        worksheet_desc='{$this->getWorksheet_desc()}',   
+        start_time='{$this->getStart_time()}',
+        finish_time='{$this->getFinish_time()}',
+        efective_time='{$this->getEfective_time()}',
+        project_id='{$this->getProject_id()}',
+        time_worksheet=now()
+        ;";
 
         $save = $this->db->query($sql);
 
@@ -123,9 +131,9 @@ class worksheet
         time_worksheet = now()
         WHERE worksheet_id = '{$worksheet_id}'
         ;";
-var_dump($sql);
+
         $save = $this->db->query($sql);
-        var_dump($save);
+
         $result = false;
         if ($save) {
             $result = true;
@@ -133,36 +141,56 @@ var_dump($sql);
 
         return $result;
     }
+
     // mete en un objeto los datos de un worksheet segun el worksheet_id
     public function get_worksheet_object($id)
     {
         $sql = "SELECT * FROM worksheet WHERE worksheet_id= {$id} ";
-        $save = $this->db->query($sql); 
+        $save = $this->db->query($sql);
         $data = $save->fetch_object();
+
         return $data;
     }
-    // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya 
+
+    // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya
     public function get_worksheet($id)
     {
         $values = [];
-       
+
         $sql = "SELECT * FROM worksheet WHERE project_id = {$id} ORDER BY worksheet_date";
 
         $save = $this->db->query($sql);
         while ($data = $save->fetch_object()) {
             $values[] = ($data->worksheet_id.' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time);
-            
         }
 
         return $values;
     }
 
     public function delete($id)
-{
-    $sql="DELETE FROM worksheet WHERE worksheet_id = '$id'";
-    $result = $this->db->query($sql);
-        
+    {
+        $sql = "DELETE FROM worksheet WHERE worksheet_id = '$id'";
+        $result = $this->db->query($sql);
 
         return $result;
-}
+    }
+
+    public function get_last_id()
+    {
+        $sql = 'SELECT worksheet_id FROM worksheet ORDER BY worksheet_id DESC LIMIT 1 ;';
+        $id = $this->db->query($sql);
+        $lid = mysqli_fetch_assoc($id);
+
+        return $lid;
+    }
+
+    public function get_project_by_id($id)
+    {
+        $sql="SELECT project_number FROM project WHERE project_id='{$id}'";
+        $ids = $this->db->query($sql);
+        $lid = mysqli_fetch_object($ids);
+       
+        return $lid;
+    }
+
 }

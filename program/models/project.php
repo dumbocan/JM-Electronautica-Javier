@@ -20,7 +20,7 @@ class Project
     public function __construct()
     {
         $this->db = Database::connect();
-        $this->project_comments = " ";
+        $this->project_comments = ' ';
     }
 
     public function getProject_id()
@@ -75,8 +75,7 @@ class Project
 
     public function setProject_id($project_id)
     {
-         $this->project_id = $project_id;
-
+        $this->project_id = $project_id;
     }
 
     public function setProject_number($project_number)
@@ -149,7 +148,6 @@ class Project
         return $result;
     }
 
-
     public function update()
     {
         $sql = "UPDATE project SET 
@@ -181,6 +179,7 @@ class Project
 
         return $result;
     }
+
     //busca el numero de trabajo en tabla work_number y retorna como objeto
     public function getNumber()
     {
@@ -230,25 +229,20 @@ class Project
                   ON b.costumer_id = c.costumer_id
                  
              WHERE project_number = '$number'";
-
+        
         $save = $this->db->query($sql);
         $data = $save->fetch_object();
 
         return $data;
     }
 
-public function delete($number)
-{
-    $sql="DELETE FROM project WHERE project_number = '$number'";
-    $result = $this->db->query($sql);
-        
+    public function delete($number)
+    {
+        $sql = "DELETE FROM project WHERE project_number = '$number'";
+        $result = $this->db->query($sql);
 
         return $result;
-}
-
-
-
-
+    }
 
     /*este funciona
 
