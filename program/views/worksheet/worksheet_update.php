@@ -18,6 +18,7 @@
     <br>
     <label for="efective_time">Tiempo efectivo</label>
     <input type="text" name="efective_time" value="<?=$search_worksheet_object->efective_time?>">
+    <input type="hidden" name="project_id" value="<?=$search_worksheet_object->project_id?>">
     <br>
    
     

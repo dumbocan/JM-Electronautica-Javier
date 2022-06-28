@@ -10,11 +10,16 @@
         	<!--botones de accion sobre los proyectos -->
           	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
         		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
-        		<input class="buttons" type="submit" name="boton" value="Editar" >
+        		<input class="buttons" type="submit"  value="Editar" >
+        		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        	</form>
+            <form action="<?=base_url; ?>detail/detail" method="POST">
+        		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
+        		<input class="buttons" type="submit" value="Insertar Material" >
         		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
         	</form>
         	<form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
-        		<input class="buttons" type="submit" value="borrar hoja de trabajo" name="boton">
+        		<input class="buttons" type="submit" value="borrar hoja de trabajo">
         		<input type="hidden"  value="<?=$array[0]; ?>" name="id" >
 				<input type="hidden"  value="<?=$array[1]; ?>" name="date" >
     		</form>  

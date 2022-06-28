@@ -2,6 +2,7 @@
     <strong id="ok">Registro completado correctamente</strong>
     <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">
         <button formaction="<?=base_url; ?>">Inicio</button>
+        
         <button type="submit" name="return" value="<?=$proid?>">Regresar a proyecto</button>
     </form>
 <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed'):?>

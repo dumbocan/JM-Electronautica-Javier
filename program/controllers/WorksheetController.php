@@ -136,7 +136,7 @@ class worksheetController extends projectController
     public function update_worksheet()
     {
         Utils::isAdmin();
-        var_dump($_POST);
+       
         if (isset($_POST)) {
             $worksheet_date = isset($_POST['worksheet_date']) ? $_POST['worksheet_date'] : false;
             $worksheet_desc = isset($_POST['worksheet_desc']) ? $_POST['worksheet_desc'] : false;
@@ -144,7 +144,7 @@ class worksheetController extends projectController
             $finish_time = isset($_POST['finish_time']) ? $_POST['finish_time'] : false;
             $efective_time = isset($_POST['efective_time']) ? $_POST['efective_time'] : false;
             $worksheet_id = isset($_POST['worksheet_id']) ? $_POST['worksheet_id'] : false;
-
+            $project_id= isset($_POST['project_id']) ? $_POST['project_id'] : false;
             if ($worksheet_date && $worksheet_desc && $start_time && $finish_time && $efective_time && $worksheet_id) {
                 $worksheet = new Worksheet();
 
@@ -153,6 +153,8 @@ class worksheetController extends projectController
                 $worksheet->setStart_time($start_time);
                 $worksheet->setFinish_time($finish_time);
                 $worksheet->setEfective_time($efective_time);
+                $worksheet->setworksheet_id($worksheet_id);
+                $worksheet->setproject_id($project_id);
 
                 $save = $worksheet->update_worksheet($worksheet_id);
 
@@ -168,8 +170,10 @@ class worksheetController extends projectController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            //require_once 'views/project/description.php';
-            header('location:'.base_url.'worksheet/worksheet_ok');
+           
+            $proid=$worksheet->getproject_id();
+            //header('location:'.base_url.'worksheet/worksheet_ok');
+            require_once 'views/worksheet/worksheet_ok.php';
         } else {
             echo 'no se ha grabado';
             //header('location:'.base_url);
@@ -180,7 +184,7 @@ class worksheetController extends projectController
     public function show_worksheet()
     {
         $project_id = $_POST['id'];
-        var_dump($_POST['id']);
+        
         $worksheet = new worksheet();
 
         $search_worksheet_object = $worksheet->get_worksheet_object($project_id);
@@ -236,6 +240,11 @@ class worksheetController extends projectController
         // header('Location:'.base_url.'worksheet/worksheet_ok');
         require_once 'views/worksheet/worksheet_ok.php';
     }
+    
+
+
+
+
 }
 
 // SELECT MINUTE(worksheet.start_time) / 60 + (SELECT HOUR(worksheet.start_time) FROM worksheet) FROM worksheet  WHERE worksheet_id = 3
