@@ -37,7 +37,7 @@
             <input type="hidden" name="<?=$value; ?>" value="<?=$value; ?>"    >
         </form>
     </div>
-    </div><br>
+    </div>
 <?php endforeach; ?>
     
     <br>

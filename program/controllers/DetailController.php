@@ -1,22 +1,27 @@
 <?php
+
 require_once 'models/detail.php';
 
 class DetailController
 {
     public function insert()
-    {    Utils::isAdmin();
+    {
+        Utils::isAdmin();
         echo 'Controlador detail, accion indexado';
     }
 
-public function detail()
+    public function add_detail()
     {
-        echo "detail";
-        var_dump($_POST);
+        Utils::isAdmin();
+        $worksheet_id = $_POST['id'];
+
+        $detail = new Detail();
+        $data=$detail->get_data($worksheet_id);
+        $de= mysqli_fetch_object($data);
+        //var_dump($de);
+        $name= $de->project_number.' '.$de->boat_name;
+        echo $name;
+        require_once 'views/detail/details_register.php';
+       
     }
-
-
-
-
-
 }
-

@@ -6,14 +6,14 @@
       	<div class="nameboat">
         	<label for="project"> <?=$value; ?></label>
         	<!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
-        	<?php $array=(explode(" ",$value));?>
+        	<?php $array = (explode(' ', $value)); ?>
         	<!--botones de accion sobre los proyectos -->
           	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
         		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
         		<input class="buttons" type="submit"  value="Editar" >
         		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
         	</form>
-            <form action="<?=base_url; ?>detail/detail" method="POST">
+            <form action="<?=base_url; ?>detail/add_detail" method="POST">
         		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
         		<input class="buttons" type="submit" value="Insertar Material" >
         		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
