@@ -164,7 +164,7 @@ class Project
         WHERE project_id = '{$this->getProject_id()}'
         ;";
         $save = $this->db->query($sql);
-        var_dump($save);
+        
         $result = false;
         if ($save) {
             $result = true;

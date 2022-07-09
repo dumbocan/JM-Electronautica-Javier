@@ -1,4 +1,4 @@
-<?php ;?>
+<?php // insertar material en base de datos para luego usarlo en insertar material;?>
 <h3>Insertar material en base de datos</h3>
 <form action="<?=base_url?>material/save_material" method="POST">
     <label for="material_category">Categoria</label>
