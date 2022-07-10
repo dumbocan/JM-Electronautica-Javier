@@ -13,24 +13,38 @@ class CategoryController
         require_once 'views/category/category_register.php';
     }
 
+    public function new_category()
+    {
+        Utils::isAdmin();
+        require_once 'views/category/new_category.php';
+    }
+
+    public function save_category()
+    {
+        Utils::isAdmin();
+        $category = $_POST;
+
+        $cat = new Category();
+        $cat->setCategory_name($category);
+        $cat->save_category();
+    }
+
     public function edit_category()
-    {   
-       
-        $id=$_POST['category_id'];
-        $name=$_POST['category_name'];
+    {
+        Utils::isAdmin();
+        $id = $_POST['category_id'];
+        $name = $_POST['category_name'];
         require_once 'views/category/category_update.php';
-      
-    
     }
 
     public function update_category()
     {
-        $id=$_POST['category_id'];
-        $name=$_POST['category_name'];
-        $category=new category;
+        $id = $_POST['category_id'];
+        $name = $_POST['category_name'];
+        $category = new category();
         $category->setCategory_name($name);
         $category->setCategory_id($id);
-        $save=$category->edit_category($id); 
+        $save = $category->edit_category($id);
         var_dump($save);
         if ($save) {
             $_SESSION['register'] = 'complete';
@@ -43,8 +57,5 @@ class CategoryController
     public function delete_category()
     {
         var_dump($_POST);
-
     }
-
-
 }

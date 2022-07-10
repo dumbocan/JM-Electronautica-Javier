@@ -58,7 +58,7 @@ class Category
 
     public function edit_category($id)
     {
-        $sql="UPDATE category SET
+        $sql = "UPDATE category SET
                category_name = '{$this->getCategory_name()}'
                WHERE 
                category_id = '{$this->getCategory_id()}';";
@@ -69,9 +69,14 @@ class Category
         }
 
         return $result;
-
     }
 
-
-
+    public function save_category()
+    {
+        $sql = "INSERT INTO category VALUES (
+             category_name = '{$this->getCategory_name()}'
+             WHERE 
+             material_id='{$this->getMaterial_id}');";
+        var_dump($this->getCategory_name());
+    }
 }
