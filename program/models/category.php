@@ -73,10 +73,8 @@ class Category
 
     public function save_category()
     {
-        $sql = "INSERT INTO category VALUES (
-             category_name = '{$this->getCategory_name()}'
-             WHERE 
-             material_id='{$this->getMaterial_id}');";
-        var_dump($this->getCategory_name());
+        $sql = "INSERT INTO category VALUES 
+             category_name = '{$this->getCategory_name()}';";
+        var_dump($sql);
     }
 }

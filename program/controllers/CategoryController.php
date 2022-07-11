@@ -22,7 +22,7 @@ class CategoryController
     public function save_category()
     {
         Utils::isAdmin();
-        $category = $_POST;
+        $category = $_POST['new_category'];
 
         $cat = new Category();
         $cat->setCategory_name($category);
