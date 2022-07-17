@@ -47,7 +47,8 @@ class Category
 
     public function showCategories()
     {
-        $sql = 'SELECT * FROM category';
+       
+        $sql = "SELECT * FROM category WHERE material_id = '{$this->getMaterial_id()}'";
         $save = $this->db->query($sql);
         while ($row = $save->fetch_object()) {
             $resultSet[] = $row;
@@ -73,8 +74,31 @@ class Category
 
     public function save_category()
     {
-        $sql = "INSERT INTO category VALUES 
-             category_name = '{$this->getCategory_name()}';";
-        var_dump($sql);
+        $material_id= $this->getMaterial_id();
+       
+        $sql = "INSERT INTO category SET 
+             category_id = null,
+             category_name = '{$this->getCategory_name()}',
+             material_id = '{$this->getMaterial_id()}'
+             ;";
+        $save = $this->db->query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function delete_category()
+    {
+        $sql = "DELETE FROM category WHERE category_id = '{$this->getCategory_id()}';";
+        $save = $this->db->query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
     }
 }
