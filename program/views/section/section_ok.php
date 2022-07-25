@@ -5,6 +5,6 @@
     <strong id="fallo">Registro fallido, introduce bien los datos</strong>
 <?php endif; ?>
 <form>
-    <button formaction="<?=base_url;?>">Inicio</button>
-    <button formaction="<?=base_url;?>material/index">Materiales</button>
+    <button formaction="<?=base_url; ?>">Inicio</button>
+    <button formaction="<?=base_url; ?>section/index">sectiones</button>
 </form>

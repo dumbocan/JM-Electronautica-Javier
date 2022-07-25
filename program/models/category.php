@@ -4,7 +4,7 @@ class Category
 {
     private $category_id;
     private $category_name;
-    private $material_id;
+    private $section_id;
 
     private $db;
 
@@ -25,9 +25,9 @@ class Category
         return $this->category_name;
     }
 
-    public function getMaterial_id()
+    public function getsection_id()
     {
-        return $this->material_id;
+        return $this->section_id;
     }
 
     public function setCategory_id($category_id)
@@ -40,15 +40,14 @@ class Category
         $this->category_name = $category_name;
     }
 
-    public function setMaterial_id($material_id)
+    public function setsection_id($section_id)
     {
-        $this->material_id = $material_id;
+        $this->section_id = $section_id;
     }
 
     public function showCategories()
     {
-       
-        $sql = "SELECT * FROM category WHERE material_id = '{$this->getMaterial_id()}'";
+        $sql = "SELECT * FROM category WHERE section_id = '{$this->getsection_id()}'";
         $save = $this->db->query($sql);
         while ($row = $save->fetch_object()) {
             $resultSet[] = $row;
@@ -74,12 +73,12 @@ class Category
 
     public function save_category()
     {
-        $material_id= $this->getMaterial_id();
-       
+        $section_id = $this->getsection_id();
+
         $sql = "INSERT INTO category SET 
              category_id = null,
              category_name = '{$this->getCategory_name()}',
-             material_id = '{$this->getMaterial_id()}'
+             section_id = '{$this->getsection_id()}'
              ;";
         $save = $this->db->query($sql);
         $result = false;

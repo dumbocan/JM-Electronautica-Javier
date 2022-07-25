@@ -8,10 +8,10 @@ class CategoryController
     {
         Utils::isAdmin();
        
-        $material_name = $_POST['material_name'];
-        $material_id = $_POST['material_id'];
+        $section_name = $_POST['section_name'];
+        $section_id = $_POST['section_id'];
         $cat = new category();
-        $cat->setMaterial_id($material_id);
+        $cat->setsection_id($section_id);
         $category = $cat->showCategories();
 
         require_once 'views/category/category_register.php';
@@ -21,9 +21,9 @@ class CategoryController
     {
         Utils::isAdmin();
         $cat = new category();
-        $material_id = $_POST['material_id'];
-        $material_name =$_POST['material_name'];
-        $cat ->setMaterial_id($material_id);
+        $section_id = $_POST['section_id'];
+        $section_name =$_POST['section_name'];
+        $cat ->setsection_id($section_id);
        
 
         require_once 'views/category/new_category.php';
@@ -33,11 +33,11 @@ class CategoryController
     {
         Utils::isAdmin();
         $category = $_POST['new_category'];
-        $material_id = $_POST['material_id'];
-        $material_name = $_POST['material_name'];
+        $section_id = $_POST['section_id'];
+        $section_name = $_POST['section_name'];
         $cat = new Category();
         $cat->setCategory_name($category);
-        $cat->setMaterial_id($material_id);
+        $cat->setsection_id($section_id);
         $save=$cat->save_category();
         if ($save) {
             $_SESSION['register'] = 'complete';
@@ -53,8 +53,8 @@ class CategoryController
         Utils::isAdmin();
         $id = $_POST['category_id'];
         $name = $_POST['category_name'];
-        $material_name = $_POST['material_name'];
-        $material_id = $_POST['material_id'];
+        $section_name = $_POST['section_name'];
+        $section_id = $_POST['section_id'];
         require_once 'views/category/category_update.php';
     }
 
@@ -62,12 +62,12 @@ class CategoryController
     {
         $id = $_POST['category_id'];
         $name = $_POST['category_name'];
-        $material_name = $_POST['material_name'];
-        $material_id = $_POST['material_id'];
+        $section_name = $_POST['section_name'];
+        $section_id = $_POST['section_id'];
         $cat = new category();
         $cat->setCategory_name($name);
         $cat->setCategory_id($id);
-        $cat->setMaterial_id($material_id);
+        $cat->setsection_id($section_id);
         $save = $cat->edit_category($id);
         
         if ($save) {
@@ -81,14 +81,14 @@ class CategoryController
     public function ask_delete()
     { 
         Utils::isAdmin();
-        $material_name = $_POST['material_name'];
-        $material_id = $_POST['material_id'];
+        $section_name = $_POST['section_name'];
+        $section_id = $_POST['section_id'];
         $id = $_POST['category_id'];
         $name = $_POST['category_name'];
         $cat = new Category();
         $cat->setCategory_name($name);
         $cat->setCategory_id($id);
-        $cat->setMaterial_id($material_id);
+        $cat->setsection_id($section_id);
         var_dump($cat);
         require_once 'views/category/category_delete.php';
     }
@@ -96,13 +96,13 @@ class CategoryController
     public function delete_category()
     {
         $id = $_POST['category_id'];
-        $material_id = $_POST['material_id'];
-        $material_name = $_POST['material_name'];
+        $section_id = $_POST['section_id'];
+        $section_name = $_POST['section_name'];
         $name = $_POST['category_name'];
         $cat = new Category();
         $cat->setCategory_name($name);
         $cat->setCategory_id($id);
-        $cat->setMaterial_id($material_id);
+        $cat->setsection_id($section_id);
         $delete = $cat->delete_category($id);
         if ($delete) {
             $_SESSION['register'] = 'complete';
