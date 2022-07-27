@@ -3,14 +3,7 @@
 <?php  foreach ($section as $key):  //recorremos el array de objetos y obtenemos el valor de las propiedades?>
     <?php echo $section_name = $key->section_name; ?>
     <?php $section_id = $key->section_id; ?>
-    <select name="<?=$section_name; ?>" id="<?=$section_name; ?>">>
-    <option value="new_category">Nueva categoria</option>
-    <?php
-
-    foreach ($category as $cat):?>
-    <option value="option">option</option>
-    <?php endforeach; ?>
-    </select>
+    
           
     <form action="<?=base_url; ?>section/edit_section" method="POST">
         <input type="hidden" id="section_id"  name="section_id" value="<?=$section_id; ?>">

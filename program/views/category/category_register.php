@@ -19,12 +19,21 @@
         <input type="hidden" id="section_id" name="section_id" value="<?=$cat->getsection_id(); ?>">
         <input type="submit"   value="Borrar categoria">
     </form>
-    <form action="<?=base_url; ?>subcategory/new_subcategory" method="POST">
+
+    <form action="<?=base_url; ?>subcategory/index" method="POST">
+        <input type="hidden" id="category_id"  name="category_id" value="<?=$category_id; ?>">
+        <input type="hidden" id="category_name"  name="category_name" value="<?=$category_name; ?>">
+
+        <input type="submit"   value="Subcategorías en <?=$category_name ?>">
+    </form>
+
+
+    <!--<form action="<?=base_url; ?>subcategory/new_subcategory" method="POST">
         <input type="hidden" id="category_id"  name="category_id" value="<?=$category_id; ?>">
         <input type="hidden" id="category_name"  name="category_name" value="<?=$category_name; ?>">
 
         <input type="submit"   value="Añadir Subcategoría">
-    </form>
+    </form>-->
 </br> 
 
     

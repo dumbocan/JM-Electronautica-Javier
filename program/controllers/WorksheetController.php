@@ -6,6 +6,7 @@ class worksheetController extends projectController
 {
     public function prepare_worksheet()
     {
+
         Utils::isAdmin();
         if(isset($_POST['id'])){
             $number = $_POST['id'];
@@ -33,6 +34,8 @@ class worksheetController extends projectController
         $worksheet = new worksheet();
         $search_worksheet = $worksheet->get_worksheet($search->project_id);
         //var_dump($search_worksheet);
+       
+       
         require_once 'views/worksheet/worksheet_register.php';
     }
 

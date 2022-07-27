@@ -171,13 +171,7 @@ class Project
         }
 
         return $result;
-        $save = $this->db->query($sql);
-        $result = false;
-        if ($save) {
-            $result = true;
-        }
-
-        return $result;
+        
     }
 
     //busca el numero de trabajo en tabla work_number y retorna como objeto

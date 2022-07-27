@@ -13,8 +13,11 @@ class CategoryController
         $cat = new category();
         $cat->setsection_id($section_id);
         $category = $cat->showCategories();
-
-        require_once 'views/category/category_register.php';
+        if($category == true) {
+            require_once 'views/category/category_register.php';
+        }else{ 
+            require_once 'views/category/new_category.php';
+        }
     }
 
     public function new_category()
@@ -89,7 +92,7 @@ class CategoryController
         $cat->setCategory_name($name);
         $cat->setCategory_id($id);
         $cat->setsection_id($section_id);
-        var_dump($cat);
+       
         require_once 'views/category/category_delete.php';
     }
 

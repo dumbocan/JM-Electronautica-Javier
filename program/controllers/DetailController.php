@@ -1,5 +1,5 @@
 <?php
-
+require_once 'models/section.php';
 require_once 'models/detail.php';
 
 class DetailController
@@ -20,7 +20,8 @@ class DetailController
         $de= mysqli_fetch_object($data);
         //var_dump($de);
         $name= $de->project_number.' '.$de->boat_name;
-        
+        $sec= new section();
+        $secti=$sec->showsection();
         require_once 'views/detail/details_register.php';
        
     }

@@ -47,14 +47,19 @@ class Category
 
     public function showCategories()
     {
+        $resultSet=false;
         $sql = "SELECT * FROM category WHERE section_id = '{$this->getsection_id()}'";
         $save = $this->db->query($sql);
-        while ($row = $save->fetch_object()) {
-            $resultSet[] = $row;
-        }
-
+        if($save){
+            while ($row = $save->fetch_object()):
+                $resultSet[] = $row;
+            endwhile;
         return $resultSet;
-    }
+            }else{
+                $resultSet = false;
+                return $resultSet;
+            }
+        }
 
     public function edit_category($id)
     {

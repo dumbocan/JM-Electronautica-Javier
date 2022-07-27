@@ -7,7 +7,7 @@
 <form method="POST">
     <button formaction="<?=base_url; ?>">Inicio</button>
     <input type="hidden" name="section_name" value="<?=$section_name; ?>">
-    <?php var_dump($cat); ?>
+    
     <input type="hidden" name="section_id" value="<?=$cat->getsection_id(); ?>">
     <button  type="submit" formaction="<?=base_url; ?>category/index" >Categoria</button>
 </form>

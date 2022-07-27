@@ -45,15 +45,20 @@ class subcategory
         $this->category_id = $category_id;
     }
 
-    public function showCategories()
+    public function showSubcategories()
     {
-        $sql = "SELECT * FROM subcategory WHERE category_id = '{$this->getcategory_id()}'";
+        $resultSet=false;
+        $sql = "SELECT * FROM subcategory WHERE category_id = '{$this->getcategory_id()}' ORDER BY subcategory_name";
         $save = $this->db->query($sql);
-        while ($row = $save->fetch_object()) {
+        if($save){
+        while ($row = $save->fetch_object()):
             $resultSet[] = $row;
+        endwhile;
+    return $resultSet;
+        }else{
+            $resultSet = false;
+            return $resultSet;
         }
-
-        return $resultSet;
     }
 
     public function edit_subcategory($id)
