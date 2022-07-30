@@ -3,7 +3,7 @@
 class section
 {
     private $section_id;
-    private $section_name;
+    public $section_name;
 
     private $db;
 
@@ -83,5 +83,15 @@ class section
         }
 
         return $result;
+    }
+
+    public function get_by_id($id)
+    {
+        $sql = "SELECT * FROM section WHERE section_id = '{$id}'";
+        $save = $this->db->query($sql);
+        $data = $save->fetch_object();
+        $result = $data->section_name;
+        return $result;
+
     }
 }
