@@ -7,7 +7,7 @@ class CategoryController
     public function index()
     {
         Utils::isAdmin();
-       
+       var_dump($_POST);
         $section_name = $_POST['section_name'];
         $section_id = $_POST['section_id'];
         $cat = new category();

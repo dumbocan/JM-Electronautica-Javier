@@ -105,4 +105,21 @@ class Category
 
         return $result;
     }
+ public function get_by_id($id)
+    {
+        $sql = "SELECT * FROM category WHERE category_id = '{$id}'";
+        $save = $this->db->query($sql);
+        if(!mysqli_num_rows($save) == 0){
+            $data = $save->fetch_object();
+            $result = $data->category_name;
+            return $result;
+       
+            }else{
+                $result = false;
+                return $result;
+            }
+        
+
+    }
+
 }
