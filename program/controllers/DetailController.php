@@ -64,12 +64,15 @@ class DetailController
 
                   $section_name = $_POST['section_name'];
                   $section_id = $_POST['section_id'];
+                 
+
                              
             }else{
            
             $subcat= new subcategory();
             $subcat-> setcategory_id($category_id);
             $subcat_name = $subcat->showSubcategories();
+            
             //$cat->setcategory_name($sec_name);
             
             //$setcat = $subcat->setcategory_id($category_id);

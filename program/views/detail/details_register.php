@@ -28,6 +28,8 @@
         <input type="hidden" name="id" value="<?=$de->worksheet_id?>">    
         <input type="hidden" name="section_name" value="<?=$a?>">
         <input type="hidden" name="section_id" value="<?=$section_id?>">
+
+        
       </form>
 <?php break;   
   case 2:?>
@@ -45,7 +47,13 @@
     <form  action="<?=base_url; ?>category/new_category" method="POST">
     <input type="hidden" name="section_id" value="<?=$section_id?>">
     <input type="hidden" name="section_name" value="<?=$section_name?>">
-      <input type="submit"  value="Enviar">
+    <input type="hidden" name="project_number" value="<?=$de->project_number?>">
+    <input type="hidden" name="boat_name" value="<?=$name?>">
+    <input type="hidden" name="worksheet_date" value="<?=$de->worksheet_date?>">
+
+
+    <input type="hidden" name="control" value="1">
+    <input type="submit"  value="Enviar">
     </form>
     <?php endswitch ?>
     

@@ -6,8 +6,21 @@
 <?php endif; ?>
 <form method="POST">
     <button formaction="<?=base_url; ?>">Inicio</button>
-    <input type="hidden" name="section_name" value="<?=$section_name; ?>">
     
+    <input type="hidden" name="section_name" value="<?=$section_name; ?>">
     <input type="hidden" name="section_id" value="<?=$cat->getsection_id(); ?>">
+    
     <button  type="submit" formaction="<?=base_url; ?>category/index" >Categoria</button>
+
+    <?php if($control == 1):  ?>
+        <form action="<?=base_url; ?>detail/add_detail" method="POST">
+        <input type="hidden" name="project_number" value="<?=$project_number?>">
+        <input type="hidden" name="boat_name" value="<?=$boat_name?>">
+        <input type="hidden" name="worksheet_date" value="<?=$worksheet_date?>">
+
+        
+        <button  type="submit" >regresar</button>
+        </form>
+       
+    <?php endif?>
 </form>

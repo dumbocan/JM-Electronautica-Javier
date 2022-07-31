@@ -27,9 +27,18 @@ class CategoryController
         $section_id = $_POST['section_id'];
         $section_name =$_POST['section_name'];
         $cat ->setsection_id($section_id);
-       
+        if(isset($_POST['control']) == 1){
+            $control = "1";
+            $project_number = $_POST['project_number'];
+            $boat_name = $_POST['boat_name'];
+            $worksheet_date = $_POST['worksheet_date'];
+            require_once 'views/category/new_category.php';
+var_dump($_POST);
 
+
+        }else{
         require_once 'views/category/new_category.php';
+        }
     }
 
     public function save_category()
@@ -38,6 +47,7 @@ class CategoryController
         $category = $_POST['new_category'];
         $section_id = $_POST['section_id'];
         $section_name = $_POST['section_name'];
+        $control = $_POST['control'];
         $cat = new Category();
         $cat->setCategory_name($category);
         $cat->setsection_id($section_id);
@@ -46,6 +56,18 @@ class CategoryController
             $_SESSION['register'] = 'complete';
         } else {
             $_SESSION['register'] = 'failed';
+        }
+        if(isset($_POST['control']) == 1){
+            $control = "1";
+            $project_number = $_POST['project_number'];
+            $boat_name = $_POST['boat_name'];
+            $worksheet_date = $_POST['worksheet_date'];
+            require_once 'views/category/new_category.php';
+var_dump($_POST);
+
+
+        }else{
+        require_once 'views/category/new_category.php';
         }
         require_once 'views/category/category_ok.php';
 
