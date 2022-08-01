@@ -13,6 +13,7 @@ class subcategoryController
         $cat = new subcategory();
         $cat->setcategory_id($category_id);
         $subcategory = $cat->showSubcategories();
+        var_dump($subcategory);
         if($subcategory == true) {
             require_once 'views/subcategory/subcategory_register.php';
         }else{ 

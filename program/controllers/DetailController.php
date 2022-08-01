@@ -16,66 +16,56 @@ class DetailController
     public function add_detail()
     {
         Utils::isAdmin();
+        // $count variable de control para el swift
         $count=0;
-        
+        //Viene de worksheet_register.php line 16
         $worksheet_id = $_POST['id'];
-       
         $detail = new Detail();
-        $data=$detail->get_data($worksheet_id);
+        $detail -> setworksheet_id($worksheet_id);
+        $data=$detail->get_data();
+        // saco todos los datos de la base de datos del proyecto
         $de= mysqli_fetch_object($data);
-        
+        // recorro todos los datos que se sacan de la base de datos
         $name= $de->project_number.' '.$de->boat_name;
+        // le doy un nombre al proyecto con el numero y el nombre
         $sec= new section();
         $secti=$sec->showsection();
         $cat = new Category();
         
-
-        if(isset($_POST['section'])){
+        // llega desde details register line 30
+        if(isset($_POST['section'])){//section es el select, option
             // si me llega del select algo, lo busca en la tabla de category
             
             $count = 1;
-            $section_id = $_POST['section'];
-            if($section_id == "new")
+            $section_id = $_POST['section'];// lee el tipo de seccion
+            if($section_id == "new")// si es nueva te envia a index de secciones
             {
-
-                header('location:'.base_url.'section/new_section');
+                header('location:'.base_url.'section/index');
             }
-            $sec_name = $sec->get_by_id($section_id);
+            $sec -> setsection_id($section_id);
+            $sec_name = $sec->get_by_id(); //saca el nombre de la seccion por el numero
             $sec->setsection_name($sec_name);
-            $cat= new category();
+            
             $setcat = $cat->setsection_id($section_id);
             $cate=$cat->showCategories();
             $a=$sec->getsection_name();
-           
             
         }
 
         
 
-        if(isset($_POST['category'])){
+        if(isset($_POST['category'])){//category es el 2 nivel de select, option
             // si me llega del select algo, lo busca en la tabla de subcategory
             $count = 2 ;
             $category_id = $_POST['category'];
-            $cat_name = $cat->get_by_id($category_id);
+            $cat -> setCategory_id($category_id);
+            $cat_name = $cat->get_by_id();
             $a = $_POST['section_name'];
-            if($category_id == "new")
-            {
-                  $count = 3;        var_dump($_POST);
-
-                  $section_name = $_POST['section_name'];
-                  $section_id = $_POST['section_id'];
-                             
-            }else{
            
             $subcat= new subcategory();
             $subcat-> setcategory_id($category_id);
             $subcat_name = $subcat->showSubcategories();
-            //$cat->setcategory_name($sec_name);
             
-            //$setcat = $subcat->setcategory_id($category_id);
-            //$subcate=$subcat->showSubcategories();
-            
-            }
          }
         require_once 'views/detail/details_register.php';
        

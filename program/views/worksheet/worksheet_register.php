@@ -9,20 +9,24 @@
         	<?php $array = (explode(' ', $value)); ?>
         	<!--botones de accion sobre los proyectos -->
           	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
-        		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
-        		<input class="buttons" type="submit"  value="Editar" >
-        		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
-        	</form>
+        		  <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
+        		  <input class="buttons" type="submit"  value="Editar" >
+        		  <input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        	  </form>
             <form action="<?=base_url; ?>detail/add_detail" method="POST">
-        		<!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
-        		<input class="buttons" type="submit" value="Insertar Material" >
-        		<input  type="hidden" value="<?=$array[0]; ?>" name="id">
-        	</form>
-        	<form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
-        		<input class="buttons" type="submit" value="borrar hoja de trabajo">
-        		<input type="hidden"  value="<?=$array[0]; ?>" name="id" >
-				<input type="hidden"  value="<?=$array[1]; ?>" name="date" >
-    		</form>  
+        		  <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
+        		  <input class="buttons" type="submit" value="Insertar Material" >
+        		  <input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        	  </form>
+        	  <form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
+        		  <input class="buttons" type="submit" value="borrar hoja de trabajo">
+        		  <input type="hidden"  value="<?=$array[0]; ?>" name="id" >
+				      <input type="hidden"  value="<?=$array[1]; ?>" name="date" >
+            </form> 
+            <br>
+            <br>
+            <label for="material"> material</label> 
+            
       	</div>  
 <?php endforeach; endif; ?>
 
@@ -60,116 +64,16 @@
     <label for="efective_time">Tiempo efectivo</label>
     <input type="text" name="efective_time" value="">
     <br>
-   
-
-    
-
-
-    <!--<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
-
-.navbar {
-  overflow: hidden;
-  background-color: #333; 
-}
-
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.subnav {
-  float: left;
-  overflow: hidden;
-}
-
-.subnav .subnavbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .subnav:hover .subnavbtn {
-  background-color: blue;
-}
-
-.subnav-content {
-  display: none;
-  position: absolute;
-  left: 0;
-  background-color: red;
-  width: 100%;
-  z-index: 1;
-}
-
-.subnav-content a {
-  float: left;
-  color: green;
-  text-decoration: none;
-}
-
-.subnav-content a:hover {
-  background-color: #eee;
-  color: yellow;
-}
-
-.subnav:hover .subnav-content {
-  display: block;
-}
-</style>
-    <div class="navbar">
-  <a href="#home">Home</a>
-  <div class="subnav">
-    <button class="subnavbtn">About <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#company">Company</a>
-      <a href="#team">Team</a>
-      <a href="#careers">Careers</a>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">Services <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#bring">Bring</a>
-      <a href="#deliver">Deliver</a>
-      <a href="#package">Package</a>
-      <a href="#express">Express</a>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">Partners <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#link1">Link 1</a>
-      <a href="#link2">Link 2</a>
-      <a href="#link3">Link 3</a>
-      <a href="#link4">Link 4</a>
-    </div>
-  </div>
-  <a href="#contact">Contact</a>
-</div>-->
-
-    
     <br>
+    
     <br>
     <input type="submit" value="Enviar"/> 
 </form>
 
 <form action="<?=base_url; ?>worksheet/finish_project" method="POST">
-    <input type="hidden" name="project_state" value="f" >
-    <input type="hidden" name="project_id" value="<?=$search->project_id; ?>" >
-    <input type="submit" value="Terminar proyecto"/> 
+  <input type="hidden" name="project_state" value="f" >
+  <input type="hidden" name="project_id" value="<?=$search->project_id; ?>" >
+  <input type="submit" value="Terminar proyecto"/> 
 </form>
 
 <br>
