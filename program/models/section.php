@@ -38,11 +38,7 @@ class section
     {
         $sql = 'SELECT * FROM section';
         $save = $this->db->query($sql);
-        while ($row = $save->fetch_object()) {
-            $resultSet[] = $row;
-        }
-
-        return $resultSet;
+        return $save;
     }
 
     public function edit_section($id)

@@ -6,10 +6,10 @@
     <label for="section">Añadir material</label>
       <form  action="<?=base_url; ?>detail/add_detail" method="POST">
         <select name="section" id="section">
-          <?php foreach ($secti as $row ): ?>
-            <option value="<?=$row->section_id?>"><?=$row->section_name?> </option> 
-          <?php endforeach;?>
-            <option value="new">Nuevo</option>
+          <?php while ($row = mysqli_fetch_object($secti) ): ?>
+            <option value="<?=$row->section_id?>"><?=$row->section_name?></option>
+          <?php endwhile;?>
+          <option value="new">Nuevo</option>
         </select>
         <button type="submit">enviar</button>
         <input type="hidden" name="id" value="<?=$de->worksheet_id?>">
@@ -18,11 +18,11 @@
   case 1:?>
     <label for="section"><h1><?=$a ->section_name?></h1></label>
       <form  action="<?=base_url; ?>detail/add_detail" method="POST">
+        
         <select name="category" id="category">
-          <?php foreach ($cate as $row ): ?>
-            <option value="<?=$row->category_id?>"><?=$row->category_name?> </option>
-          <?php endforeach;?>
-          
+          <?php while ($row = mysqli_fetch_object($cate) ): ?>
+           <option value="<?=$row->category_id?>"><?=$row->category_name?></option>
+          <?php endwhile;?>
         </select>
         <button type="submit">enviar</button>
         <input type="hidden" name="id" value="<?=$de->worksheet_id?>">    
@@ -38,7 +38,7 @@
         <?php 
         if($subcat_name == true):
         foreach ($subcat_name as $row ): ?>
-          <input type="submit" name="subcategory" value="<?=$row->subcategory_name?>"> 
+          <input type="submit" name="subcategory" value="<?=$subcat_name->subcategory_name?>"> 
         <?php endforeach;endif;?>
 
       </form>

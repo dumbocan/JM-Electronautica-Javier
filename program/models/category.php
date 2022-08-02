@@ -51,11 +51,9 @@ class Category
         $sql = "SELECT * FROM category WHERE section_id = '{$this->getsection_id()}'";
         $save = $this->db->query($sql);
         if($save){
-            while ($row = $save->fetch_object()):
-                $resultSet[] = $row;
-            endwhile;
-        return $resultSet;
-            }else{
+            
+            return $save;
+         }else{
                 $resultSet = false;
                 return $resultSet;
             }
