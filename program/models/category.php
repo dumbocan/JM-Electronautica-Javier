@@ -51,11 +51,9 @@ class Category
         $sql = "SELECT * FROM category WHERE section_id = '{$this->getsection_id()}'";
         $save = $this->db->query($sql);
         if($save){
-            while ($row = $save->fetch_object()):
-                $resultSet[] = $row;
-            endwhile;
-        return $resultSet;
-            }else{
+            
+            return $save;
+         }else{
                 $resultSet = false;
                 return $resultSet;
             }
@@ -105,9 +103,9 @@ class Category
 
         return $result;
     }
- public function get_by_id($id)
+ public function get_by_id()
     {
-        $sql = "SELECT * FROM category WHERE category_id = '{$id}'";
+        $sql = "SELECT * FROM category WHERE category_id = '{$this -> category_id}'";
         $save = $this->db->query($sql);
         if(!mysqli_num_rows($save) == 0){
             $data = $save->fetch_object();

@@ -8,6 +8,13 @@ class worksheetController extends projectController
     {
 
         Utils::isAdmin();
+        // Si existe subcategoria, inicializa la variable $subcategory. 
+        //viene de details_register.php line 36
+        if(isset($_POST['subcategory'])){
+            $subcategory = $_POST['subcategory'];
+        
+        var_dump($subcategory);
+        }
         if(isset($_POST['id'])){
             $number = $_POST['id'];
         }elseif(isset($_POST['return'])){

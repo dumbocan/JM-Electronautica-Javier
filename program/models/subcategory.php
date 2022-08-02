@@ -47,17 +47,15 @@ class subcategory
 
     public function showSubcategories()
     {
-        $resultSet=false;
+        $row=false;
         $sql = "SELECT * FROM subcategory WHERE category_id = '{$this->getcategory_id()}' ORDER BY subcategory_name";
-        $save = $this->db->query($sql);
+        $save = $this->db->query($sql);//var_dump($save);
         if($save){
-        while ($row = $save->fetch_object()):
-            $resultSet[] = $row;
-        endwhile;
-    return $resultSet;
+            $row = $save->fetch_object();
+            return $row;
         }else{
-            $resultSet = false;
-            return $resultSet;
+            $row = false;
+            return $row;
         }
     }
 

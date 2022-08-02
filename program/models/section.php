@@ -38,11 +38,7 @@ class section
     {
         $sql = 'SELECT * FROM section';
         $save = $this->db->query($sql);
-        while ($row = $save->fetch_object()) {
-            $resultSet[] = $row;
-        }
-
-        return $resultSet;
+        return $save;
     }
 
     public function edit_section($id)
@@ -85,13 +81,12 @@ class section
         return $result;
     }
 
-    public function get_by_id($id)
+    public function get_by_id()
     {
-        $sql = "SELECT * FROM section WHERE section_id = '{$id}'";
+        $sql = "SELECT * FROM section WHERE section_id = '{$this -> section_id}'";
         $save = $this->db->query($sql);
-        $data = $save->fetch_object();
-        $result = $data->section_name;
-        return $result;
+        $row = $save->fetch_object();
+        return $row;
 
     }
 }
