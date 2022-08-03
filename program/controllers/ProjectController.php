@@ -17,7 +17,8 @@ class projectController extends BoatController
     public function description()
     {
         Utils::isAdmin();
-        if (isset($_POST['costumer_id'])) {
+        if (isset($_POST['costumer_id'])) {  
+            //costumer_id me llega de costumer_gest line 40
             $id = $_POST['costumer_id'];
         } else {
             $id = ($_SESSION['id']);
@@ -105,6 +106,7 @@ class projectController extends BoatController
     public function save()
     {
         Utils::isAdmin();
+        //recive datos de project_description.php 
         if (isset($_POST)) {
             $project_number = isset($_POST['project_number']) ? $_POST['project_number'] : false;
             echo $project_number;

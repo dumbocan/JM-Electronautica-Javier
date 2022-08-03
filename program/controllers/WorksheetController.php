@@ -8,23 +8,25 @@ class worksheetController extends projectController
     {
 
         Utils::isAdmin();
-        // Si existe subcategoria, inicializa la variable $subcategory. 
+       /* // Si existe subcategoria, inicializa la variable $subcategory. 
         //viene de details_register.php line 36
         if(isset($_POST['subcategory'])){
             $subcategory = $_POST['subcategory'];
         
         var_dump($subcategory);
-        }
+        }*/
         if(isset($_POST['id'])){
-            $number = $_POST['id'];
+            $number = $_POST['id'];var_dump($number);
         }elseif(isset($_POST['return'])){
             $id = $_POST['return'];
-            $worksheet = new worksheet();
-             $numb=$worksheet-> get_project_by_id($id);
+            $worksheet = new worksheet();var_dump($id);
+            $worksheet -> setProject_id($id);
+             $numb=$worksheet-> get_project_by_id();
             $number=$numb->project_number;
         }else{
+            //le entra un array por post que tiene el numero de proyecto
         $array = $_POST;
-        
+        var_dump($array);
         //Saca del array $array, un string que es $data con array_pop.
         $data = array_pop($array);
         //Quita todas las letras del string $data y se queda con los numeros,
@@ -37,10 +39,12 @@ class worksheetController extends projectController
        
        
         $search = self::find_project_number($number);
+        //busca toda la info del proyecto y la pone en el objeto $search
 
         $worksheet = new worksheet();
-        $search_worksheet = $worksheet->get_worksheet($search->project_id);
-        //var_dump($search_worksheet);
+        $worksheet -> setProject_id($search -> project_id);
+        $search_worksheet = $worksheet->get_worksheet();
+        // busca si hay hojas de trabajo anteriores para mostrar
        
        
         require_once 'views/worksheet/worksheet_register.php';
@@ -57,7 +61,7 @@ class worksheetController extends projectController
             require_once 'views/worksheet/worksheet_finished.php';
         } else {
             $stateS = 's';
-            $searchS = self::find_project_state($stateS);
+            $searchS = self::find_project_state($stateS);var_dump($searchS);
             $stateW = 'w';
             $searchW = self::find_project_state($stateW);
 
@@ -69,8 +73,8 @@ class worksheetController extends projectController
     public function find_project_state($state)
     {
         Utils::isAdmin();
-        $a = new projectController();
-        $b = $a->find_projects_state($state);
+        
+        $b = $this->find_projects_state($state);
 
         return $b;
     }
@@ -78,8 +82,8 @@ class worksheetController extends projectController
     public function find_project_number($number)
     {
         Utils::isAdmin();
-        $a = new projectController();
-        $b = $a->find_projects_number($number);
+      
+        $b = $this -> find_projects_number($number);
 
         return $b;
     }
@@ -163,7 +167,7 @@ class worksheetController extends projectController
                 $worksheet->setStart_time($start_time);
                 $worksheet->setFinish_time($finish_time);
                 $worksheet->setEfective_time($efective_time);
-                $worksheet->setworksheet_id($worksheet_id);
+                $worksheet->setWorksheet_id($worksheet_id);
                 $worksheet->setproject_id($project_id);
 
                 $save = $worksheet->update_worksheet($worksheet_id);
@@ -193,11 +197,11 @@ class worksheetController extends projectController
     // busca worksheet para imprimirla y poder editar
     public function show_worksheet()
     {
-        $project_id = $_POST['id'];
+        $worksheet_id = $_POST['id'];
         
         $worksheet = new worksheet();
-
-        $search_worksheet_object = $worksheet->get_worksheet_object($project_id);
+        $worksheet -> setWorksheet_id($worksheet_id);
+        $search_worksheet_object = $worksheet->get_worksheet_object();
 
         require_once 'views/worksheet/worksheet_update.php';
     }
@@ -231,17 +235,18 @@ class worksheetController extends projectController
         Utils::isAdmin();
 
         if (isset($_POST['id'])) {
-            $id = ($_POST['id']);
+            $worksheet_id = ($_POST['id']);
         }
         $worksheet = new Worksheet();
+        $worksheet -> setWorksheet_id($worksheet_id);
+        $worksheet_object = $worksheet->get_worksheet_object();
 
-        $project_id = $worksheet->get_worksheet_object($id);
-
-        $res = $project_id->project_id;
-        $data = $worksheet->get_project_by_id($res);
+        $project_id = $worksheet_object->project_id;
+        $worksheet -> setProject_id($project_id);
+        $data = $worksheet->get_project_by_id();
         $sdata=$data->project_number;
         
-        $delete = $worksheet->delete($id);
+        $delete = $worksheet->delete();
         if ($delete) {
             $_SESSION['delete'] = 'complete';
         } else {

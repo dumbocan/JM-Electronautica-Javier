@@ -1,5 +1,5 @@
 <?php if ($search_worksheet == !null):?>
-
+<!-- Si $search_worksheet da null no imprime lista dehojas de trabajo realizadas-->
     <h1>Trabajos realizados en proyecto <?= $search->project_number; ?> <?=$search->boat_name; ?></h1>
     <!-- recorre la variable $search_worksheet que es un array y imprime cada array -->
     <?php  foreach ($search_worksheet as $key => $value): ?>

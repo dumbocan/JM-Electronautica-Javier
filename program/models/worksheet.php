@@ -15,7 +15,7 @@ class worksheet
         $this->db = Database::connect();
     }
 
-    public function getworksheet_id()
+    public function getWorksheet_id()
     {
         return $this->worksheet_id;
     }
@@ -45,12 +45,12 @@ class worksheet
         return $this->efective_time;
     }
 
-    public function getproject_id()
+    public function getProject_id()
     {
         return $this->project_id;
     }
 
-    public function setworksheet_id($worksheet_id)
+    public function setWorksheet_id($worksheet_id)
     {
         $this->worksheet_id = $worksheet_id;
     }
@@ -82,16 +82,16 @@ class worksheet
 
     public function efective_time($worksheet_id)
     {
-        $id = ($worksheet_id['worksheet_id']);
+        $id = ($worksheet_id['worksheet_id']);var_dump($this -> worksheet_id);
         $sql = "UPDATE worksheet SET 
         efective_time =  (select round(hour  ( timediff( finish_time, start_time ) )
         + minute( timediff( finish_time, start_time ) )/60,2) diferencia)
-        WHERE worksheet_id = '$id';";
+        WHERE worksheet_id = '{$this -> worksheet_id}';";
 
         $this->db->query($sql);
     }
 
-    public function setproject_id($project_id)
+    public function setProject_id($project_id)
     {
         $this->project_id = $project_id;
     }
@@ -119,7 +119,7 @@ class worksheet
         return $result;
     }
 
-    public function update_worksheet($worksheet_id)
+    public function update_worksheet()
     {
         $sql = "UPDATE worksheet SET 
         worksheet_date = '{$this->getWorksheet_date()}',
@@ -129,7 +129,7 @@ class worksheet
         efective_time = '{$this->getEfective_time()}',
        
         time_worksheet = now()
-        WHERE worksheet_id = '{$worksheet_id}'
+        WHERE worksheet_id = '{$this -> worksheet_id}'
         ;";
 
         $save = $this->db->query($sql);
@@ -143,9 +143,9 @@ class worksheet
     }
 
     // mete en un objeto los datos de un worksheet segun el worksheet_id
-    public function get_worksheet_object($id)
+    public function get_worksheet_object()
     {
-        $sql = "SELECT * FROM worksheet WHERE worksheet_id= {$id} ";
+        $sql = "SELECT * FROM worksheet WHERE worksheet_id= {$this -> getWorksheet_id()} ";
         $save = $this->db->query($sql);
         $data = $save->fetch_object();
 
@@ -153,11 +153,11 @@ class worksheet
     }
 
     // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya
-    public function get_worksheet($id)
+    public function get_worksheet()
     {
         $values = [];
 
-        $sql = "SELECT * FROM worksheet WHERE project_id = {$id} ORDER BY worksheet_date";
+        $sql = "SELECT * FROM worksheet WHERE project_id = {$this -> getProject_id()} ORDER BY worksheet_date;";
 
         $save = $this->db->query($sql);
         while ($data = $save->fetch_object()) {
@@ -167,9 +167,9 @@ class worksheet
         return $values;
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $sql = "DELETE FROM worksheet WHERE worksheet_id = '$id'";
+        $sql = "DELETE FROM worksheet WHERE worksheet_id = {$this -> worksheet_id}";
         $result = $this->db->query($sql);
 
         return $result;
@@ -184,13 +184,13 @@ class worksheet
         return $lid;
     }
 
-    public function get_project_by_id($id)
+    public function get_project_by_id()
     {
-        $sql="SELECT project_number FROM project WHERE project_id='{$id}'";
-        $ids = $this->db->query($sql);
-        $lid = mysqli_fetch_object($ids);
+        $sql="SELECT project_number FROM project WHERE project_id='{$this -> project_id}'";
+        $save = $this->db->query($sql);
+        $project = mysqli_fetch_object($save);
        
-        return $lid;
+        return $project;
     }
 
 }

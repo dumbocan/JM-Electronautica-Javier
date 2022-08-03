@@ -195,12 +195,9 @@ class Project
 
         $save = $this->db->query($sql);
 
-        $array = [];
-        while ($pro = $save->fetch_object()) {
-            $array[] = $pro->project_date.' /  '.$pro->project_number.' '.$pro->boat_name;
-        }
+       
 
-        return $array;
+        return $save;
     }
 
     public function update_state($project_id)

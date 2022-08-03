@@ -1,15 +1,3 @@
- <!--
- project_id          int
- project number      YY-MM-XXX
- project date        date
- project desciption  varchar
- project state       boolean
- project comments    long varchar
- pictures            varchar
- files               varchar
- boat_id             int
-
- -->
 
 <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
 <strong id="ok">Registro completado correctamente</strong>
@@ -49,7 +37,14 @@
     <br>
     <input type="submit" value="Enviar"/>
     <br>
-   
+   <!-- envia a project/save  project_number
+                                project_date 
+                                project_description
+                                project_state
+                                project_comments
+                                pictures
+                                files
+                              boat_id
     
 </form>
  

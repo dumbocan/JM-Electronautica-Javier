@@ -7,5 +7,5 @@
 <?php Utils::deleteSession('register'); ?>
 <form>
     <button formaction="<?=base_url; ?>">Inicio</button>
-    <button formaction="<?=base_url; ?>worksheet/description">Añadir hoja de trabajo</button>
+    <button formaction="<?=base_url; ?>worksheet/prepare_worksheet">Añadir hoja de trabajo</button>
 </form>

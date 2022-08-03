@@ -12,13 +12,12 @@ class CostumerController extends BoatController
 
     public function ok()
     { Utils::isAdmin();
-        Utils::isAdmin();
+        
         require_once 'views/costumer/costumer_ok.php';
     }
 
     public function edit()
     { Utils::isAdmin();
-        Utils::isAdmin();
         if (isset($_POST['costumer_name'])) {
             $name = $_POST['costumer_name'];
             $edit = true;
@@ -28,6 +27,7 @@ class CostumerController extends BoatController
             $pro = $costumer->search_db();
             $cos = $costumer->costumer_name($name);
             require_once 'views/costumer/costumer_register.php';
+
         } elseif (isset($_POST['boat_name'])) {
             $boat_name = $_POST['boat_name'];
             $boat = new Boat();
@@ -35,6 +35,7 @@ class CostumerController extends BoatController
             $pro = $boat->search_db();
             $data = $pro->fetch_object();
             require_once 'views/costumer/costumer_register.php';
+
         } else {
             header('Location:'.base_url.'costumer/index');
         }
@@ -140,6 +141,7 @@ class CostumerController extends BoatController
             $search = $costumer->search_db();
             $pro = $costumer->costumer_name($name);
             require_once 'views/costumer/costumer_gest.php';
+            
         } elseif (isset($_POST['boat']) == 'boat') {
             $boat_name = $_POST['boat_name'];
 

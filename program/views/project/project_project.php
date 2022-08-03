@@ -1,7 +1,11 @@
 <h2>Proyectos en espera</h2>
-<?php foreach ($searchW as $key => $value):?>
+
+    <?php    while ($pro = $searchS->fetch_object()) :?>
+         <?php   $array = $pro->project_date.' /  '.$pro->project_number.' '.$pro->boat_name;?>
+        
+
     <div class="nameboat">
-    <h4><?=$value; ?></h4>
+    <h4><?=$pro -> project_date . " -  " . $pro -> project_number . "  - " . $pro -> boat_name; ?></h4>
     <div class="">
         <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">    
             <input class="buttons" type="submit" name="<?=$value; ?>" value="Hojas de trabajo">
@@ -17,7 +21,7 @@
         </form>    
     </div>
     </div>
-<?php endforeach; ?>
+<?php endwhile ?>
 
 <h2>Proyectos empezados</h2>
 <?php foreach ($searchS as $key => $value): ?>

@@ -37,6 +37,7 @@
             <form method="POST" action="<?= base_url; ?>project/description">
                 <td class="proyecto">
                     <input type="hidden" value="<?= $name->costumer_id; ?>" name="costumer_id" id="costumer_id">
+                    <!--se envia (costumer id) para anadir un proyecto en project/description--> 
                     <input class="button-small-red" type="submit" value="Añadir proyecto"></td>
                     
             </form>
