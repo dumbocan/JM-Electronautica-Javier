@@ -155,16 +155,10 @@ class worksheet
     // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya
     public function get_worksheet()
     {
-        $values = [];
-
         $sql = "SELECT * FROM worksheet WHERE project_id = {$this -> getProject_id()} ORDER BY worksheet_date;";
-
         $save = $this->db->query($sql);
-        while ($data = $save->fetch_object()) {
-            $values[] = ($data->worksheet_id.' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time);
-        }
-
-        return $values;
+       
+        return $save;
     }
 
     public function delete()

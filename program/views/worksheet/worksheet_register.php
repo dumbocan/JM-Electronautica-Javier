@@ -1,8 +1,12 @@
-<?php if ($search_worksheet == !null):?>
+<?php if ($search_worksheet):?>
 <!-- Si $search_worksheet da null no imprime lista dehojas de trabajo realizadas-->
-    <h1>Trabajos realizados en proyecto <?= $search->project_number; ?> <?=$search->boat_name; ?></h1>
+  <?php 
+      while ($data = $search_worksheet -> fetch_object()):?>
+            <?php $value=  $data -> worksheet_id .' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;?>
+        }
+    <h1>Trabajos realizados en proyecto <?= $project_data->project_number; ?> <?=$project_data->boat_name; ?></h1>
     <!-- recorre la variable $search_worksheet que es un array y imprime cada array -->
-    <?php  foreach ($search_worksheet as $key => $value): ?>
+    
       	<div class="nameboat">
         	<label for="project"> <?=$value; ?></label>
         	<!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
@@ -28,26 +32,26 @@
             <label for="material"> material</label> 
             
       	</div>  
-<?php endforeach; endif; ?>
+<?php  endwhile ;endif; ?>
 
 <br>
 <br>
-<?php if ($search->project_state != 'f'):?>
-<h1>Trabajo realizado en <?=$search->boat_name; ?></h1>
+<?php if ($project_data->project_state != 'f'):?>
+<h1>Trabajo realizado en <?=$project_data->boat_name; ?></h1>
 <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
 
     
     <br>
     <!--(condition ? action_if_true: action_if_false;) -->
-    <?php ($search->project_state == 's' ? $value = 'checked' : $value = ' '); ?>
+    <?php ($project_data->project_state == 's' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="s" <?=$value; ?> /> Empezado
-    <?php ($search->project_state == 'f' ? $value = 'checked' : $value = ' '); ?>
+    <?php ($project_data->project_state == 'f' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="f" <?=$value; ?>/> Terminado
-    <?php ($search->project_state == 'w' ? $value = 'checked' : $value = ' '); ?>
+    <?php ($project_data->project_state == 'w' ? $value = 'checked' : $value = ' '); ?>
     <input type="radio" name="project_state" value="w" <?=$value; ?>/> En espera
     <br>
-    <label for="worksheet_id">Numero de proyecto <?= $search->project_number; ?></label>
-    <input type="hidden" name="project_id" value="<?= $search->project_id; ?>">
+    <label for="worksheet_id">Numero de proyecto <?= $project_data->project_number; ?></label>
+    <input type="hidden" name="project_id" value="<?= $project_data->project_id; ?>">
     <br>
     <label for="worksheet_date">Fecha</label>
     <input type="date" name="worksheet_date" >

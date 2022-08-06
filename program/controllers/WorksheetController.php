@@ -14,38 +14,29 @@ class worksheetController extends projectController
             $subcategory = $_POST['subcategory'];
         
         var_dump($subcategory);
-        }*/
+        }
         if(isset($_POST['id'])){
-            $number = $_POST['id'];var_dump($number);
+            $number = $_POST['id'];
         }elseif(isset($_POST['return'])){
             $id = $_POST['return'];
-            $worksheet = new worksheet();var_dump($id);
+            $worksheet = new worksheet();
             $worksheet -> setProject_id($id);
-             $numb=$worksheet-> get_project_by_id();
+            $numb=$worksheet-> get_project_by_id();
             $number=$numb->project_number;
-        }else{
-            //le entra un array por post que tiene el numero de proyecto
-        $array = $_POST;
-        var_dump($array);
-        //Saca del array $array, un string que es $data con array_pop.
-        $data = array_pop($array);
-        //Quita todas las letras del string $data y se queda con los numeros,
-        //para buscar en la base de datos el proyecto con el numero que queda con preg_replace.
-        //$number = preg_replace('/[a-zA-Z]/', '', $data);
-        // utilizo explode para sacar el numero_id del array
-        $numb = (explode(' ', $data));
-        $number = $numb[3];
-        }
-       
-       
-        $search = self::find_project_number($number);
-        //busca toda la info del proyecto y la pone en el objeto $search
+        }else*/
+        if(isset($_POST['project_id'])){
+            //le entra  por post  el numero de proyecto
+            $number = $_POST['project_id'];
 
         $worksheet = new worksheet();
-        $worksheet -> setProject_id($search -> project_id);
+        $project = new project();
+        $worksheet -> setProject_id($number);
+        $project -> setProject_id($number);
         $search_worksheet = $worksheet->get_worksheet();
+        $project_data = $project -> getProject($number);
+
         // busca si hay hojas de trabajo anteriores para mostrar
-       
+        }
        
         require_once 'views/worksheet/worksheet_register.php';
     }

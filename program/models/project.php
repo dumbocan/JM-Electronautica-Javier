@@ -211,7 +211,7 @@ class Project
         return $save;
     }
 
-    public function getProject($number)
+    public function getProject()
     {
         $sql = "SELECT * FROM `project` p 
         INNER JOIN boat b 
@@ -219,11 +219,10 @@ class Project
         INNER JOIN costumer c		
                   ON b.costumer_id = c.costumer_id
                  
-             WHERE project_number = '$number'";
+             WHERE project_id = '{$this -> getProject_id()}'";
         
         $save = $this->db->query($sql);
         $data = $save->fetch_object();
-
         return $data;
     }
 
