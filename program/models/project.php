@@ -2,7 +2,7 @@
 
 class Project
 {
-    private $project_id;
+    public $project_id;
     private $project_number;
     private $project_date;
     private $project_desciption;
@@ -184,6 +184,14 @@ class Project
         return $number;
     }
 
+    public function get_last_id()
+    {
+        $sql = 'SELECT project_id FROM project ORDER BY project_id DESC LIMIT 1 ;';
+        $id = $this->db->query($sql);
+        $result = mysqli_fetch_object($id);
+
+        return $result;
+    }
     //busca el numero de proyecto y nombre de barco dependiendo del estado (w/s/f) y retorna un string (YY-MM-XXX nombre barco)
     public function getState($state)
     {
@@ -194,7 +202,6 @@ class Project
                        WHERE project_state = '$state' ORDER BY project_date";
 
         $save = $this->db->query($sql);
-
        
 
         return $save;
@@ -226,11 +233,10 @@ class Project
         return $data;
     }
 
-    public function delete($number)
+    public function delete()
     {
-        $sql = "DELETE FROM project WHERE project_number = '$number'";
+        $sql = "DELETE FROM project WHERE project_id = '{$this -> project_id}'";
         $result = $this->db->query($sql);
-
         return $result;
     }
 

@@ -12,7 +12,7 @@
           <option value="new">Nuevo</option>
         </select>
         <button type="submit">enviar</button>
-        <input type="hidden" name="id" value="<?=$de->worksheet_id?>">
+        <input type="hidden" name="worksheet_id" value="<?=$de->worksheet_id?>">
       </form>
 <?php break;   
   case 1:?>
@@ -25,7 +25,7 @@
           <?php endwhile;?>
         </select>
         <button type="submit">enviar</button>
-        <input type="hidden" name="id" value="<?=$de->worksheet_id?>">    
+        <input type="hidden" name="worksheet_id" value="<?=$de->worksheet_id?>">    
         <input type="hidden" name="section_name" value="<?=$a ->section_name?>">
         <input type="hidden" name="section_id" value="<?=$section_id?>">
 

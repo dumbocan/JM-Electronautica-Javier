@@ -120,7 +120,6 @@ class projectController extends BoatController
 
             if ($project_date && $project_description && $project_state) {
                 $project = new Project();
-
                 $project->setProject_number($project_number);
                 $project->setProject_date($project_date);
                 $project->setProject_description($project_description);
@@ -131,7 +130,8 @@ class projectController extends BoatController
                 $project->setBoat_id($boat_id);
 
                 $save = $project->save();
-
+                $id = $project->get_last_id();
+                $project -> setProject_id($id);
                 if ($save) {
                     $_SESSION['register'] = 'complete';
                 } else {
@@ -144,7 +144,9 @@ class projectController extends BoatController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            header('location:'.base_url.'project/project_ok');
+            //header('location:'.base_url.'project/project_ok');
+            require_once 'views/project/project_ok.php';
+
         } else {
             header('location:'.base_url.'project/register');
         }
@@ -162,7 +164,6 @@ class projectController extends BoatController
         $project = new project();
 
         $get = $project->getState($state);
-
         return $get;
     }
 
@@ -178,28 +179,33 @@ class projectController extends BoatController
     public function delete_project()
     {
         Utils::isAdmin();
-        
-        $array=($_POST);
-        $data = array_pop($array);
+        $project_id=($_POST['project_id']);
+        $boat_name = ($_POST['boat_name']);        
+
+       /* $data = array_pop($array);
         $numb = (explode(' ', $data));
         $number = $numb[3];
-       
+       */
         $project = new Project();
-        $delete = $project->delete($number);
+        
+        $project -> setProject_id($project_id);
+        $delete = $project->delete();
         
         if ($delete) {
-            $_SESSION['register'] = 'complete';
+            $_SESSION['delete'] = 'complete';
         } else {
-            $_SESSION['register'] = 'failed';
+            $_SESSION['delete'] = 'failed';
         }
-        header('Location:'.base_url.'project/project_ok');
+       // header('Location:'.base_url.'project/project_ok');
+        require_once 'views/project/project_ok.php';
 
     }
 
     public function ask_delete()
     { 
         Utils::isAdmin();
-        $name=$_POST['name'];
+        $name = $_POST['boat_name'];
+        $project_id = $_POST['project_id'];
         require_once 'views/project/project_delete.php';
     }
 }

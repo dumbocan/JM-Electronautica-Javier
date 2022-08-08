@@ -19,7 +19,7 @@ class DetailController
         // $count variable de control para el swift
         $count=0;
         //Viene de worksheet_register.php line 16
-        $worksheet_id = $_POST['id'];
+        $worksheet_id = $_POST['worksheet_id'];
         $detail = new Detail();
         $detail -> setworksheet_id($worksheet_id);
         $data=$detail->get_data();

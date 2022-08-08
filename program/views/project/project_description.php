@@ -1,10 +1,5 @@
 
-<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
-<strong id="ok">Registro completado correctamente</strong>
-<?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed'):?>
-<strong id="fallo">Registro fallido, introduce bien los datos</strong>
-<?php endif; ?>
-<br/>
+
 
 <h1>Trabajos a realizar en <?=$data->boat_name; ?></h1>
 <form action="<?=base_url; ?>project/save" method="POST">
@@ -32,7 +27,7 @@
     <label for="files">Archivos</label>
     <input type="file" name="files" >
     <input type="hidden" name="boat_id" value="<?=$data->boat_id?>">
-
+<?php var_dump($data);?>
     <br>
     <br>
     <input type="submit" value="Enviar"/>

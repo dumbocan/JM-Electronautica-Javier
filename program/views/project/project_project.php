@@ -15,7 +15,9 @@
         </form>
         <form action="<?=base_url; ?>project/ask_delete" method="POST">
             <input class="buttons" type="submit" value="Borrar proyecto">
-            <input type="hidden" name="name" value="<?=$pro -> project_id; ?>" >
+            <input type="hidden" name="boat_name" value="<?=$pro -> boat_name; ?>" >
+            <input type="hidden" name="project_id" value="<?=$pro -> project_id; ?>" >
+
         </form>    
     </div>
     </div>
@@ -34,9 +36,11 @@
             <input class="buttons" type="submit" value="Editar proyecto">
             <input type="hidden" name="project_id" value="<?=$pro -> project_id; ?>">
         </form>
-        <form action="<?=base_url; ?>project/delete_project" method="POST">
+        <form action="<?=base_url; ?>project/ask_delete" method="POST">
             <input class="buttons" type="submit" value="Borrar proyecto">
-            <input type="hidden" name="project_id" value="<?=$pro -> project_id; ?>"  >
+            <input type="hidden" name="boat_name" value="<?=$pro -> boat_name; ?>"  >
+            <input type="hidden" name="project_id" value="<?=$pro -> project_id; ?>" >
+
         </form>
     </div>
     </div>

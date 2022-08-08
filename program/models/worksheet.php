@@ -40,7 +40,7 @@ class worksheet
         return $this->finish_time;
     }
 
-    public function getefective_time()
+    public function getEfective_time()
     {
         return $this->efective_time;
     }
@@ -75,19 +75,17 @@ class worksheet
         $this->finish_time = $finish_time;
     }
 
-    public function setefective_time($worksheet_id)
+    public function setEfective_time($worksheet_id)
     {
         $this->efective_time = $worksheet_id;
     }
 
-    public function efective_time($worksheet_id)
-    {
-        $id = ($worksheet_id['worksheet_id']);var_dump($this -> worksheet_id);
+    public function efective_time()
+    {   $id = $this -> worksheet_id ['worksheet_id'];
         $sql = "UPDATE worksheet SET 
         efective_time =  (select round(hour  ( timediff( finish_time, start_time ) )
         + minute( timediff( finish_time, start_time ) )/60,2) diferencia)
-        WHERE worksheet_id = '{$this -> worksheet_id}';";
-
+        WHERE worksheet_id = '$id';";
         $this->db->query($sql);
     }
 
@@ -129,11 +127,10 @@ class worksheet
         efective_time = '{$this->getEfective_time()}',
        
         time_worksheet = now()
-        WHERE worksheet_id = '{$this -> worksheet_id}'
+        WHERE worksheet_id = '{$this -> getWorksheet_id()}'
         ;";
 
         $save = $this->db->query($sql);
-
         $result = false;
         if ($save) {
             $result = true;
@@ -145,11 +142,9 @@ class worksheet
     // mete en un objeto los datos de un worksheet segun el worksheet_id
     public function get_worksheet_object()
     {
-        $sql = "SELECT * FROM worksheet WHERE worksheet_id= {$this -> getWorksheet_id()} ";
+        $sql = "SELECT * FROM worksheet WHERE worksheet_id= '{$this -> getWorksheet_id()}' ";
         $save = $this->db->query($sql);
-        $data = $save->fetch_object();
-
-        return $data;
+        return $save;
     }
 
     // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya
@@ -163,9 +158,18 @@ class worksheet
 
     public function delete()
     {
-        $sql = "DELETE FROM worksheet WHERE worksheet_id = {$this -> worksheet_id}";
+        $sql = "DELETE FROM worksheet WHERE worksheet_id = {$this -> getWorksheet_id()}";
         $result = $this->db->query($sql);
 
+        return $result;
+    }
+
+    public function total_hours()
+    {
+        $sql = "SELECT SUM(efective_time) total FROM worksheet WHERE project_id = '{$this -> project_id}' ;";
+        $data = $this -> db ->query($sql);
+        $result = mysqli_fetch_object($data);
+        //var_dump($data);
         return $result;
     }
 
@@ -180,11 +184,11 @@ class worksheet
 
     public function get_project_by_id()
     {
-        $sql="SELECT project_number FROM project WHERE project_id='{$this -> project_id}'";
+        $sql="SELECT project_number FROM project WHERE project_id='{$this -> getWorksheet_id()}'";
         $save = $this->db->query($sql);
-        $project = mysqli_fetch_object($save);
        
-        return $project;
+       
+        return $save;
     }
 
 }

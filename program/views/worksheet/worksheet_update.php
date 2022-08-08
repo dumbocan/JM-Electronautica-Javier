@@ -1,33 +1,33 @@
 
 <form action="<?=base_url; ?>worksheet/update_worksheet" method="POST">
-
+<?php while($data = $search_worksheet_object -> fetch_object()):?>
     
     
     <br>
     <label for="worksheet_date">Fecha</label>
-    <input type="date" name="worksheet_date" value="<?=$search_worksheet_object->worksheet_date?>" >
+    <input type="date" name="worksheet_date" value="<?=$data->worksheet_date?>" >
     <br>
     <label for="worksheet_desc">Trabajo realizado</label>
-    <textarea type="text" name="worksheet_desc"> <?=$search_worksheet_object->worksheet_desc?></textarea>
+    <textarea type="text" name="worksheet_desc"> <?=$data->worksheet_desc?></textarea>
     <br>
     <label for="start_time">Hora de entrada</label>
-    <input type="time" name="start_time" list="listahorasdeseadas" value="<?=$search_worksheet_object->start_time?>">
+    <input type="time" name="start_time" list="listahorasdeseadas" value="<?=$data->start_time?>">
     <br>
     <label for="finish_time">hora de salida</label>
-    <input type="time" name="finish_time" list="listahorasdeseadas" value="<?=$search_worksheet_object->finish_time?>">
+    <input type="time" name="finish_time" list="listahorasdeseadas" value="<?=$data->finish_time?>">
     <br>
     <label for="efective_time">Tiempo efectivo</label>
-    <input type="text" name="efective_time" value="<?=$search_worksheet_object->efective_time?>">
-    <input type="hidden" name="project_id" value="<?=$search_worksheet_object->project_id?>">
+    <input type="text" name="efective_time" value="<?=$data->efective_time?>">
+    <input type="hidden" name="project_id" value="<?=$data->project_id?>">
     <br>
-   
+   <br>
+    <br>
+    <input type="hidden" name="worksheet_id" value="<?=$data->worksheet_id?>"/> 
     
     
-  
     
-    <br>
-    <br>
-    <input type="hidden" name="worksheet_id" value="<?=$search_worksheet_object->worksheet_id?>"/> 
+  <?php endwhile;?>
+    
     <input type="submit" value="Actualizar"/> 
 </form>
 

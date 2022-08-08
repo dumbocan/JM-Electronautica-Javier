@@ -135,11 +135,11 @@ class CostumerController extends BoatController
         Utils::isAdmin();
 
         if (isset($_POST['costumer']) == 'costumer') {
-            $name = $_POST['costumer_name'];
+            $costumer_name = $_POST['costumer_name'];
             $costumer = new Costumer();
-            $costumer->setcostumer_name($name);
+            $costumer->setcostumer_name($costumer_name);
             $search = $costumer->search_db();
-            $pro = $costumer->costumer_name($name);
+            $pro = $costumer->costumer_name($costumer_name);
             require_once 'views/costumer/costumer_gest.php';
             
         } elseif (isset($_POST['boat']) == 'boat') {

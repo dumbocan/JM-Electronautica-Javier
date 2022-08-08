@@ -1,46 +1,53 @@
+<!-- pagina principal de proyectos, añadir, ver, y acabar-->
+
+
 <?php if ($search_worksheet):?>
 <!-- Si $search_worksheet da null no imprime lista dehojas de trabajo realizadas-->
-  <?php 
-      while ($data = $search_worksheet -> fetch_object()):?>
-            <?php $value=  $data -> worksheet_id .' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;?>
-        }
-    <h1>Trabajos realizados en proyecto <?= $project_data->project_number; ?> <?=$project_data->boat_name; ?></h1>
-    <!-- recorre la variable $search_worksheet que es un array y imprime cada array -->
+<h1>Trabajos realizados en proyecto <?= $project_data->project_number; ?> <?=$project_data->boat_name; ?></h1>
+
+<!--Con $total hours, hago la suma de las horas del proyecto mediante una funcion en SQL -->
+<?php $total_hours =  $worksheet -> total_hours(); ?>  
+<?php while ($data = $search_worksheet -> fetch_object()):?>
+           
+      
     
       	<div class="nameboat">
-        	<label for="project"> <?=$value; ?></label>
-        	<!-- con explode convierto el string $value a array y asi puedo sacar los datos por separado -->
-        	<?php $array = (explode(' ', $value)); ?>
+        	<label for="project"> <?= $data -> worksheet_id .' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;?></label>
         	<!--botones de accion sobre los proyectos -->
+          <?php if ($project_data->project_state != 'f'):?>
+
           	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
-        		  <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
         		  <input class="buttons" type="submit"  value="Editar" >
-        		  <input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        		  <input  type="hidden" value="<?=$data -> worksheet_id ?>" name="worksheet_id">
         	  </form>
             <form action="<?=base_url; ?>detail/add_detail" method="POST">
-        		  <!--con la variable $array puedo elegir que dato quiero del string y selecciono $array[0] que es worksheet_id -->
         		  <input class="buttons" type="submit" value="Insertar Material" >
-        		  <input  type="hidden" value="<?=$array[0]; ?>" name="id">
+        		  <input  type="hidden" value="<?= $data -> worksheet_id?>" name="worksheet_id">
         	  </form>
         	  <form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
         		  <input class="buttons" type="submit" value="borrar hoja de trabajo">
-        		  <input type="hidden"  value="<?=$array[0]; ?>" name="id" >
-				      <input type="hidden"  value="<?=$array[1]; ?>" name="date" >
+        		  <input type="hidden"  value="<?= $data -> worksheet_id?>" name="worksheet_id">
+				      <input type="hidden"  value="<?= $data -> worksheet_date?>" name="worksheet_date">
+              <input type="hidden"  value="<?= $data -> project_id?>" name="project_id">
+
             </form> 
             <br>
             <br>
-            <label for="material"> material</label> 
-            
+             
+          <?php  endif; ?>
+ 
       	</div>  
 <?php  endwhile ;endif; ?>
+<!-- Imprime el total de horas trabajadas-->
 
+<h3>Total horas: <?=($total_hours->total);?></h3>
 <br>
 <br>
 <?php if ($project_data->project_state != 'f'):?>
-<h1>Trabajo realizado en <?=$project_data->boat_name; ?></h1>
-<form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
 
-    
+  <h1>Trabajo realizado en <?=$project_data->boat_name; ?></h1>
+  <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">
+ 
     <br>
     <!--(condition ? action_if_true: action_if_false;) -->
     <?php ($project_data->project_state == 's' ? $value = 'checked' : $value = ' '); ?>
@@ -72,15 +79,15 @@
     
     <br>
     <input type="submit" value="Enviar"/> 
-</form>
+  </form>
+  <!--boton para terminar un projecto -->
+  <form action="<?=base_url; ?>worksheet/finish_project" method="POST">
+    <input type="hidden" name="project_state" value="f" >
+    <input type="hidden" name="project_id" value="<?=$project_data -> project_id; ?>" >
+    <input type="submit" value="Terminar proyecto"/> 
+  </form>
 
-<form action="<?=base_url; ?>worksheet/finish_project" method="POST">
-  <input type="hidden" name="project_state" value="f" >
-  <input type="hidden" name="project_id" value="<?=$search->project_id; ?>" >
-  <input type="submit" value="Terminar proyecto"/> 
-</form>
-
-<br>
+  <br>
 <?php  endif; ?>
   
 
