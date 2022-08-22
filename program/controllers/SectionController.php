@@ -8,8 +8,7 @@ class sectionController
     {
         Utils::isAdmin();
         $mat = new section();
-        $section = $mat->showsection();
-
+        $sec = $mat->showsection();
         require_once 'views/section/section_register.php';
     }
 

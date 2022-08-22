@@ -23,7 +23,7 @@ class worksheetController extends projectController
             $numb=$worksheet-> get_project_by_id();
             $number=$numb->project_number;
         }else*/
-       
+       var_dump($_POST);
         if(isset($_POST['project_id'])){
             //le entra  por post  el numero de proyecto
             $number = $_POST['project_id'];

@@ -39,9 +39,13 @@
 
         <?php 
         if($subcat_name == true):
-        foreach ($subcat_name as $row ): ?>
-          <input type="submit" name="subcategory" value="<?=$subcat_name->subcategory_name?>"> 
-        <?php endforeach;endif;?>
+        while ($row = $subcat_name -> fetch_object() ): ?>
+          <input type="submit" name="subcategory" value="<?=$row->subcategory_name?>"> 
+          <input type="hidden" name="project_id" value="<?=$de->project_id?>">    
+          <input type="hidden" name="subcategory_id" value="<?=$row->subcategory_id?>">    
+          <input type="hidden" name="worksheet_id" value="<?=$de->worksheet_id?>">    
+
+          <?php endwhile;endif;?>
 
       </form>
 <?php break;
@@ -53,4 +57,5 @@
         <input type="submit"  value="Enviar">
       </form>
 <?php endswitch ?>
-    
+
+

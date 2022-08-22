@@ -1,7 +1,8 @@
 <h2>sectiones</h2>
 <?php ?>
-<?php  foreach ($section as $key):  //recorremos el array de objetos y obtenemos el valor de las propiedades?>
-    <?php echo $section_name = $key->section_name; ?>
+<?php  while($key = $sec -> fetch_object()):
+    //recorremos el objeto y obtenemos el valor de las propiedades?>
+    <?php echo $section_name = $key->section_name;?>
     <?php $section_id = $key->section_id; ?>
     
           
@@ -22,7 +23,7 @@
     </form>
 </br> 
     
-<?php endforeach; ?>
+<?php endwhile; ?>
     <form action="<?=base_url; ?>section/new_section" method="POST">
         <input type="submit" id="new_section" name="new_section" value="Nueva seccion">
     </form>

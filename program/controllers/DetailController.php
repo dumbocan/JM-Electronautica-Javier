@@ -70,4 +70,12 @@ class DetailController
         require_once 'views/detail/details_register.php';
        
     }
+
+public function set_detail()
+{
+
+    
+}
+
+
 }

@@ -12,7 +12,7 @@
     
     <button  type="submit" formaction="<?=base_url; ?>category/index" >Categoria</button>
 
-    <?php if($control == 1):  ?>
+    <?php if(isset($control) == 1):  ?>
         <form action="<?=base_url; ?>detail/add_detail" method="POST">
         <input type="hidden" name="project_number" value="<?=$project_number?>">
         <input type="hidden" name="boat_name" value="<?=$boat_name?>">

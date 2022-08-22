@@ -1,6 +1,6 @@
 <h2>Categorias de <?=$section_name; ?></h2>
 <?php ?>
-<?php  foreach ($category as $key):  //recorremos el array de objetos y obtenemos el valor de las propiedades?>
+<?php  while ($key = $category -> fetch_object()):  //recorremos el  objeto y obtenemos el valor de las propiedades?>
     <?php echo $category_name = $key->category_name; ?>
     <?php $category_id = $key->category_id; ?>
     <?php $section_id = $key->section_id; ?>
@@ -29,7 +29,7 @@
 </br> 
 
     
-<?php endforeach; ?>
+<?php endwhile; ?>
     <form action="<?=base_url; ?>category/new_category" method="POST">
         <input type="hidden" id="section_name" name="section_name" value="<?=$section_name; ?>">
         <input type="hidden" id="section_id" name="section_id" value="<?=$cat->getsection_id(); ?>">

@@ -3,9 +3,11 @@
 class subcategory
 {
     private $subcategory_id;
-    private $subcategory_name;
+    private $subcategory_name; 
+    private $subcategory_stock;
+    private $subcategory_price;
+    private $serial_number;
     private $category_id;
-
     private $db;
 
     //conexion base de datos
@@ -25,6 +27,18 @@ class subcategory
         return $this->subcategory_name;
     }
 
+    public function getsubcategory_stock()
+    {
+        return $this->subcategory_stock;
+    }
+    public function getsubcategory_price()
+    {
+        return $this->subcategory_price;
+    }
+    public function getserial_number()
+    {
+        return $this->serial_number;
+    }
     public function getcategory_id()
     {
         return $this->category_id;
@@ -39,7 +53,18 @@ class subcategory
     {
         $this->subcategory_name = $subcategory_name;
     }
-
+    public function setsubcategory_stock($subcategory_stock)
+    {
+        $this->subcategory_stock = $subcategory_stock;
+    }
+    public function setsubcategory_price($subcategory_price)
+    {
+        $this->subcategory_price = $subcategory_price;
+    }
+    public function setserial_number($serial_number)
+    {
+        $this->serial_number = $serial_number;
+    }
     public function setcategory_id($category_id)
     {
         $this->category_id = $category_id;
@@ -49,10 +74,22 @@ class subcategory
     {
         $row=false;
         $sql = "SELECT * FROM subcategory WHERE category_id = '{$this->getcategory_id()}' ORDER BY subcategory_name";
-        $save = $this->db->query($sql);//var_dump($save);
-        if($save){
-            $row = $save->fetch_object();
+        $save = $this->db->query($sql);//var_dump($sql);
+        if($save){  
+            return $save;
+        }else{
+            $row = false;
             return $row;
+        }
+    }
+
+    public function showSubcategory()
+    {
+        $row=false;
+        $sql = "SELECT * FROM subcategory WHERE subcategory_id = '{$this->getsubcategory_id()}' ";
+        $save = $this->db->query($sql);//var_dump($sql);
+        if($save){  
+            return $save;
         }else{
             $row = false;
             return $row;
@@ -76,15 +113,19 @@ class subcategory
 
     public function save_subcategory()
     {
-        $category_id = $this->getcategory_id();
 
         $sql = "INSERT INTO subcategory SET 
              subcategory_id = null,
              subcategory_name = '{$this->getsubcategory_name()}',
+             subcategory_stock = '{$this->getsubcategory_stock()}',
+             subcategory_price = '{$this->getsubcategory_price()}',
+             serial_number = '{$this->getserial_number()}',
+
              category_id = '{$this->getcategory_id()}'
              ;";
         $save = $this->db->query($sql);
         $result = false;
+        //var_dump($sql);die;
         if ($save) {
             $result = true;
         }
