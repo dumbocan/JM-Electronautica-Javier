@@ -4,45 +4,64 @@
 <?php if ($search_worksheet):?>
 <!-- Si $search_worksheet da null no imprime lista dehojas de trabajo realizadas-->
 <h1>Trabajos realizados en proyecto <?= $project_data->project_number; ?> <?=$project_data->boat_name; ?></h1>
+ <table>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            <th>Hora de entrada</th>
+            <th>Hora de salida</th>
+            <th>Tiempo efectivo</th>
+            <th></th>
+            <th></th>
+            <th></th>
 
+        </tr>
 <!--Con $total hours, hago la suma de las horas del proyecto mediante una funcion en SQL -->
 <?php $total_hours =  $worksheet -> total_hours(); ?>  
 <?php while ($data = $search_worksheet -> fetch_object()):?>
-           
-      
-    
-      	<div class="nameboat">
-        	<label for="project"> <?= $data -> worksheet_id .' '.$data->worksheet_date.' '.$data->worksheet_desc.' '.$data->start_time.' '.$data->finish_time.' '.$data->efective_time;?></label>
-        	<!--botones de accion sobre los proyectos -->
-          <?php if ($project_data->project_state != 'f'):?>
-
-          	<form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
-        		  <input class="buttons" type="submit"  value="Editar" >
-        		  <input  type="hidden" value="<?=$data -> worksheet_id ?>" name="worksheet_id">
-        	  </form>
-            <form action="<?=base_url; ?>detail/add_detail" method="POST">
-        		  <input class="buttons" type="submit" value="Insertar Material" >
-        		  <input  type="hidden" value="<?= $data -> worksheet_id?>" name="worksheet_id">
-        	  </form>
-        	  <form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
-        		  <input class="buttons" type="submit" value="borrar hoja de trabajo">
-        		  <input type="hidden"  value="<?= $data -> worksheet_id?>" name="worksheet_id">
-				      <input type="hidden"  value="<?= $data -> worksheet_date?>" name="worksheet_date">
-              <input type="hidden"  value="<?= $data -> project_id?>" name="project_id">
-
-            </form> 
-            <br>
-            <br>
-             
-          <?php  endif; ?>
- 
-      	</div>  
+        <tr>   
+            <div class="nameboat">
+        	    <label for="project"> 
+                    <td>  <?= $data -> worksheet_id ?> </td>
+                    <td>  <?= $data -> worksheet_date ?> </td>     
+                    <td>  <?= $data -> worksheet_desc ?> </td>
+                    <td>  <?= $data -> start_time ?> </td>
+                    <td>  <?= $data -> finish_time ?> </td>
+                    <td>  <?= $data -> efective_time ?> </td>
+                </label>
+        	    <!--botones de accion sobre los proyectos -->
+                <?php if ($project_data->project_state != 'f'):?>
+                    <td>
+          	        <form action="<?=base_url; ?>worksheet/show_worksheet" method="POST">
+                      <button class="submit"><i class="fa fa-pencil"></i></button>    
+        		        <input  type="hidden" value="<?=$data -> worksheet_id ?>" name="worksheet_id">
+        	        </form>
+                    </td>
+                    <td>
+                    <form action="<?=base_url; ?>detail/add_detail" method="POST">
+                    <button class="submit"><i class="fa fa-plus-circle"></i></button>    
+        		        <input  type="hidden" value="<?= $data -> worksheet_id?>" name="worksheet_id">
+        	        </form>
+                    </td>
+                    <td>
+        	        <form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
+        		        <button class="submit"><i class="fa fa-trash"></i></button>    
+        		        <input type="hidden"  value="<?= $data -> worksheet_id?>" name="worksheet_id">
+				        <input type="hidden"  value="<?= $data -> worksheet_date?>" name="worksheet_date">
+                        <input type="hidden"  value="<?= $data -> project_id?>" name="project_id">
+                    </form>
+                    </td> 
+                <?php  endif; ?>
+            </div>
+        </tr> 
 <?php  endwhile ;endif; ?>
 <!-- Imprime el total de horas trabajadas-->
-
+</table>
 <h3>Total horas: <?=($total_hours->total);?></h3>
 <br>
 <br>
+
 <?php if ($project_data->project_state != 'f'):?>
 
   <h1>Trabajo realizado en <?=$project_data->boat_name; ?></h1>

@@ -96,13 +96,17 @@ class subcategory
         }
     }
 
-    public function edit_subcategory($id)
+    public function edit_subcategory()
     {
         $sql = "UPDATE subcategory SET
-               subcategory_name = '{$this->getsubcategory_name()}'
+               subcategory_name = '{$this->getsubcategory_name()}',
+               subcategory_stock = '{$this->getsubcategory_stock()}',
+               subcategory_price = '{$this->getsubcategory_price()}',
+               serial_number = '{$this->getserial_number()}'
+
                WHERE 
                subcategory_id = '{$this->getsubcategory_id()}';";
-        $save = $this->db->query($sql);
+        $save = $this->db->query($sql);var_dump($sql);
         $result = false;
         if ($save) {
             $result = true;

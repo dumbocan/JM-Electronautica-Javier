@@ -80,15 +80,23 @@ class subcategoryController
 
     public function update_subcategory()
     {
-        $id = $_POST['subcategory_id'];
-        $name = $_POST['subcategory_name'];
+        $subcategory_id = $_POST['subcategory_id'];
+        $subcategory_name = $_POST['subcategory_name'];
+        $subcategory_stock = $_POST['subcategory_stock'];
+        $subcategory_price = $_POST['subcategory_price'];
+        $serial_number = $_POST['serial_number'];
+
         $category_name = $_POST['category_name'];
         $category_id = $_POST['category_id'];
         $cat = new subcategory();
-        $cat->setsubcategory_name($name);
-        $cat->setsubcategory_id($id);
+        $cat->setsubcategory_name($subcategory_name);
+        $cat->setsubcategory_stock($subcategory_stock);
+        $cat->setsubcategory_price($subcategory_price);
+        $cat->setserial_number($serial_number);
+
+        $cat->setsubcategory_id($subcategory_id);
         $cat->setcategory_id($category_id);
-        $save = $cat->edit_subcategory($id);
+        $save = $cat->edit_subcategory();
 
         if ($save) {
             $_SESSION['register'] = 'complete';
