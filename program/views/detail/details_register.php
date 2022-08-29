@@ -1,6 +1,43 @@
 <h2>Material a insertar en proyecto <?=$name?></h2>
 <h3>Del dia <?=$de->worksheet_date?></h3>
+<table>
+    <tr>
+        <th>Materiales</th>
+    </tr>
+</table>
+<table>
+    <tr class="header_small">
+        <th style="width: 100px;">Fecha</th>
+        <th style="width: 70px;">Cantidad</th>
+        <th style="width: 640px;">Material</th>
+        <th style="width: 80px;">Precio</th>        
+        <th style="width: 60px;">Descuento</th> 
+        <th style="width: 90px;">Total</th>
+    </tr>
+    <tr>
+    <?php //while ($data = $search_worksheet -> fetch_object()):?>
 
+        <td>
+            <?=$de->worksheet_date?>
+        </td>
+        <td>
+            <input type="text"   name="subcategory_quantity" style="width: 100%;" > 
+        </td>
+        <td>
+          3  
+        </td>
+        <td>
+            4
+        </td>
+        <td>
+           5 
+        </td>
+        <td>
+           6 
+        </td>
+        <?php  //endwhile; ?>
+    </tr>
+</table>
 <?php switch ($count):
   case 0: ?>
     <label for="section">Añadir material</label>

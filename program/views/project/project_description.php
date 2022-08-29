@@ -1,33 +1,37 @@
+<br>
+<br>
 
+<table>
+    <tr>
+        <th><h1>Trabajos a realizar en <?=$data->boat_name; ?></h1></th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th style="width: 120px;">N proyecto</th>
+        <th style="width: 100px;">Fecha</th>
+        <th style="width: 577px;">Trabajos a realizar</th>        
+        <th style="width: 230px;">Observaciones</th>
 
-
-<h1>Trabajos a realizar en <?=$data->boat_name; ?></h1>
-<form action="<?=base_url; ?>project/save" method="POST">
-
+        <th style="width: 65px;"> </th>
+    </tr>
+    <tr>
+        <form action="<?=base_url; ?>project/save" method="POST">
+            <td><label for="project_number"><?= $number->number; ?></label></td>
+                <input type="hidden" name="project_number" value="<?= $number->number; ?>">
+      
+            <td><input type="date" name="project_date" ></td>
+            <td><input type="text" name="project_description" style="width: 100%;"></td>
+                <input type="hidden" name="project_state" value="w" /> 
+            <td><input type="text" name="project_comments" style="width: 100%;"></td>
     
-    <label for="project_number">Numero de proyecto <?= $number->number; ?></label>
-    <input type="hidden" name="project_number" value="<?= $number->number; ?>">
-    <br>
-    <label for="project_date">Fecha</label>
-    <input type="date" name="project_date" >
-    <br>
-    <label for="project_description">Trabajo a realizar</label>
-    <input type="text" name="project_description" >
-    <br>
-    <input type="radio" name="project_state" value="s" /> Empezado
-    <input type="radio" name="project_state" value="f" /> Terminado
-    <input type="radio" name="project_state" value="w" /> En espera
-    <br>
-    <label for="project_comments">Observaciones</label>
-    <input type="text" name="project_comments" >
-    <br>
-    <label for="pictures">Fotos</label>
-    <input type="file" name="pictures" >
-    <br>
-    <label for="files">Archivos</label>
-    <input type="file" name="files" >
+            <td><button class="file" name="pictures"><i class="fa fa-file-image-o"></i></button>  
+            <button class="file" name="files"><i class="fa fa-file-o"></i></button></td>    
+
     <input type="hidden" name="boat_id" value="<?=$data->boat_id?>">
-<?php var_dump($data);?>
+    </tr>
+</table>
+<?//php var_dump($data);?>
     <br>
     <br>
     <input type="submit" value="Enviar"/>
@@ -39,7 +43,7 @@
                                 project_comments
                                 pictures
                                 files
-                              boat_id
+                              boat_id -->
     
 </form>
  

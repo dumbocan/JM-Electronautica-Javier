@@ -3,9 +3,9 @@ require_once 'models/section.php';
 require_once 'models/category.php';
 require_once 'models/detail.php';
 require_once 'models/subcategory.php';
+require_once 'models/worksheet.php';
 
-
-class DetailController
+class DetailController extends worksheetController
 {
     public function insert()
     {
@@ -22,14 +22,14 @@ class DetailController
         $worksheet_id = $_POST['worksheet_id'];
         $detail = new Detail();
         $detail -> setworksheet_id($worksheet_id);
-        $data=$detail->get_data();
+        $data = $detail -> get_data();
         // saco todos los datos de la base de datos del proyecto
-        $de= mysqli_fetch_object($data);
+        $de= mysqli_fetch_object($data); var_dump($de);
         // recorro todos los datos que se sacan de la base de datos
-        $name= $de->project_number.' '.$de->boat_name;
+        $name = $de -> project_number.' '.$de -> boat_name;
         // le doy un nombre al proyecto con el numero y el nombre
-        $sec= new section();
-        $secti=$sec->showsection();
+        $sec = new section();
+        $secti = $sec -> showsection();
         $cat = new Category();
         
         // llega desde details register line 30

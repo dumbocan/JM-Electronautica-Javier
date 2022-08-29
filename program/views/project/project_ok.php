@@ -1,7 +1,7 @@
-<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'): ;var_dump($project -> project_id -> project_id)?>
+<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
     <strong id="ok">Registro completado correctamente</strong>
-    <form action="<?=base_url; ?>worksheet/prepare_worksheet" method="POST">
-        <input type="submit"  value="hojas de trabajo">
+    <form action="<?=base_url; ?>worksheet/search_project" method="POST">
+        <input type="submit"  value="Proyectos">
         <input type="hidden" name="project_id" value="<?=$project -> project_id -> project_id?>">
 </form>
     <button formaction="<?=base_url; ?>">Inicio</button>

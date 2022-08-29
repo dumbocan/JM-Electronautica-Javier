@@ -39,16 +39,17 @@ class projectController extends BoatController
 
     public function update_project()
     {
-        echo 'update_project';
         Utils::isAdmin();
         // me llega un array, lo despiezo y recojo el numero de proyecto
-        $array = $_POST;
-        $data = array_pop($array);
-        $numb = (explode(' ', $data));
-        $numb = ($numb[3]);
-        $project = new project();
+        $project_id = $_POST['project_id'];
 
-        $data = $project->getProject($numb);
+      //  $data = array_pop($array);
+      //  $numb = (explode(' ', $data));
+      //  $numb = ($numb[3]);
+        $project = new project();
+        $project -> setProject_id($project_id);
+
+        $data = $project->getProject();
 
         require_once 'views/project/project_update.php';
     }
@@ -69,7 +70,7 @@ class projectController extends BoatController
             $project_id = isset($_POST['project_id']) ? $_POST['project_id'] : false;
             $boat_id = isset($_POST['boat_id']) ? $_POST['boat_id'] : false;
 
-            if ($project_date && $project_description && $project_state && $project_comments) {
+            if ($project_date && $project_description && $project_state ) {
                 $project = new Project();
 
                 $project->setProject_id($project_id);
@@ -81,7 +82,7 @@ class projectController extends BoatController
                 $project->setPictures($pictures);
                 $project->setFiles($files);
                 $project->setBoat_id($boat_id);
-
+               
                 $update = $project->update();
 
                 if ($update) {
@@ -96,7 +97,9 @@ class projectController extends BoatController
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            header('location:'.base_url.'project/project_ok');
+            //header('location:'.base_url.'project/project_ok');
+            require_once 'views/project/project_ok.php';
+
         } else {
            
             header('location:'.base_url.'project/register');

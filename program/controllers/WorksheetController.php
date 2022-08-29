@@ -31,7 +31,9 @@ class worksheetController extends projectController
         $project = new project();
         $worksheet -> setProject_id($number);
         $project -> setProject_id($number);
+        //$project -> setProject_state('s');
         $search_worksheet = $worksheet->get_worksheet();
+        
         $project_data = $project -> getProject();
 
         // busca si hay hojas de trabajo anteriores para mostrar
@@ -98,7 +100,7 @@ class worksheetController extends projectController
 
             if ($project_state && $project_id && $worksheet_date && $worksheet_desc && $start_time && $finish_time) {
                 $worksheet = new Worksheet();
-
+               
                 $worksheet->setWorksheet_date($worksheet_date);
                 $worksheet->setWorksheet_desc($worksheet_desc);
                 $worksheet->setStart_time($start_time);
@@ -134,7 +136,8 @@ class worksheetController extends projectController
            // header('location:'.base_url.'worksheet/worksheet_ok');
            require_once 'views/worksheet/worksheet_ok.php';
         } else {
-            header('location:'.base_url);
+            echo "algo salio mal";
+            //header('location:'.base_url);
         }
     }
 

@@ -340,3 +340,12 @@ background-color: white;
    width: 1000px;
     float: right;
 }
+
+.icons{
+display: inline-flex;
+
+}
+
+.header_small{
+    font-size: small;
+}
