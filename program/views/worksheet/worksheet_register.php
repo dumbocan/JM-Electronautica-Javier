@@ -93,8 +93,8 @@
 <table>
     <tr class="header_small">
         <th style="width: 90px;">Fecha</th>
+        <th style="width: 650px;">Material</th> 
         <th style="width: 70px;">Cantidad</th>
-        <th style="width: 650px;">Material</th>
         <th style="width: 80px;">Precio</th>        
         <th style="width: 60px;">Descuento</th> 
         <th style="width: 90px;">Total</th>
@@ -103,22 +103,22 @@
     <?php while ($data = $search_worksheet -> fetch_object()):?>
 
         <td>
-1
+            1
         </td>
         <td>
-           2 
+            2 
         </td>
         <td>
-          3  
+            3  
         </td>
         <td>
             4
         </td>
         <td>
-           5 
+            5 
         </td>
         <td>
-           6 
+            6 
         </td>
         <?php  endwhile; ?>
     </tr>

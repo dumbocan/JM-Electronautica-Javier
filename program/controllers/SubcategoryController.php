@@ -7,12 +7,15 @@ class subcategoryController
     public function index()
     {
         Utils::isAdmin();
-
+        if(isset($_POST['add']))  {
+            $add = '1';}else{
+            $add = '0';}    
         $category_name = $_POST['category_name'];
         $category_id = $_POST['category_id'];
         $cat = new subcategory();
         $cat->setcategory_id($category_id);
-        $subcategory = $cat->showSubcategories();
+        $subcategory = $cat->showSubcategories(); 
+        
         if($subcategory == true) {
             require_once 'views/subcategory/subcategory_register.php';
         }else{ 
@@ -29,8 +32,8 @@ class subcategoryController
         $category_id = $_POST['category_id'];
         $category_name = $_POST['category_name'];
         $cat->setCategory_id($category_id);
-
-        require_once 'views/subcategory/new_subcategory.php';
+       
+        require_once 'views/subcategory/subcategory_register.php';
     }
 
     public function save_subcategory()
