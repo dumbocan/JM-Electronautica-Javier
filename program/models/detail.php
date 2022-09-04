@@ -4,7 +4,7 @@ class Detail
 {
     private $detail_id;
     private $worksheet_id;
-    private $material_id;
+    private $subcategory_id;
     private $material_quantity;
     private $material_price;
     private $db;
@@ -23,9 +23,9 @@ class Detail
     {
         return $this->worksheet_id;
     }
-    public function getMaterial_id()
+    public function getSubcategory_id()
     {
-        return $this->material_id;
+        return $this->subcategory_id;
     }
     public function getMaterial_quantity()
     {
@@ -46,9 +46,9 @@ class Detail
     {
         $this->worksheet_id = $worksheet_id;
     }
-    public function setMaterial_id($material_id)
+    public function setSubcategory_id($subcategory_id)
     {
-        $this->material_id = $material_id;
+        $this->subcategory_id = $subcategory_id;
     }
     public function setMaterial_quantity($material_quantity)
     {

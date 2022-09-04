@@ -3,12 +3,13 @@
 class worksheet
 {
     private $worksheet_id;
-    private $worksheet_date;
+    public $worksheet_date;
     private $worksheet_desc;
     private $start_time;
     private $finish_time;
     private $efective_time;
     private $project_id;
+    private $bd;
 
     public function __construct()
     {
