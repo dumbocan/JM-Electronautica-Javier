@@ -72,4 +72,14 @@ class Detail
         $result = $this->db->query($sql);
         return $result;
     }
+    public function get_detail_data()
+    {
+        $sql = "SELECT *  FROM subcategory s LEFT JOIN detail d ON d.subcategory_id = s.subcategory_id  WHERE s.subcategory_id = '{$this -> getsubcategory_id()}'";    
+        $save = $this -> db -> query($sql);
+        $data = mysqli_fetch_object($save);
+        return $data;
+ 
+    }
+
+
 }

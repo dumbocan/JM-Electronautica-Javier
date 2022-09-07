@@ -15,7 +15,6 @@
         <th style="width: 60px;">Descuento</th> 
         <th style="width: 90px;">Total</th>
     </tr>
-    <form action="" method="POST">
         <tr>
             <td>
                 <?=$worksheet -> getworksheet_date()?>
@@ -26,14 +25,14 @@
                     <tr>
                         <?php switch ($count):
                             case 0: ?>
-                                    <form  action="<?=base_url; ?>detail/add_detail" method="POST">
+                                <form  action="<?=base_url; ?>detail/add_detail" method="POST">
                                     <select name="section" id="section">
                                         <?php while ($row = mysqli_fetch_object($show_section) ): ?>
                                             <option value="<?=$row->section_id?>"><?=$row -> section_name?></option>
                                         <?php endwhile;?>
                                             <option value="new">Nuevo</option>
                                     </select>
-                                    <button type="submit">enviar</button>
+                                    <input type="submit" value="enviar">
                                     <input type="hidden" name="worksheet_id" value="<?=$worksheet -> getworksheet_id()?>">
                                 </form>
                             <?php break;   
@@ -63,8 +62,9 @@
                                     <button type="submit">enviar</button>
                                 </form> 
                             <?php break;
-                            case 3:?>     
-                                    <label type="text" name="subcategory" ><?=$subcategory -> getsubcategory_name()?></label> 
+                            case 3:?>                  <form action="<?=base_url; ?>detail/detail_save" method="post">
+   
+                                    <label><?=$subcategory -> getsubcategory_name()?></label> 
                                     <input type="hidden" name="subcategoryes" value="<?=$subcategory -> getsubcategory_name()?>">  
                         <?php endswitch ?>      
                     </tr>
@@ -72,28 +72,31 @@
             </td>
             <td>
                 <?php if (isset($_POST['subcategory'])):?>
-                <form  action="<?=base_url; ?>detail/add_detail" method="POST">
                     <select name="quantity" id="quantity">
                             <?php $row = 0; while ($row < $quantity): ?>
                         <option value="<?=$row ?>"><?=$row ;$row++?></option>
                             <?php endwhile ?>
                     </select>
-                    <input type="submit" value="enviar">
-                </form>
                 <?php else :?>
-                3
+                0
                 <?php endif?>
             </td>
             <td>
-                4
+                <?php if (isset($_POST['subcategory'])):?>
+                   <label><?=$detail -> getmaterial_price()?></label>
+                   <input type="hidden" name="material_price" value="<?=$detail -> getmaterial_price()?>">
+                <?php else :?>
+                0
+                <?php endif?>
             </td>
             <td>
-            5 
+                <input type="text" name= "discount">
             </td>
             <td>
-            6 
+                    <input type="submit" name="detail_save" >
+                </form>    
             </td>
             <?php  //endwhile; ?>
         </tr> 
-    </form>
+    
 </table>

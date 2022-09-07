@@ -68,7 +68,7 @@ class DetailController extends worksheetController
             $subcategory -> setcategory_id($category_id);
             $show_subcategory = $subcategory -> showSubcategories();   
          }
-var_dump($_POST);
+//var_dump($_POST);
         if(isset($_POST['subcategory'])){
             $count = 3;
             $subcategory_id = $_POST['subcategory'];
@@ -88,9 +88,13 @@ var_dump($_POST);
            // $detail -> setmaterial_price();
 
             $quantity = $subcategory -> getsubcategory_stock();
+            $detail_data = $detail -> get_detail_data();
+            $price = $detail_data -> subcategory_price +=( ($detail_data -> subcategory_price) * 25 /100);
+            $detail -> setmaterial_price($price);
+           
 
 
-           // var_dump($quantity);
+           var_dump($price);
         }
 
 
@@ -98,6 +102,14 @@ var_dump($_POST);
        
     }
 
+    public function detail_save()
+    {
+        if(isset($_POST['detail_save'])){
+            var_dump($_POST);
+        }
+
+
+    }
 
 
 

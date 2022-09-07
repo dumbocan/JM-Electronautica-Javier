@@ -74,7 +74,7 @@ class subcategory
     {
         $row=false;
         $sql = "SELECT * FROM subcategory WHERE category_id = '{$this->getcategory_id()}' ORDER BY subcategory_name";
-        $save = $this->db->query($sql);//var_dump($sql);
+        $save = $this -> db -> query($sql);//var_dump($sql);
         if($save){  
             return $save;
         }else{
@@ -87,7 +87,7 @@ class subcategory
     {
         $row=false;
         $sql = "SELECT * FROM subcategory WHERE subcategory_id = '{$this->getsubcategory_id()}' ";
-        $save = $this->db->query($sql);//var_dump($sql);
+        $save = $this -> db -> query($sql);//var_dump($sql);
         if($save){  
             return $save;
         }else{
@@ -106,7 +106,7 @@ class subcategory
 
                WHERE 
                subcategory_id = '{$this->getsubcategory_id()}';";
-        $save = $this->db->query($sql);var_dump($sql);
+        $save = $this -> db -> query($sql);var_dump($sql);
         $result = false;
         if ($save) {
             $result = true;
@@ -120,14 +120,14 @@ class subcategory
 
         $sql = "INSERT INTO subcategory SET 
              subcategory_id = null,
-             subcategory_name = '{$this->getsubcategory_name()}',
-             subcategory_stock = '{$this->getsubcategory_stock()}',
-             subcategory_price = '{$this->getsubcategory_price()}',
-             serial_number = '{$this->getserial_number()}',
+             subcategory_name = '{$this -> getsubcategory_name()}',
+             subcategory_stock = '{$this -> getsubcategory_stock()}',
+             subcategory_price = '{$this -> getsubcategory_price()}',
+             serial_number = '{$this -> getserial_number()}',
 
-             category_id = '{$this->getcategory_id()}'
+             category_id = '{$this -> getcategory_id()}'
              ;";
-        $save = $this->db->query($sql);
+        $save = $this->db -> query($sql);
         $result = false;
         //var_dump($sql);die;
         if ($save) {
@@ -139,8 +139,8 @@ class subcategory
 
     public function delete_subcategory()
     {
-        $sql = "DELETE FROM subcategory WHERE subcategory_id = '{$this->getsubcategory_id()}';";
-        $save = $this->db->query($sql);
+        $sql = "DELETE FROM subcategory WHERE subcategory_id = '{$this -> getsubcategory_id()}';";
+        $save = $this -> db -> query($sql);
         $result = false;
         if ($save) {
             $result = true;
@@ -148,4 +148,7 @@ class subcategory
 
         return $result;
     }
+
+    
+
 }
