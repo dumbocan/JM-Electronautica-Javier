@@ -17,7 +17,7 @@
     </table>
 
 <input type="submit" id="subcategory_update" >
-<input type="hidden" name="subcategory_id" value="<?=$id; ?>" >
+<input type="hidden" name="subcategory_id" value="<?=$result_get_subcategories -> subcategory_id; ?>" >
 <input type="hidden" name="category_name" value="<?=$category_name; ?>" >
 <input type="hidden" name="category_id" value="<?=$category_id; ?>" >
 </form>

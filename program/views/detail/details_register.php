@@ -11,14 +11,13 @@
         <th style="width: 100px;">Fecha</th>
         <th style="width: 640px;">Material</th>
         <th style="width: 70px;">Cantidad</th>
-        <th style="width: 80px;">Precio</th>        
-        <th style="width: 60px;">Descuento</th> 
-        <th style="width: 90px;">Total</th>
+        <th style="width: 8px;">Precio</th>        
+        <th style="width: 6px;">Descuento</th> 
+        <th style="width: 90px;"></th>
     </tr>
         <tr>
             <td>
                 <?=$worksheet -> getworksheet_date()?>
-                <input type="hidden" name="worksheet_date" value="<?=$worksheet -> getworksheet_date()?>">
             </td>
             <td>
                 <table>
@@ -62,41 +61,61 @@
                                     <button type="submit">enviar</button>
                                 </form> 
                             <?php break;
-                            case 3:?>                  <form action="<?=base_url; ?>detail/detail_save" method="post">
+                            case 3:?>                 
+                                 <form action="<?=base_url; ?>detail/detail_save" method="post">
    
                                     <label><?=$subcategory -> getsubcategory_name()?></label> 
-                                    <input type="hidden" name="subcategoryes" value="<?=$subcategory -> getsubcategory_name()?>">  
+                                    <input type="hidden" name="subcategory_name" value="<?=$subcategory -> getsubcategory_name()?>"> 
+                                    <input type="hidden" name="subcategory_id" value="<?=$subcategory -> getsubcategory_id()?>">  
+ 
                         <?php endswitch ?>      
                     </tr>
                 </table>
             </td>
             <td>
                 <?php if (isset($_POST['subcategory'])):?>
-                    <select name="quantity" id="quantity">
-                            <?php $row = 0; while ($row < $quantity): ?>
+                    <?php if($quantity <> 0):?>
+                    <select name="material_quantity" id="material_quantity" >
+                            <?php $row = 1; while ($row < $quantity+1): ?>
                         <option value="<?=$row ?>"><?=$row ;$row++?></option>
                             <?php endwhile ?>
-                    </select>
-                <?php else :?>
+                    </select>    
+                    <?php else:?>
+                        <form action="<?=base_url; ?>detail/add_stock" method="POST">
+                        <input type="hidden" name="subcategory_id" value="<?=$subcategory -> getsubcategory_id()?>">  
+                        <input type="hidden" name="subcategory_stock" value="<?=$subcategory -> getsubcategory_stock()?>">  
+
+                        <input type="submit" value="Añadir stock" name="add_stock">
+                        </form>
+                    <?php endif?>
+                  <?php else :?>
                 0
                 <?php endif?>
             </td>
             <td>
                 <?php if (isset($_POST['subcategory'])):?>
-                   <label><?=$detail -> getmaterial_price()?></label>
-                   <input type="hidden" name="material_price" value="<?=$detail -> getmaterial_price()?>">
+                   
+                   <input type="number" name="material_price" value="<?=$detail -> getmaterial_price()?>">
                 <?php else :?>
                 0
                 <?php endif?>
             </td>
             <td>
-                <input type="text" name= "discount">
+                <input type="number" name= "detail_discount">
             </td>
             <td>
-                    <input type="submit" name="detail_save" >
+            <?php if (isset($_POST['subcategory'])):?>
+
+            <?php if($quantity <> 0):?>
+                <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>"> 
+                <input type="hidden" name="detail_date" value="<?=$worksheet -> getworksheet_date()?>">
+                <input type="submit" name="detail_save" >
                 </form>    
+                <?php endif?>
+                <?php endif?>
+
             </td>
-            <?php  //endwhile; ?>
+          
         </tr> 
     
 </table>

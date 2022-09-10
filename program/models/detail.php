@@ -4,9 +4,11 @@ class Detail
 {
     private $detail_id;
     private $worksheet_id;
+    private $detail_date;
     private $subcategory_id;
     private $material_quantity;
     private $material_price;
+    private $detail_discount;
     private $db;
 
     //conexion base de datos
@@ -19,6 +21,10 @@ class Detail
     {
         return $this->detail_id;
     }
+    public function getDetail_date() 
+    {
+		return $this->detail_date;
+	}
     public function getWorksheet_id()
     {
         return $this->worksheet_id;
@@ -36,6 +42,10 @@ class Detail
     {
         return $this->material_price;
     }
+    public function getDetail_discount() 
+    {
+		return $this->detail_discount;
+	}
 
 
     public function setDetail_id($detail_id)
@@ -46,6 +56,10 @@ class Detail
     {
         $this->worksheet_id = $worksheet_id;
     }
+    public function setDetail_date($detail_date)
+    {
+		$this->detail_date = $detail_date;
+	}
     public function setSubcategory_id($subcategory_id)
     {
         $this->subcategory_id = $subcategory_id;
@@ -58,6 +72,10 @@ class Detail
     {
         $this->material_price = $material_price;
     }
+    public function setDetail_discount($detail_discount)
+    {
+		$this->detail_discount = $detail_discount;
+	}
 
 
     public function get_data()
@@ -81,5 +99,33 @@ class Detail
  
     }
 
+    public function get_material_price_percentage()
+    {
+        $sql = 'SELECT material_price_percentage FROM settings';
+        $save = $this -> db -> query($sql);
+        $data1 = mysqli_fetch_object($save);
+        $data = $data1 -> material_price_percentage;
+        return $data;
+
+    }
+
+    public function save_detail()
+    {  
+        $sql = "INSERT INTO detail  VALUES 
+                                    (
+                                     null , 
+                                    '{$this -> getDetail_date()}' ,
+                                    '{$this -> getWorksheet_id()}' , 
+                                    '{$this -> getSubcategory_id()}' , 
+                                    '{$this -> getMaterial_quantity()}' , 
+                                    '{$this -> getMaterial_price()}' , 
+                                    '{$this -> getDetail_discount()}'
+                                    )";
+
+        $save = $this -> db -> query($sql);
+
+       
+        return $save;
+    }
 
 }

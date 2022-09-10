@@ -70,6 +70,13 @@ class subcategory
         $this->category_id = $category_id;
     }
 
+    public function show_subcategory_id()
+    {
+        $subcategory_id  = mysqli_insert_id($this -> db);
+        return $subcategory_id;
+
+    }
+
     public function showSubcategories()
     {
         $row=false;
@@ -86,7 +93,7 @@ class subcategory
     public function showSubcategory()
     {
         $row=false;
-        $sql = "SELECT * FROM subcategory WHERE subcategory_id = '{$this->getsubcategory_id()}' ";
+        $sql = "SELECT * FROM subcategory WHERE subcategory_id = '{$this->getsubcategory_id()}' ORDER BY subcategory_name";
         $save = $this -> db -> query($sql);//var_dump($sql);
         if($save){  
             return $save;
@@ -149,6 +156,9 @@ class subcategory
         return $result;
     }
 
-    
+    public function add_stock()
+    {
+        
+    }
 
 }

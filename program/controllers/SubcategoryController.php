@@ -1,8 +1,9 @@
 <?php
 
 require_once 'models/subcategory.php';
+require_once 'models/detail.php';
 
-class subcategoryController
+class subcategoryController extends DetailController
 {
     public function index()
     {
@@ -55,6 +56,20 @@ class subcategoryController
         $cat->setserial_number($serial_number);
         $cat->setcategory_id($category_id);
         $save = $cat->save_subcategory();
+        $subcategory_id = $cat -> show_subcategory_id();
+
+       /* $detail = new detail();
+        //busco los datos de precio insertados, y busco el % de precio a incrementar y lo aplico a la tabla de detail
+
+        $detail -> setSubcategory_id($subcategory_id);
+        $detail_data = $detail -> get_detail_data();
+        $percentage = $detail -> get_material_price_percentage();
+       
+        $price = $detail_data -> subcategory_price +=( ($detail_data -> subcategory_price) * $percentage /100);
+        $detail -> setmaterial_price($price); */
+        
+        
+
         if ($save) {
             $_SESSION['register'] = 'complete';
         } else {
@@ -75,7 +90,7 @@ class subcategoryController
         $subcategories -> setcategory_id($category_id);
         $get_subcategories = $subcategories -> showSubcategory();
         $result_get_subcategories = mysqli_fetch_object($get_subcategories);
-        var_dump($result_get_subcategories);
+        //var_dump($result_get_subcategories);
         $category_name = $_POST['category_name'];
         
         require_once 'views/subcategory/subcategory_update.php';
