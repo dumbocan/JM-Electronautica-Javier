@@ -6,8 +6,16 @@
 <?php endif; ?>
 <form method="POST">
     <button formaction="<?=base_url; ?>">Inicio</button>
+</form>    
+    <?php if($add == 1):?>
+        <form action="<?=base_url?>detail/add_detail" method="POST">
+        <input type="submit" name="back" value="Regresar">
+        </form>
+        <?php else:?>
+
     <input type="hidden" name="category_name" value="<?=$category_name; ?>">
    
     <input type="hidden" name="category_id" value="<?=$cat->getcategory_id(); ?>">
     <button  type="submit" formaction="<?=base_url; ?>subcategory/index" >Subcategoria</button>
-</form>
+
+    <?php endif?>

@@ -128,4 +128,14 @@ class Detail
         return $save;
     }
 
+    public function get_name_by_id()
+    {
+        $sql = "SELECT * FROM category c INNER JOIN subcategory s ON c.category_id = s.category_id WHERE subcategory_id = '{$this -> getSubcategory_id()}'";
+        $save = $this -> db -> query($sql);
+        $data = mysqli_fetch_object($save);
+        return $data;
+
+
+    }
+
 }

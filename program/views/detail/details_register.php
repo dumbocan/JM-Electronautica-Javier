@@ -84,6 +84,7 @@
                         <form action="<?=base_url; ?>detail/add_stock" method="POST">
                         <input type="hidden" name="subcategory_id" value="<?=$subcategory -> getsubcategory_id()?>">  
                         <input type="hidden" name="subcategory_stock" value="<?=$subcategory -> getsubcategory_stock()?>">  
+                        <input type="hidden" name="add" value="1">  
 
                         <input type="submit" value="Añadir stock" name="add_stock">
                         </form>
@@ -109,6 +110,7 @@
             <?php if($quantity <> 0):?>
                 <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>"> 
                 <input type="hidden" name="detail_date" value="<?=$worksheet -> getworksheet_date()?>">
+
                 <input type="submit" name="detail_save" >
                 </form>    
                 <?php endif?>

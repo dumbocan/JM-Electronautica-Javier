@@ -66,17 +66,20 @@ class DetailController extends worksheetController
             $category_id = $_POST['category'];
             $category -> setCategory_id($category_id);
             $subcategory -> setcategory_id($category_id);
-            $show_subcategory = $subcategory -> showSubcategories();   
+            $show_subcategory = $subcategory -> showSubcategories(); 
+              
          }
 //var_dump($_POST);
         if(isset($_POST['subcategory'])){
             $count = 3;
             $subcategory_id = $_POST['subcategory'];
             $subcategory -> setsubcategory_id($subcategory_id);
+           
 
             
             $show_subcategory = $subcategory -> showSubcategory();
             $subcategory_data = mysqli_fetch_object($show_subcategory);
+
             $subcategory -> setsubcategory_id($subcategory_id);
             $subcategory -> setsubcategory_name($subcategory_data -> subcategory_name);
             $subcategory -> setsubcategory_stock($subcategory_data -> subcategory_stock);
@@ -84,6 +87,7 @@ class DetailController extends worksheetController
 
             $detail -> setworksheet_id($worksheet_id);
             $detail -> setsubcategory_id($subcategory_id);
+            
            // $detail -> setmaterial_quantity();
            // $detail -> setmaterial_price();
 
@@ -91,13 +95,13 @@ class DetailController extends worksheetController
             $detail_data = $detail -> get_detail_data();
             $price = $detail_data -> subcategory_price +=( ($detail_data -> subcategory_price) * 20 /100);
             $detail -> setmaterial_price($price);
-           
+            
+
 
 
            
         }
-
-
+        
         require_once 'views/detail/details_register.php';
        
     }
@@ -135,20 +139,25 @@ class DetailController extends worksheetController
         }
         if(isset($_POST['add_stock']))
         {
-
+            $detail = new Detail();
+            $add = $_POST['add'];
             $subcategory_id = $_POST['subcategory_id'];
             $subcategory_name = $_POST['subcategory_name'];
             $subcategory_stock = 0;
+            $detail -> setSubcategory_id($subcategory_id);
+            $category_name = $detail ->get_name_by_id();
             $subcategory = new Subcategory();
             $subcategory -> setsubcategory_id($subcategory_id);
             $subcategory -> setsubcategory_name($subcategory_name);
             $subcategory -> setsubcategory_stock($subcategory_stock);
             $get_subcategories = $subcategory -> showSubcategory();
             $result_get_subcategories = mysqli_fetch_object($get_subcategories);
-            
+            $category_data = $detail ->get_name_by_id();
+            $category_name = $category_data -> category_name;
+            $category_id = $category_data -> category_id;
             require_once 'views/subcategory/subcategory_update.php';
 
-            var_dump( $result_get_subcategories);
+            //var_dump( $result_get_subcategories);
         }
     }
 

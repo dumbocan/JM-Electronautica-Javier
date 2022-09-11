@@ -113,7 +113,7 @@ class subcategory
 
                WHERE 
                subcategory_id = '{$this->getsubcategory_id()}';";
-        $save = $this -> db -> query($sql);var_dump($sql);
+        $save = $this -> db -> query($sql);
         $result = false;
         if ($save) {
             $result = true;
@@ -136,7 +136,6 @@ class subcategory
              ;";
         $save = $this->db -> query($sql);
         $result = false;
-        //var_dump($sql);die;
         if ($save) {
             $result = true;
         }
@@ -158,7 +157,7 @@ class subcategory
 
     public function add_stock()
     {
-        
+
     }
 
 }

@@ -80,10 +80,11 @@ class subcategoryController extends DetailController
 
     public function edit_subcategory()
     {
-        Utils::isAdmin();var_dump($_POST);
+        Utils::isAdmin();
         $id = $_POST['subcategory_id'];
         $name = $_POST['subcategory_name'];
-        $category_id = $_POST['category_id'];
+        $category_id = $_POST['category_id'];        
+        $category_name = $_POST['category_name'];
         $subcategories = new subcategory();
         $subcategories -> setsubcategory_id($id);
         $subcategories -> setsubcategory_name($name);
@@ -91,7 +92,6 @@ class subcategoryController extends DetailController
         $get_subcategories = $subcategories -> showSubcategory();
         $result_get_subcategories = mysqli_fetch_object($get_subcategories);
         //var_dump($result_get_subcategories);
-        $category_name = $_POST['category_name'];
         
         require_once 'views/subcategory/subcategory_update.php';
     }
@@ -103,7 +103,7 @@ class subcategoryController extends DetailController
         $subcategory_stock = $_POST['subcategory_stock'];
         $subcategory_price = $_POST['subcategory_price'];
         $serial_number = $_POST['serial_number'];
-
+        $add = $_POST['add'];
         $category_name = $_POST['category_name'];
         $category_id = $_POST['category_id'];
         $cat = new subcategory();
