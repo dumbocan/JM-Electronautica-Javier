@@ -15,11 +15,13 @@
             <td><input type="text" name="serial_number" value="<?=$result_get_subcategories -> serial_number; ?>"></td>
         </tr>
     </table>
+<input type="hidden" name="add" value="<?=$add;?>">
 
 <input type="submit" id="subcategory_update" >
 <input type="hidden" name="subcategory_id" value="<?=$result_get_subcategories -> subcategory_id; ?>" >
 <input type="hidden" name="category_name" value="<?=$category_name; ?>" >
 <input type="hidden" name="category_id" value="<?=$category_id; ?>" >
-<input type="hidden" name="add" value="<?=$add;?>">
+<input type="hidden" name="worksheet_id" value="<?=$detail -> getWorksheet_id(); ?>" >
+
 
 </form>

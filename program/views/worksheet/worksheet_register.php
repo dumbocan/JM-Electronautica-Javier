@@ -85,6 +85,10 @@
 </table>
 <h3>Total horas: <?=($total_hours->total);?></h3>
 <br>
+
+
+
+
 <table>
     <tr>
         <th>Material utilizado</th>
@@ -97,31 +101,51 @@
         <th style="width: 70px;">Cantidad</th>
         <th style="width: 80px;">Precio</th>        
         <th style="width: 60px;">Descuento</th> 
-        <th style="width: 90px;">Total</th>
+        <th style="width: 90px;"></th>
     </tr>
+        <?php while ($detail_data = $details -> fetch_object()):; var_dump($detail_data);?>
+
     <tr>
-    <?php while ($data = $search_worksheet -> fetch_object()):?>
 
         <td>
-            1
+            <?= $detail_data -> detail_date ?>
         </td>
         <td>
-            2 
+            <?= $detail_data -> subcategory_name ?>
         </td>
         <td>
-            3  
+        <?= $detail_data -> material_quantity ?>
+  
         </td>
         <td>
-            4
+        <?= $detail_data -> subcategory_price ?>
+
         </td>
         <td>
-            5 
+        <?= $detail_data -> detail_discount ?>
+ 
         </td>
-        <td>
-            6 
+        <td class="icons" >
+        <form action="<?=base_url; ?>detail/update_detail" method="POST">
+            <button class="submit">
+                <abbr title="Actualizar material"> <i class="fa fa-pencil"></i></button></abbr>    
+            </button>    
+                <input type="hidden" value="<?=$detail_data -> subcategory_name?>" name="subcategory_name">
+                <input type="hidden" value="<?=$detail_data -> detail_id?>" name="detail_id">
+
+        </form>    
+        <form action="<?=base_url; ?>worksheet/ask_delete" method="POST">
+        	<button class="submit">
+                <abbr title="Borrar material"><i class="fa fa-trash"></i></abbr>
+            </button>    
+    		    <input type="hidden"  value="<?= $detail_data -> worksheet_id?>" name="worksheet_id">
+		        <input type="hidden"  value="<?= $detail_data -> worksheet_date?>" name="worksheet_date">
+                <input type="hidden"  value="<?= $detail_data -> project_id?>" name="project_id">
+        </form>
         </td>
-        <?php  endwhile; ?>
     </tr>
+            <?php  endwhile; ?>
+
 </table>
 <br>
 <br>

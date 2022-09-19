@@ -8,6 +8,7 @@ class subcategoryController extends DetailController
     public function index()
     {
         Utils::isAdmin();
+        $add = 0;
         if(isset($_POST['add']))  {
             $add = '1';}else{
             $add = '0';}    
@@ -40,7 +41,8 @@ class subcategoryController extends DetailController
     public function save_subcategory()
     {
         Utils::isAdmin();
-       
+       var_dump($_POST);
+       $add = 0;
         $subcategory_name = $_POST['subcategory_name'];
         $subcategory_stock = $_POST['subcategory_stock'];
         $subcategory_price = $_POST['subcategory_price'];
@@ -81,6 +83,7 @@ class subcategoryController extends DetailController
     public function edit_subcategory()
     {
         Utils::isAdmin();
+        $add = $_POST['add'];
         $id = $_POST['subcategory_id'];
         $name = $_POST['subcategory_name'];
         $category_id = $_POST['category_id'];        
@@ -97,7 +100,8 @@ class subcategoryController extends DetailController
     }
 
     public function update_subcategory()
-    {
+    {   $worksheet_id = $_POST['worksheet_id'];
+        
         $subcategory_id = $_POST['subcategory_id'];
         $subcategory_name = $_POST['subcategory_name'];
         $subcategory_stock = $_POST['subcategory_stock'];
@@ -127,6 +131,7 @@ class subcategoryController extends DetailController
     public function ask_delete()
     {
         Utils::isAdmin();
+        $add = 0;
         $category_name = $_POST['category_name'];
         $category_id = $_POST['category_id'];
         $id = $_POST['subcategory_id'];
@@ -141,6 +146,7 @@ class subcategoryController extends DetailController
 
     public function delete_subcategory()
     {
+        $add = $_POST['add'];
         $id = $_POST['subcategory_id'];
         $category_id = $_POST['category_id'];
         $category_name = $_POST['category_name'];

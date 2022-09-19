@@ -14,19 +14,28 @@ class DetailController extends worksheetController
     }
 
     public function add_detail()
-    {
+    {          
+        
+        var_dump($_POST);
+        if(isset($_POST['back'])){
+
+            $count= $_POST['back'] ;
+        }
         Utils::isAdmin();
         // $count variable de control para el swift
         $count = 0;
         //Viene de worksheet_register.php
         $worksheet_id = $_POST['worksheet_id'];
-         $detail = new Detail();
-         $section = new section();
-         $category = new Category();
+        $detail = new Detail();
+        $section = new section();
+        $category = new Category();
         $subcategory = new Subcategory();
         $worksheet = new Worksheet();
-      
         $detail -> setworksheet_id($worksheet_id);
+
+        //buscamos si hay material en base de datos
+        
+
         $data = $detail -> get_data();
         // saco todos los datos de la base de datos del proyecto
         $get_project_data = mysqli_fetch_object($data);
@@ -122,7 +131,7 @@ class DetailController extends worksheetController
             $detail -> setMaterial_quantity($material_quantity);
             $detail -> setMaterial_price($material_price);
             $detail -> setdetail_date($detail_date);
-
+            
             if($detail_discount == null){
                 $detail_discount = 0;
             }
@@ -139,11 +148,14 @@ class DetailController extends worksheetController
         }
         if(isset($_POST['add_stock']))
         {
-            $detail = new Detail();
             $add = $_POST['add'];
+          
+            $detail = new Detail();
+            $worksheet_id = $_POST['worksheet_id'];
+            $detail -> setWorksheet_id($worksheet_id);
             $subcategory_id = $_POST['subcategory_id'];
             $subcategory_name = $_POST['subcategory_name'];
-            $subcategory_stock = 0;
+            $subcategory_stock = 0; 
             $detail -> setSubcategory_id($subcategory_id);
             $category_name = $detail ->get_name_by_id();
             $subcategory = new Subcategory();
@@ -155,15 +167,22 @@ class DetailController extends worksheetController
             $category_data = $detail ->get_name_by_id();
             $category_name = $category_data -> category_name;
             $category_id = $category_data -> category_id;
+            
             require_once 'views/subcategory/subcategory_update.php';
 
             //var_dump( $result_get_subcategories);
         }
     }
 
-    public function add_stock()
+    public function update_detail()
     {
-var_dump($subcategory);
+        $detail_id = $_POST['detail_id'];
+        $subcategory_name = $_POST['subcategory_name'];
+        $detail = new Detail();
+        $detail -> setDetail_id($detail_id);
+        $detail_data = $detail -> get_detail_by_detail_id();
+        var_dump($detail_data);
+
     }
 
 

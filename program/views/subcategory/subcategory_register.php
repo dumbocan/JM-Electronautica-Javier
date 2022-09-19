@@ -24,6 +24,8 @@
                     <input type="hidden" id="subcategory_id"  name="subcategory_id" value="<?=$subcategory_id; ?>">
                     <input type="hidden" id="subcategory_name"  name="subcategory_name" value="<?=$subcategory_name; ?>">
                     <input type="hidden" id="category_name"  name="category_name" value="<?=$category_name; ?>">
+                    <input type="hidden" id="add" name="add" value="<?=$add?>">
+
                     <input type="hidden" id="category_id" name="category_id" value="<?=$cat->getcategory_id(); ?>">
                     <button class="submit">
                         <abbr title="Actualizar articulo"> <i class="fa fa-pencil"></i></button></abbr>    

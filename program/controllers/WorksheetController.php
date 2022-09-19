@@ -1,6 +1,8 @@
 <?php
 
 require_once 'models/worksheet.php';
+require_once 'models/detail.php';
+
 
 class worksheetController extends projectController
 {
@@ -23,12 +25,13 @@ class worksheetController extends projectController
             $numb=$worksheet-> get_project_by_id();
             $number=$numb->project_number;
         }else*/
-       var_dump($_POST);
+       //var_dump($_POST);
         if(isset($_POST['project_id'])){
             //le entra  por post  el numero de proyecto
             $number = $_POST['project_id'];
         $worksheet = new worksheet();
         $project = new project();
+        $detai = new Detail();
         $worksheet -> setProject_id($number);
         $project -> setProject_id($number);
         //$project -> setProject_state('s');
@@ -36,9 +39,11 @@ class worksheetController extends projectController
         
         $project_data = $project -> getProject();
 
+        //busco si hay material incorporado al proyecto
+        $details = $detai -> get_detail($worksheet -> getproject_id());
+
         // busca si hay hojas de trabajo anteriores para mostrar
         }
-       
         require_once 'views/worksheet/worksheet_register.php';
     }
 

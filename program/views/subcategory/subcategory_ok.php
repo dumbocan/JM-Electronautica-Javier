@@ -6,12 +6,17 @@
 <?php endif; ?>
 <form method="POST">
     <button formaction="<?=base_url; ?>">Inicio</button>
-</form>    
-    <?php if($add == 1):?>
-        <form action="<?=base_url?>detail/add_detail" method="POST">
-        <input type="submit" name="back" value="Regresar">
-        </form>
-        <?php else:?>
+</form> 
+           <form action="<?=base_url?>detail/add_detail" method="POST">
+
+    <?php if($add == "1"):?>
+
+            <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>">
+            <input type="hidden" name="subcategory" value="<?=$subcategory_id?>">
+
+           <button  type="submit" name="back">Regresar</button>
+       
+    <?php else:?>
 
     <input type="hidden" name="category_name" value="<?=$category_name; ?>">
    
@@ -19,3 +24,4 @@
     <button  type="submit" formaction="<?=base_url; ?>subcategory/index" >Subcategoria</button>
 
     <?php endif?>
+ </form>

@@ -138,4 +138,22 @@ class Detail
 
     }
 
+    public function get_detail($project_id)
+    {                                                                                                                    //project_id
+        $sql = "SELECT * FROM subcategory s INNER JOIN detail d ON d.subcategory_id = s.subcategory_id INNER JOIN worksheet w ON
+        w.worksheet_id = d.worksheet_id WHERE project_id = $project_id ORDER BY worksheet_date";
+        $save = $this -> db -> query($sql);
+        //$data = mysqli_fetch_object($save);
+        return $save;
+       
+    } 
+
+    public function get_detail_by_detail_id()
+    {
+        $sql = "SELECT * FROM detail WHERE detail_id = '{$this -> detail_id}'";
+        $save = $this -> db -> query($sql);
+        $data = mysqli_fetch_object($save);
+        return $data;
+    }
+
 }

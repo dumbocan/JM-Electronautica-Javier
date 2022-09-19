@@ -15,6 +15,9 @@
         <th style="width: 6px;">Descuento</th> 
         <th style="width: 90px;"></th>
     </tr>
+   
+
+
         <tr>
             <td>
                 <?=$worksheet -> getworksheet_date()?>
@@ -22,6 +25,15 @@
             <td>
                 <table>
                     <tr>
+                        <td>
+                            <form  action="<?=base_url; ?>detail/add_detail" method="POST">
+                                <input type="hidden" name="worksheet_id" value="<?=$worksheet -> getworksheet_id()?>">
+                                <button class="submit" name="back" value="<?=$count-1?>">
+                                    <abbr title="Atras"> <i class="fa fa-step-backward"></i></button></abbr>    
+                                </button>   
+                            </form>
+                        </td>
+                        <td>
                         <?php switch ($count):
                             case 0: ?>
                                 <form  action="<?=base_url; ?>detail/add_detail" method="POST">
@@ -67,8 +79,9 @@
                                     <label><?=$subcategory -> getsubcategory_name()?></label> 
                                     <input type="hidden" name="subcategory_name" value="<?=$subcategory -> getsubcategory_name()?>"> 
                                     <input type="hidden" name="subcategory_id" value="<?=$subcategory -> getsubcategory_id()?>">  
- 
-                        <?php endswitch ?>      
+                                    <input type="hidden" name="worksheet_id" value="<?=$worksheet -> getworksheet_id()?>">
+                        <?php endswitch ?>
+                        </td>      
                     </tr>
                 </table>
             </td>
