@@ -26,7 +26,7 @@ class DetailController extends worksheetController
         $count = 0;
         //Viene de worksheet_register.php
         $worksheet_id = $_POST['worksheet_id'];
-        $detail = new Detail('');
+        $detail = new Detail();
         $section = new section();
         $category = new Category();
         $subcategory = new Subcategory();
