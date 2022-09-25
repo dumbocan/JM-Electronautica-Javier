@@ -16,17 +16,17 @@ class DetailController extends worksheetController
     public function add_detail()
     {          
         
-        var_dump($_POST);
-        if(isset($_POST['back'])){
+       
+        if(isset($_POST['count'])){
 
-            $count= $_POST['back'] ;
+            $count= $_POST['count'] ;
         }
         Utils::isAdmin();
         // $count variable de control para el swift
         $count = 0;
         //Viene de worksheet_register.php
         $worksheet_id = $_POST['worksheet_id'];
-        $detail = new Detail();
+        $detail = new Detail('');
         $section = new section();
         $category = new Category();
         $subcategory = new Subcategory();
@@ -175,13 +175,31 @@ class DetailController extends worksheetController
     }
 
     public function update_detail()
-    {
+    {   var_dump($_POST);
+        $count = 3;
+
+        if (isset($_POST['count']) && $_POST['count'] == 2){
+            $count = $_POST['count'];
+
+             }elseif (isset($_POST['count']) && $_POST['count'] == 1){
+                $count = $_POST['count'];
+                $category_id = $_POST['category'];
+            }
         $detail_id = $_POST['detail_id'];
-        $subcategory_name = $_POST['subcategory_name'];
-        $detail = new Detail();
-        $detail -> setDetail_id($detail_id);
-        $detail_data = $detail -> get_detail_by_detail_id();
-        var_dump($detail_data);
+        //$subcategory_name = $_POST['subcategory_name'];
+        $detail = new Detail($detail_id);
+        $subcategory = new Subcategory(); 
+        $subcategory -> setsubcategory_id($detail -> subcategory_id);
+        $show_subcategory = $detail -> get_subcategories(); 
+        $detail_data = $detail -> get_detail_data();
+        $show_category = $detail -> get_categories();
+
+       // $category = new Category();
+        //$category -> setcategory_id($subcategory -> category_id);
+        //var_dump($category);
+        require_once 'views/detail/detail_update.php';
+        
+        
 
     }
 

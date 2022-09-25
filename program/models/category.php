@@ -2,9 +2,9 @@
 
 class Category
 {
-    private $category_id;
-    private $category_name;
-    private $section_id;
+    public $category_id;
+    public $category_name;
+    public $section_id;
 
     private $db;
 

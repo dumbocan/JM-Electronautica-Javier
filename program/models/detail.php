@@ -2,20 +2,35 @@
 
 class Detail
 {
-    private $detail_id;
-    private $worksheet_id;
-    private $detail_date;
-    private $subcategory_id;
-    private $material_quantity;
-    private $material_price;
-    private $detail_discount;
+    public $detail_id;
+    public $worksheet_id;
+    public $detail_date;
+    public $subcategory_id;
+    public $material_quantity;
+    public $material_price;
+    public $detail_discount;
     private $db;
 
     //conexion base de datos
 
-    public function __construct()
+    public function __construct($id)
     {
         $this->db = Database::connect();
+        $data = self :: get_detail_by_detail_ids($id);
+        $this -> detail_id = $data -> detail_id;
+        $this -> worksheet_id = $data -> worksheet_id;
+        $this -> detail_date = $data -> detail_date;
+        $this -> subcategory_id = $data -> subcategory_id;
+        $this -> material_quantity = $data -> material_quantity;
+        $this -> material_price = $data -> material_price;
+        $this -> detail_discount = $data -> detail_discount;        
+    }
+    public function get_detail_by_detail_ids($id)
+    {
+        $sql = "SELECT * FROM detail WHERE detail_id = '{$id}'";
+        $save = $this -> db -> query($sql);
+        $data = mysqli_fetch_object($save);
+        return $data;
     }
     public function getDetail_id()
     {
@@ -155,5 +170,22 @@ class Detail
         $data = mysqli_fetch_object($save);
         return $data;
     }
+    public function get_subcategories()
+    {                                                                                                                    
+        $sql = "SELECT * FROM subcategory    WHERE category_id = (select category_id FROM subcategory s WHERE subcategory_id = {$this -> getSubcategory_id()})";
+        $save = $this -> db -> query($sql);
+        return $save;
+       
+    } 
+
+    public function get_categories()
+    {                                                                                                                    
+        $sql = "SELECT * FROM category WHERE category_id =(SELECT category_id FROM `subcategory` WHERE subcategory_id =  {$this -> getsubcategory_id()})";
+        $save = $this -> db -> query($sql);
+       var_dump($sql);
+       // $data = mysqli_fetch_object($save);
+        return $save;
+       
+    } 
 
 }

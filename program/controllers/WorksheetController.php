@@ -31,7 +31,7 @@ class worksheetController extends projectController
             $number = $_POST['project_id'];
         $worksheet = new worksheet();
         $project = new project();
-        $detai = new Detail();
+        $detail = new Detail(2);
         $worksheet -> setProject_id($number);
         $project -> setProject_id($number);
         //$project -> setProject_state('s');
@@ -40,7 +40,7 @@ class worksheetController extends projectController
         $project_data = $project -> getProject();
 
         //busco si hay material incorporado al proyecto
-        $details = $detai -> get_detail($worksheet -> getproject_id());
+        $details = $detail -> get_detail($worksheet -> getproject_id());
 
         // busca si hay hojas de trabajo anteriores para mostrar
         }

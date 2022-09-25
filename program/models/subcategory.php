@@ -7,7 +7,7 @@ class subcategory
     private $subcategory_stock;
     private $subcategory_price;
     private $serial_number;
-    private $category_id;
+    public $category_id;
     private $db;
 
     //conexion base de datos
