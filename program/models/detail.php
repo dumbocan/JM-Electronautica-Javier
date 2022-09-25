@@ -180,7 +180,7 @@ class Detail
 
     public function get_categories()
     {                                                                                                                    
-        $sql = "SELECT * FROM category WHERE category_id =(SELECT category_id FROM `subcategory` WHERE subcategory_id =  {$this -> getsubcategory_id()})";
+        $sql = "SELECT * FROM category WHERE category_id =(SELECT category_id FROM `subcategory` WHERE subcategory_id =  {$this -> getsubcategory_id()}))";
         $save = $this -> db -> query($sql);
        var_dump($sql);
        // $data = mysqli_fetch_object($save);
