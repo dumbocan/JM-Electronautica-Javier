@@ -1,3 +1,11 @@
+
+<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
+    <strong id="ok">Tu peticion se ha llevado a cavo satisfactoriamente  </strong>
+    <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed'):?>
+    <strong id="fallo">Registro fallido, introduce bien los datos</strong>
+<?php endif; Utils::deleteSession('register');?>
+
+
 <h1> GESTION DE MATERIALES </h1>
 
 <table>
@@ -5,24 +13,28 @@
         <th style="width: 5%;">    
             id
         </th>
-        <th style="width: 50%;">    
+        <th style="width: 40%;">    
             Descripcion
         </th>
-        <th style="width: 5%;">    
+        <th style="width: 6%;">    
             Stock
         </th>
-        <th style="width: 5%;">    
+        <th style="width: 8%;">    
             Coste
         </th>
-        <th style="width: 15%;">    
+        <th style="width: 18%;">    
             N. de serie
         </th>
-        <th style="width: 20%;">    
+        <th style="width: 17%;">    
             Proveedor
         </th>
+        <th style="width: 18%;">    
+            
+        </th>
     </tr>
+    <?php while ($row = $data -> fetch_object()):?>
     <tr>
-        <?php while ($row = $data -> fetch_object()):?>
+        
             <td>
                 <?= $row -> material_id?>
             </td>
@@ -40,9 +52,12 @@
             </td>   
             <td>  
                 <?= $row -> supplier_name?>
-            </td>          
-        <?php endwhile?>
-    </tr>
+            </td>
+            <td>  
+                botones
+            </td>              
+        
+    </tr><?php endwhile?>
 </table>
 <table>
     <tr>

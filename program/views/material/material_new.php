@@ -14,7 +14,7 @@
         </th>
         <th style="width: 15%;">    
             N. de serie
-        </th>
+        </th>   
         <th style="width: 20%;">    
             Proveedor
         </th>

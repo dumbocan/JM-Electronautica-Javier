@@ -98,14 +98,19 @@ public function add_material()
     $sql = "INSERT INTO material VALUES
                     (
                      null , 
-                    '{$this -> getMaterial_id()}' ,
                     '{$this -> getMaterial_name()}' , 
                     '{$this -> getMaterial_stock()}' , 
                     '{$this -> getMaterial_price()}' , 
                     '{$this -> getMaterial_sn()}' , 
                     '{$this -> getSupplier_id()}'
                     )";
-var_dump($sql);
+    $save = $this -> db -> query($sql);
+    $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
 }
 
 }

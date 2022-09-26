@@ -26,12 +26,29 @@ class MaterialController
 
     public function material_save()
     {
-        var_dump($_POST);
+        
         $material_name = $_POST['material_name'];
         $material_stock = $_POST['material_stock'];
+        $material_price = $_POST['material_price'];
+        $material_sn = $_POST['material_sn'];        
+        $supplier_id = $_POST['supplier_id'];
+
         $material = new Material(0);
         $material -> setMaterial_name($material_name);
         $material -> setMaterial_stock($material_stock);
-        $material -> add_material();
+        $material -> setMaterial_price($material_price);
+        $material -> setMaterial_sn($material_sn);
+        $material -> setSupplier_id($supplier_id);
+        $material -> setMaterial_stock($material_stock);
+
+        $add_material = $material -> add_material();
+        if ($add_material) {
+            $_SESSION['register'] = 'complete';
+        } else {
+            $_SESSION['register'] = 'failed';
+        }
+        header('location:'.base_url.'material/show_material');
+        // require_once 'views/material/material_register.php';
+        
     }
 }
