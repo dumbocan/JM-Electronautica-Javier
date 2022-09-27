@@ -1,4 +1,8 @@
 # JM-Electronautica-Javier
+Javier Monleón Galiana
+Las palmas de gran canaria.
+Spain
+dumbo.cat@hotmail.com
 app to follow the workflow in a boat workshop
 
 Welcome to my firs PHP WEB APP,Im a self-learning man and I do this APP to help me with my daily job in pleasure boats.
