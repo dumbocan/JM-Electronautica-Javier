@@ -113,4 +113,24 @@ public function add_material()
         return $result;
 }
 
+public function update_material()
+{
+    $sql = "UPDATE material SET
+                    
+                    material_id = '{$this -> getMaterial_id()}', 
+                    material_name = '{$this -> getMaterial_name()}' , 
+                    material_stock = '{$this -> getMaterial_stock()}' , 
+                    material_price = '{$this -> getMaterial_price()}' , 
+                    material_sn = '{$this -> getMaterial_sn()}' , 
+                    supplier_id = '{$this -> getSupplier_id()}'
+                    WHERE material_id = '{$this -> getMaterial_id()}'";
+    $save = $this -> db -> query($sql);
+    $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+}
+
 }

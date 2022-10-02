@@ -37,6 +37,8 @@
                 <?php while ($row = $supplier_data -> fetch_object()):?>
                 <option value="<?=$row -> supplier_id?>"><?=$row -> supplier_name?></option>
                 <?php endwhile?>
+            </select> 
+
         </td>           
         </tr>
     </table>

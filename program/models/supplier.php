@@ -18,7 +18,7 @@ class Supplier
     if(!$supplier_id == 0)
     {
     $data = $this -> set_supplier($supplier_id);
-    
+
     $this -> supplier_id = $data -> supplier_id;
     $this -> supplier_name = $data -> supplier_name;
     $this -> supplier_address = $data -> supplier_address;
