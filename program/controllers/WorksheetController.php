@@ -9,39 +9,22 @@ class worksheetController extends projectController
     public function prepare_worksheet()
     {
         Utils::isAdmin();
-       /* // Si existe subcategoria, inicializa la variable $subcategory. 
-        //viene de details_register.php line 36
-        if(isset($_POST['subcategory'])){
-            $subcategory = $_POST['subcategory'];
-        
-        var_dump($subcategory);
-        }
-        if(isset($_POST['id'])){
-            $number = $_POST['id'];
-        }elseif(isset($_POST['return'])){
-            $id = $_POST['return'];
-            $worksheet = new worksheet();
-            $worksheet -> setProject_id($id);
-            $numb=$worksheet-> get_project_by_id();
-            $number=$numb->project_number;
-        }else*/
-       //var_dump($_POST);
+      
         if(isset($_POST['project_id'])){
             //le entra  por post  el numero de proyecto
-            $number = $_POST['project_id'];
+        $number = $_POST['project_id'];
         $worksheet = new worksheet();
         $project = new project();
-        $detail = new Detail(2);
+        $detail = new Detail(0);
         $worksheet -> setProject_id($number);
         $project -> setProject_id($number);
-        //$project -> setProject_state('s');
         $search_worksheet = $worksheet->get_worksheet();
         
         $project_data = $project -> getProject();
 
         //busco si hay material incorporado al proyecto
         $details = $detail -> get_detail($worksheet -> getproject_id());
-
+var_dump($details);
         // busca si hay hojas de trabajo anteriores para mostrar
         }
         require_once 'views/worksheet/worksheet_register.php';

@@ -131,6 +131,27 @@ public function update_material()
         }
 
         return $result;
-}
+    }
+
+    public function material_delete()
+    {
+        $sql = "DELETE FROM material WHERE material_id = '{$this -> getMaterial_id()}';";
+        $save = $this -> db -> query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function search_db()
+    {
+        $name = $this->getmaterial_name();
+        $sql = "SELECT * FROM `material` WHERE material_name LIKE '%$name%'";
+        $result = $this->db->query($sql);
+
+        return $result;
+    }
 
 }

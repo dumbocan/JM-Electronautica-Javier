@@ -62,8 +62,10 @@
                     </button>   
                 </form>    
             
-                <form action="<?=base_url; ?>material/ask_delete" method="POST">
-                    
+                <form action="<?=base_url; ?>material/material_ask_delete" method="POST">
+                <input type="hidden" name="material_id" value="<?= $row->material_id?>"  >     
+                <input type="hidden" name="material_name" value="<?= $row->material_name?>"  >     
+
                     <button class="submit">
                         <abbr title="Borrar articulo"><i class="fa fa-trash"></i></abbr>
                     </button> 

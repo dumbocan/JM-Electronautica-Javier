@@ -5,7 +5,7 @@ class Detail
     public $detail_id;
     public $worksheet_id;
     public $detail_date;
-    public $subcategory_id;
+    public $material_id;
     public $material_quantity;
     public $material_price;
     public $detail_discount;
@@ -16,17 +16,20 @@ class Detail
     public function __construct($id)
     {
         $this->db = Database::connect();
+        if($id <> '0'){
         $data = self :: get_detail_by_detail_ids($id);
         $this -> detail_id = $data -> detail_id;
         $this -> worksheet_id = $data -> worksheet_id;
         $this -> detail_date = $data -> detail_date;
-        $this -> subcategory_id = $data -> subcategory_id;
+        $this -> material_id = $data -> material_id;
         $this -> material_quantity = $data -> material_quantity;
         $this -> material_price = $data -> material_price;
-        $this -> detail_discount = $data -> detail_discount;        
+        $this -> detail_discount = $data -> detail_discount; 
+        }       
     }
     public function get_detail_by_detail_ids($id)
     {
+
         $sql = "SELECT * FROM detail WHERE detail_id = '{$id}'";
         $save = $this -> db -> query($sql);
         $data = mysqli_fetch_object($save);
@@ -44,9 +47,9 @@ class Detail
     {
         return $this->worksheet_id;
     }
-    public function getSubcategory_id()
+    public function getMaterial_id()
     {
-        return $this->subcategory_id;
+        return $this->material_id;
     }
     public function getMaterial_quantity()
     {
@@ -75,9 +78,9 @@ class Detail
     {
 		$this->detail_date = $detail_date;
 	}
-    public function setSubcategory_id($subcategory_id)
+    public function setMaterial_id($material_id)
     {
-        $this->subcategory_id = $subcategory_id;
+        $this->material_id = $material_id;
     }
     public function setMaterial_quantity($material_quantity)
     {
@@ -107,10 +110,13 @@ class Detail
     }
     public function get_detail_data()
     {
-        $sql = "SELECT *  FROM subcategory s LEFT JOIN detail d ON d.subcategory_id = s.subcategory_id  WHERE s.subcategory_id = '{$this -> getsubcategory_id()}'";    
+        $sql = "SELECT *  FROM  material   WHERE material_id = '{$this -> getMaterial_id()}'";    
         $save = $this -> db -> query($sql);
-        $data = mysqli_fetch_object($save);
-        return $data;
+        if($save){
+            $data = mysqli_fetch_object($save);
+            return $data;
+        }
+        
  
     }
 
@@ -130,8 +136,7 @@ class Detail
                                     (
                                      null , 
                                     '{$this -> getDetail_date()}' ,
-                                    '{$this -> getWorksheet_id()}' , 
-                                    '{$this -> getSubcategory_id()}' , 
+                                    '{$this -> getMaterial_id()}' , 
                                     '{$this -> getMaterial_quantity()}' , 
                                     '{$this -> getMaterial_price()}' , 
                                     '{$this -> getDetail_discount()}'
@@ -145,7 +150,7 @@ class Detail
 
     public function get_name_by_id()
     {
-        $sql = "SELECT * FROM category c INNER JOIN subcategory s ON c.category_id = s.category_id WHERE subcategory_id = '{$this -> getSubcategory_id()}'";
+        $sql = "SELECT * FROM  material  WHERE material_id = '{$this -> getMaterial_id()}'";
         $save = $this -> db -> query($sql);
         $data = mysqli_fetch_object($save);
         return $data;
@@ -155,9 +160,9 @@ class Detail
 
     public function get_detail($project_id)
     {                                                                                                                    //project_id
-        $sql = "SELECT * FROM subcategory s INNER JOIN detail d ON d.subcategory_id = s.subcategory_id INNER JOIN worksheet w ON
-        w.worksheet_id = d.worksheet_id WHERE project_id = $project_id ORDER BY worksheet_date";
+        $sql = "SELECT * FROM  detail d  INNER JOIN worksheet w ON w.worksheet_id = d.worksheet_id WHERE project_id = $project_id ORDER BY worksheet_date";
         $save = $this -> db -> query($sql);
+        var_dump($sql);
         //$data = mysqli_fetch_object($save);
         return $save;
        
@@ -170,22 +175,8 @@ class Detail
         $data = mysqli_fetch_object($save);
         return $data;
     }
-    public function get_subcategories()
-    {                                                                                                                    
-        $sql = "SELECT * FROM subcategory    WHERE category_id = (select category_id FROM subcategory s WHERE subcategory_id = {$this -> getSubcategory_id()})";
-        $save = $this -> db -> query($sql);
-        return $save;
-       
-    } 
+    
 
-    public function get_categories()
-    {                                                                                                                    
-        $sql = "SELECT * FROM category WHERE category_id =(SELECT category_id FROM `subcategory` WHERE subcategory_id =  {$this -> getsubcategory_id()}))";
-        $save = $this -> db -> query($sql);
-       var_dump($sql);
-       // $data = mysqli_fetch_object($save);
-        return $save;
-       
-    } 
+    
 
 }

@@ -84,4 +84,25 @@ class MaterialController
         header('location:'.base_url.'material/show_material');
 
     }
+
+    public function material_ask_delete()
+    {
+        $material_name = $_POST['material_name'];
+        $material_id = $_POST['material_id'];
+        require_once 'views/material/material_delete.php';
+    }
+
+    public function material_delete()
+    {
+        $material_id = $_POST['material_id'];
+        $material = new material($material_id);
+        $delete = $material -> material_delete();
+        if ($delete) {
+            $_SESSION['register'] = 'complete';
+        } else {
+            $_SESSION['register'] = 'failed';
+        }
+        header('location:'.base_url.'material/show_material');
+    }
+
 }
