@@ -1,12 +1,13 @@
-    <?php include 'header.php'; ?>  
-    <div class="center">
+    <?php foreach($pworksheet as $data):?><?php endforeach?>
+      <div class="center"> 
+
       <?php include 'data.php'; ?>  
       <div class="work">
         <table>
           <tr>
             <th>Trabajos a relalizar</th>
           <tr>
-            <td><!--descripcion trabajos a relizar entre <li>--> 
+            <td><?=$data['project_desc'];?>
             </td>
           </tr>
         </table>
@@ -21,12 +22,13 @@
             <th class="line5-5">Tiempo efectivo</th>            
           </tr>
           <tr >
-            <td class="output"><!-- fecha--> </td>
-            <td class="desc"><!-- descripcion--> </td>   
-            <td class="output"><!--hora entrada--></td>
-            <td class="output"><!--hora salida--></td>
-            <td class="output"><!--tiempo efectivo--></td>  
-          </tr>
+            <?php foreach($get_worksheet as $wdata):?>
+            <td class="output"><?=$wdata['worksheet_date']?></td>
+            <td class="desc"><?=$wdata['worksheet_desc']?><!-- descripcion--> </td>   
+            <td class="output"><?=$wdata['start_time']?><!--hora entrada--></td>
+            <td class="output"><?=$wdata['finish_time']?><!--hora salida--></td>
+            <td class="output"><?=$wdata['efective_time']?><!--tiempo efectivo--></td>  
+          </tr><?php endforeach;?>
         </table>
       </div> 
       <table class="total">
@@ -35,7 +37,7 @@
               total horas
             </td>
             <td class="line6-2">
-              <!-- total horas-->
+            <?=$total_hours -> total?><!-- total horas-->
             </td>
           </tr>
         </table>
@@ -46,12 +48,18 @@
               Observaciones y material utilizado
             </th>
           </tr>
-          <tr>
-            <td>
-              <!-- observaciones y material entre <li>-->
-                
+                   
+             <?php foreach($get_detail as $ddata):?>
+          <tr>  
+            <td><!-- observaciones y material entre <li>-->
+              <li>
+                <?=$ddata['material_quantity']?>        
+                <?=$ddata['material_name']?>     
+                <?=$ddata['detail_price']?>
+              </li> 
             </td>
           </tr>
+        <?php endforeach;?>
         </table>
       </div>
     </div>

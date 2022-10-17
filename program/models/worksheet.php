@@ -9,7 +9,7 @@ class worksheet
     private $finish_time;
     private $efective_time;
     private $project_id;
-    private $bd;
+    private $db;
 
     public function __construct()
     {
@@ -82,7 +82,8 @@ class worksheet
     }
 
     public function efective_time()
-    {   $id = $this -> worksheet_id ['worksheet_id'];
+    {
+        $id = $this->worksheet_id['worksheet_id'];
         $sql = "UPDATE worksheet SET 
         efective_time =  (select round(hour  ( timediff( finish_time, start_time ) )
         + minute( timediff( finish_time, start_time ) )/60,2) diferencia)
@@ -128,7 +129,7 @@ class worksheet
         efective_time = '{$this->getEfective_time()}',
        
         time_worksheet = now()
-        WHERE worksheet_id = '{$this -> getWorksheet_id()}'
+        WHERE worksheet_id = '{$this->getWorksheet_id()}'
         ;";
 
         $save = $this->db->query($sql);
@@ -143,23 +144,24 @@ class worksheet
     // mete en un objeto los datos de un worksheet segun el worksheet_id
     public function get_worksheet_object()
     {
-        $sql = "SELECT * FROM worksheet WHERE worksheet_id= '{$this -> getWorksheet_id()}' ";
+        $sql = "SELECT * FROM worksheet WHERE worksheet_id= '{$this->getWorksheet_id()}' ";
         $save = $this->db->query($sql);
+
         return $save;
     }
 
     // buscar los worksheets que tiene un project segun project_id y guargarlos en un array de tantas filas como worksheet haya
     public function get_worksheet()
     {
-        $sql = "SELECT * FROM worksheet WHERE project_id = {$this -> getProject_id()} ORDER BY worksheet_date;";
+        $sql = "SELECT * FROM worksheet WHERE project_id = {$this->getProject_id()} ORDER BY worksheet_date;";
         $save = $this->db->query($sql);
-       
+
         return $save;
     }
 
     public function delete()
     {
-        $sql = "DELETE FROM worksheet WHERE worksheet_id = {$this -> getWorksheet_id()}";
+        $sql = "DELETE FROM worksheet WHERE worksheet_id = {$this->getWorksheet_id()}";
         $result = $this->db->query($sql);
 
         return $result;
@@ -167,8 +169,8 @@ class worksheet
 
     public function total_hours()
     {
-        $sql = "SELECT SUM(efective_time) total FROM worksheet WHERE project_id = '{$this -> project_id}' ;";
-        $data = $this -> db ->query($sql);
+        $sql = "SELECT SUM(efective_time) total FROM worksheet WHERE project_id = '{$this->project_id}' ;";
+        $data = $this->db->query($sql);
         $result = mysqli_fetch_object($data);
         //var_dump($data);
         return $result;
@@ -185,11 +187,55 @@ class worksheet
 
     public function get_project_by_id()
     {
-        $sql="SELECT project_number FROM project WHERE project_id='{$this -> getWorksheet_id()}'";
+        $sql = "SELECT project_number FROM project WHERE project_id='{$this->getWorksheet_id()}'";
         $save = $this->db->query($sql);
-       
-       
+
         return $save;
     }
 
+    public function get_details()
+    {                                                                                                                    //project_id
+        $sql = "SELECT * FROM  detail d  INNER JOIN worksheet w ON w.worksheet_id = d.worksheet_id
+        INNER JOIN material m ON m.material_id = d.material_id WHERE project_id = '{$this->project_id}' ORDER BY worksheet_date";
+        $save = $this->db->query($sql);
+      
+       return $save;
+    }
+
+    public function pworksheet()
+    {
+        $sql = "SELECT * FROM worksheet w  
+                INNER JOIN project p 
+                ON p.project_id = w.project_id
+                LEFT JOIN detail d
+                ON d.worksheet_id = w.worksheet_id
+                INNER JOIN boat b
+                ON p.boat_id = b.boat_id
+                INNER JOIN costumer c
+                ON b.costumer_id = c.costumer_id
+                WHERE p.project_id = '{$this->project_id}'";
+        $save = $this->db->query($sql);
+       
+ /* $results = array();
+            while($row = mysqli_fetch_array($save)) {
+            $results[] = $row;
+            }
+            $array_final = array();
+foreach ($results as $result){
+   $array_final[] = $result;
+}
+var_dump($array_final['1']);
+for ($i=0; $i < count($array_final); $i++) { 
+    print_r($array_final[$i]['worksheet_date']);print_r($array_final[$i]['worksheet_desc']);
+    echo "<br>";
+}print_r($array_final[0]['costumer_name']);*/
+        return $save;
+    }
+
+    public function worksheet_data()
+    {
+        $sql="SELECT * FROM `worksheet` WHERE project_id = '{$this->project_id}'";
+        $save = $this->db->query($sql);
+        return $save;
+    }
 }

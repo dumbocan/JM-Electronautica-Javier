@@ -7,7 +7,7 @@ class Detail
     public $detail_date;
     public $material_id;
     public $material_quantity;
-    public $material_price;
+    public $detail_price;
     public $detail_discount;
     private $db;
 
@@ -23,7 +23,7 @@ class Detail
         $this -> detail_date = $data -> detail_date;
         $this -> material_id = $data -> material_id;
         $this -> material_quantity = $data -> material_quantity;
-        $this -> material_price = $data -> material_price;
+        $this -> detail_price = $data -> detail_price;
         $this -> detail_discount = $data -> detail_discount; 
         }       
     }
@@ -56,9 +56,9 @@ class Detail
         return $this->material_quantity;
     }
 
-    public function getMaterial_price()
+    public function getDetail_price()
     {
-        return $this->material_price;
+        return $this->detail_price;
     }
     public function getDetail_discount() 
     {
@@ -86,9 +86,9 @@ class Detail
     {
         $this->material_quantity = $material_quantity;
     }
-    public function setMaterial_price($material_price)
+    public function setDetail_price($detail_price)
     {
-        $this->material_price = $material_price;
+        $this->detail_price = $detail_price;
     }
     public function setDetail_discount($detail_discount)
     {
@@ -136,16 +136,31 @@ class Detail
                                     (
                                      null , 
                                     '{$this -> getDetail_date()}' ,
+                                    '{$this -> getWorksheet_id()}' ,
                                     '{$this -> getMaterial_id()}' , 
                                     '{$this -> getMaterial_quantity()}' , 
-                                    '{$this -> getMaterial_price()}' , 
+                                    '{$this -> getDetail_price()}' , 
                                     '{$this -> getDetail_discount()}'
                                     )";
 
         $save = $this -> db -> query($sql);
-
+//var_dump($sql);
+        
        
         return $save;
+    }
+
+    public function delete_detail()
+    {
+        $sql = "DELETE FROM detail WHERE detail_id = '{$this -> getDetail_id()}';";
+        $save = $this -> db -> query($sql);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+
     }
 
     public function get_name_by_id()
@@ -160,13 +175,16 @@ class Detail
 
     public function get_detail($project_id)
     {                                                                                                                    //project_id
-        $sql = "SELECT * FROM  detail d  INNER JOIN worksheet w ON w.worksheet_id = d.worksheet_id WHERE project_id = $project_id ORDER BY worksheet_date";
+        $sql = "SELECT * FROM  detail d  INNER JOIN worksheet w ON w.worksheet_id = d.worksheet_id 
+                                         INNER JOIN material m ON d.material_id = m.material_id           
+                                                    WHERE project_id = $project_id ORDER BY worksheet_date";
         $save = $this -> db -> query($sql);
-        var_dump($sql);
         //$data = mysqli_fetch_object($save);
         return $save;
        
     } 
+
+    
 
     public function get_detail_by_detail_id()
     {

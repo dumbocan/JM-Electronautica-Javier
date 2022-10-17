@@ -1,17 +1,10 @@
-@media print{
-    .oculto-impresion, .oculto-impresion *{
-      display: none !important;
-    }
-  }
-
-
 .background{    
-    background-image: url("/electronautica/program/images/logoGrande.svg");
+    background-image: url("/test/images/logoGrande.svg");
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1212px;
-    height: 1440px;
+    height: 1460px;
     margin-left:auto ;
     margin-right: auto; 
     width:1020px ;
@@ -32,7 +25,7 @@ th{
 .work td,
 .observations td,
 .description td{
-    font-size: 15px;
+    font-size: 20px;
 }
 .observations li{
     float: left;
@@ -41,7 +34,7 @@ th{
     min-width: 335px;
 }
 .header{
-    height: 174px;
+    height: 190px;
 }
 .name{ 
     float: left;
@@ -57,36 +50,36 @@ th{
 .name h4{
     font-weight:lighter;
     margin: 0px;
-    font-size: 17px;
+    font-size: 19px;
 }
 .logo{   
     float: right;
-    height: 184px;
-    width: 231px;   
+    height: 195px;
+    width: 222px;   
 }
 #logo{
-    width: 217px;
+    width: 228px;
 }
 .center{
     width:1020px ;    
-    height: 1026px;
+    height: 1150px;
 }
 .data{
-    height: 141px;
+    height: 164px;
 }
 #line1{
-    width: 795px;
-    height: 29px;
-    font-size:17px;
+    width: 806px;
+    height: 36px;
+    font-size:larger;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
 }
 #line2,
 #line3,
 #line4{
     width: 100%;
-    height: 27px; 
-    font-size: 17px;
+    height: 30px; 
+    font-size: larger;
     font-weight: bold;
 }
 .line1-2,
@@ -104,55 +97,55 @@ th{
     text-align: center; 
 } 
 .line1-1{
-    width: 10%;
+    width: 21.3%;
 }
 .line1-2{
-    width: 18%;   
+    width: 16%;   
 }
 .line1-3{
-    width: 24%;  
+    width: 32%;  
 }
 .line1-4{
-    width: 57%;
+    width: 34%;
 }
 .line2-1{
-    width: 7%;
+    width: 8%;
 }
 .line2-2{
-    width: 12%;
+    width: 13%;
 }
 .line2-3{
-    width: 7%;
+    width: 10%;
 }
 .line2-4{
     width: 33%;
 }
 .line2-5{
-    width: 7%;
+    width: 9%;
 }
 .line2-6{
     width: 22%;
 }
 .line3-1{
-    width: 6%;
+    width: 8%;
 }
 .line3-2{
-    width: 13%;
+    width: 15%;
 }
 .line3-3{
-    width: 7%;
+    width: 9%;
 }
 .line3-4{
-    width: 48%;
+    width: 34%;
 }
 .line4-1{
     width: 5%;
 }
 .line4-2{
-    width: 8%;
+    width: 11%;
 }
 .line4-3{
-    width: 8%;
+    width: 12%;
 }
 .line4-4{
     width: 12%;
@@ -164,20 +157,20 @@ th{
     width: 20%;
 }
 .line3-5{
-    width: 0%;
+    width: 10%;
 }
 .line3-6{
-    width: 0%;
+    width: 15%;
 }
 .work{
     border: 1px black solid;
-    height: 123px;
+    height: 150px;
     width: 1020px;   
 }
 .description{
     border: 1px black solid;
     margin-top: 10px;
-    height: 510px;
+    height: 585px;
     width: 1020px;   
 }
 .description td{

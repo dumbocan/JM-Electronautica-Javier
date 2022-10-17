@@ -3,30 +3,66 @@
 require_once 'models/worksheet.php';
 require_once 'models/detail.php';
 
-
 class worksheetController extends projectController
 {
+    public function print()
+    {
+        $project_id = $_POST['project_id'];
+        $worksheet = new Worksheet();
+        $worksheet->setProject_id($project_id);
+        $pworksheet = $worksheet->pworksheet();
+        
+        $get_worksheet = $worksheet -> get_worksheet();
+        $total_hours = $worksheet -> total_hours();
+        $detail = new Detail(0);
+        $get_detail = $detail -> get_detail($project_id);
+
+        require_once 'views/pdf/workingsheet.php';
+    }
+
     public function prepare_worksheet()
     {
-        Utils::isAdmin();
-      
-        if(isset($_POST['project_id'])){
-            //le entra  por post  el numero de proyecto
-        $number = $_POST['project_id'];
         $worksheet = new worksheet();
-        $project = new project();
-        $detail = new Detail(0);
-        $worksheet -> setProject_id($number);
-        $project -> setProject_id($number);
-        $search_worksheet = $worksheet->get_worksheet();
-        
-        $project_data = $project -> getProject();
+        unset($_SESSION['register']);
+        Utils::isAdmin();
+        if (isset($_POST['project_id'])) {
+            //le entra  por post  el numero de proyecto
+            $number = $_POST['project_id'];
+            $project = new project();
+            $detail = new Detail(0);
+            $worksheet->setProject_id($number);
+            $project->setProject_id($number);
+            $search_worksheet = $worksheet->get_worksheet();
 
-        //busco si hay material incorporado al proyecto
-        $details = $detail -> get_detail($worksheet -> getproject_id());
-var_dump($details);
-        // busca si hay hojas de trabajo anteriores para mostrar
+            $project_data = $project->getProject();
+            $details = $detail->get_detail($worksheet->getworksheet_id());
         }
+        //busco si hay material incorporado al proyecto
+        if (isset($_POST['detail_save'])) {
+            $detail_date = $_POST['detail_date'];
+            $worksheet_id = $_POST['worksheet_id'];
+            $material_id = $_POST['material_id'];
+            $material_quantity = $_POST['material_quantity'];
+            $detail_price = $_POST['detail_price'];
+            $detail_discount = $_POST['detail_discount'];
+            if ($detail_discount == '') {
+                $detail_discount = '0';
+            }
+
+            $detail = new Detail(0);
+            $detail->setDetail_date($detail_date);
+            $detail->setWorksheet_id($worksheet_id);
+            $detail->setMaterial_id($material_id);
+            $detail->setMaterial_quantity($material_quantity);
+            $detail->setDetail_price($detail_price);
+            $detail->setDetail_discount($detail_discount);
+            //var_dump($detail);
+            $save = $detail->save_detail();
+
+            // busca si hay hojas de trabajo anteriores para mostrar
+        }
+        $details = $worksheet->get_details();
+
         require_once 'views/worksheet/worksheet_register.php';
     }
 
@@ -38,7 +74,7 @@ var_dump($details);
         if (isset($_POST['f'])) {
             $stateF = 'f';
             $searchF = self::find_project_state($stateF);
-            
+
             require_once 'views/worksheet/worksheet_finished.php';
         } else {
             $stateS = 's';
@@ -54,16 +90,17 @@ var_dump($details);
     public function find_project_state($state)
     {
         Utils::isAdmin();
-        
+
         $b = $this->find_projects_state($state);
+
         return $b;
     }
 
     public function find_project_number($number)
     {
         Utils::isAdmin();
-      
-        $b = $this -> find_projects_number($number);
+
+        $b = $this->find_projects_number($number);
 
         return $b;
     }
@@ -88,7 +125,7 @@ var_dump($details);
 
             if ($project_state && $project_id && $worksheet_date && $worksheet_desc && $start_time && $finish_time) {
                 $worksheet = new Worksheet();
-               
+
                 $worksheet->setWorksheet_date($worksheet_date);
                 $worksheet->setWorksheet_desc($worksheet_desc);
                 $worksheet->setStart_time($start_time);
@@ -98,9 +135,9 @@ var_dump($details);
 
                 $save = $worksheet->save_worksheet();
                 $id = $worksheet->get_last_id();
-                $worksheet -> setWorksheet_id($id);
-               
-                if ($efective_time == "0") {
+                $worksheet->setWorksheet_id($id);
+
+                if ($efective_time == '0') {
                     $worksheet->efective_time();
                 }
 
@@ -120,11 +157,11 @@ var_dump($details);
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-            $proid=$worksheet->getproject_id();
-           // header('location:'.base_url.'worksheet/worksheet_ok');
-           require_once 'views/worksheet/worksheet_ok.php';
+            $proid = $worksheet->getproject_id();
+            // header('location:'.base_url.'worksheet/worksheet_ok');
+            require_once 'views/worksheet/worksheet_ok.php';
         } else {
-            echo "algo salio mal";
+            echo 'algo salio mal';
             //header('location:'.base_url);
         }
     }
@@ -133,7 +170,7 @@ var_dump($details);
     public function update_worksheet()
     {
         Utils::isAdmin();
-       
+
         if (isset($_POST)) {
             $worksheet_date = isset($_POST['worksheet_date']) ? $_POST['worksheet_date'] : false;
             $worksheet_desc = isset($_POST['worksheet_desc']) ? $_POST['worksheet_desc'] : false;
@@ -141,7 +178,7 @@ var_dump($details);
             $finish_time = isset($_POST['finish_time']) ? $_POST['finish_time'] : false;
             $efective_time = isset($_POST['efective_time']) ? $_POST['efective_time'] : false;
             $worksheet_id = isset($_POST['worksheet_id']) ? $_POST['worksheet_id'] : false;
-            $project_id= isset($_POST['project_id']) ? $_POST['project_id'] : false;
+            $project_id = isset($_POST['project_id']) ? $_POST['project_id'] : false;
             if ($worksheet_date && $worksheet_desc && $start_time && $finish_time && $efective_time && $worksheet_id) {
                 $worksheet = new Worksheet();
 
@@ -166,7 +203,6 @@ var_dump($details);
             $_SESSION['register'] = 'failed';
         }
         if ($_SESSION['register'] == 'complete') {
-           
             $project_id = $worksheet->getProject_id();
             //header('location:'.base_url.'worksheet/worksheet_ok');
             require_once 'views/worksheet/worksheet_ok.php';
@@ -180,9 +216,9 @@ var_dump($details);
     public function show_worksheet()
     {
         $worksheet_id = $_POST['worksheet_id'];
-        
+
         $worksheet = new worksheet();
-        $worksheet -> setWorksheet_id($worksheet_id);
+        $worksheet->setWorksheet_id($worksheet_id);
         $search_worksheet_object = $worksheet->get_worksheet_object();
         require_once 'views/worksheet/worksheet_update.php';
     }
@@ -216,18 +252,16 @@ var_dump($details);
     public function delete_worksheet()
     {
         Utils::isAdmin();
-        if (isset($_POST['worksheet_id'])) 
-        {
+        if (isset($_POST['worksheet_id'])) {
             $worksheet_id = ($_POST['worksheet_id']);
         }
-        if (isset($_POST['project_id']))
-        {
+        if (isset($_POST['project_id'])) {
             $project_id = ($_POST['project_id']);
         }
         $worksheet = new Worksheet();
-        $worksheet -> setWorksheet_id($worksheet_id);
-        $worksheet -> setProject_id($project_id);
-       
+        $worksheet->setWorksheet_id($worksheet_id);
+        $worksheet->setProject_id($project_id);
+
         $delete = $worksheet->delete();
         if ($delete) {
             $_SESSION['delete'] = 'complete';
@@ -238,11 +272,6 @@ var_dump($details);
 
         require_once 'views/worksheet/worksheet_ok.php';
     }
-    
-
-
-
-
 }
 
 // SELECT MINUTE(worksheet.start_time) / 60 + (SELECT HOUR(worksheet.start_time) FROM worksheet) FROM worksheet  WHERE worksheet_id = 3

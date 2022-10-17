@@ -27,6 +27,7 @@
                 <form action="<?=base_url?>detail/add_detail" method="POST">
                     <input type="text" name="material_name">
                     <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>">
+                    <input type="hidden" name="project_id" value="<?=$project_id?>"> 
 
                     <button type="submit" >buscar</button>
                 </form> 
@@ -38,6 +39,8 @@
                             <?php endforeach;?> 
                         </select>
                         <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>">
+                        <input type="hidden" name="project_id" value="<?=$project_id?>"> 
+
                         <button type="submit" >Aceptar</button>
                     </form>    
                 
@@ -47,10 +50,11 @@
 
             </td>
             <td>
+             <form action="<?=base_url?>worksheet/prepare_worksheet" method="POST" id="detail">
+   
             <?php if (isset($_POST['material_id'])):?>
-
                     <?php if($quantity ):?>
-                        <select name="material_quantity" id="material_quantity" >
+                        <select name="material_quantity" id="quantity" form="detail">
                             <?php $row = 1; while ($row < $quantity+1): ?>
                             <option value="<?=$row ?>"><?=$row ;$row++?></option>
                         <?php endwhile ?>
@@ -62,9 +66,9 @@
                             <input type="submit" value="Añadir stock" name="add_stock">
                         </form> 
                    <?php endif?>
-                   <?php else :?>
-                0
-                <?php endif?>
+            <?php else :?>
+            0
+            <?php endif?>
                        
                 
                
@@ -73,25 +77,33 @@
             <td>
                 <?php if (isset($_POST['material_id'])):?>
                    
-                   <input type="number" name="material_price" value="<?=$detail -> getmaterial_price()?>">
+                   <input type="number" name="detail_price" value="<?=$detail -> getDetail_price()?>">
                 <?php else :?>
                 0
                 <?php endif?>
             </td>
             <td>
-                <input type="number" name= "detail_discount">
+            <?php if (isset($_POST['material_id'])):?>
+                <input type="number" name= "detail_discount" id="detail_discount">
+                    
+                <?php else :?>
+                0
+                <?php endif?>
             </td>
             <td>
             
 
-            <?php if($quantity <> 0):?>
-            <form action="<?=base_url?>detail/detail_save" method="POST">
+            
+            
                 <input type="hidden" name="worksheet_id" value="<?=$worksheet_id?>"> 
+                <input type="hidden" name="project_id" value="<?=$project_id?>"> 
                 <input type="hidden" name="detail_date" value="<?=$worksheet -> getworksheet_date()?>">
+                <input type="hidden" name="worksheet_id" value="<?=$worksheet -> getworksheet_id()?>">
+                <input type="hidden" name="material_id" value="<?=$material -> material_id?>">
 
-                <input type="submit" name="detail_save" >
+                <input type="submit" name="detail_save" value="Enviar">
             </form>    
-                <?php endif?>
+            
                 
 
             </td>
