@@ -6,18 +6,20 @@ require_once 'models/project.php';
 class CostumerController extends BoatController
 {
     public function index()
-    {    Utils::isAdmin();
+    {
+        Utils::isAdmin();
         echo 'Controlador costumer, accion indexado';
     }
 
     public function ok()
-    { Utils::isAdmin();
-        
+    {
+        Utils::isAdmin();
         require_once 'views/costumer/costumer_ok.php';
     }
 
     public function edit()
-    { Utils::isAdmin();
+    {
+        Utils::isAdmin();
         if (isset($_POST['costumer_name'])) {
             $name = $_POST['costumer_name'];
             $edit = true;
@@ -27,7 +29,6 @@ class CostumerController extends BoatController
             $pro = $costumer->search_db();
             $cos = $costumer->costumer_name($name);
             require_once 'views/costumer/costumer_register.php';
-
         } elseif (isset($_POST['boat_name'])) {
             $boat_name = $_POST['boat_name'];
             $boat = new Boat();
@@ -35,14 +36,13 @@ class CostumerController extends BoatController
             $pro = $boat->search_db();
             $data = $pro->fetch_object();
             require_once 'views/costumer/costumer_register.php';
-
         } else {
             header('Location:'.base_url.'costumer/index');
         }
     }
 
     public function update()
-    { 
+    {
         Utils::isAdmin();
         if (isset($_POST)) {
             $costumer_id = isset($_POST['costumer_id']) ? $_POST['costumer_id'] : false;
@@ -95,7 +95,7 @@ class CostumerController extends BoatController
     }
 
     public function ask_delete()
-    { 
+    {
         Utils::isAdmin();
 
         $name = $_POST['costumer_name'];
@@ -109,13 +109,16 @@ class CostumerController extends BoatController
             $name = $_POST['costumer_name'];
         }
         $costumer = new Costumer();
-        $delete = $costumer->delete($name);
+        $costumer->setCostumer_name($name);
+        $delete = $costumer->delete();
         if ($delete) {
             $_SESSION['register'] = 'complete';
+            require_once 'views/costumer/costumer_ok.php';
         } else {
             $_SESSION['register'] = 'failed';
+
+            header('Location:'.base_url.'costumer/index');
         }
-        header('Location:'.base_url.'costumer/index');
     }
 
     public function register()
@@ -141,7 +144,6 @@ class CostumerController extends BoatController
             $search = $costumer->search_db();
             $pro = $costumer->costumer_name($costumer_name);
             require_once 'views/costumer/costumer_gest.php';
-            
         } elseif (isset($_POST['boat']) == 'boat') {
             $boat_name = $_POST['boat_name'];
 
@@ -179,7 +181,7 @@ class CostumerController extends BoatController
                 $costumer->setEmail($email);
 
                 $save = $costumer->save();
-
+                var_dump($save);
                 $id = $costumer->getCostumer_id();
                 $_SESSION['id'] = $id;
                 $boat = new Boat();

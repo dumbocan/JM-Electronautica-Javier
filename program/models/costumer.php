@@ -89,11 +89,10 @@ class Costumer
         $this->email = $email;
     }
 
-    public function delete($name)
+    public function delete()
     {
-        $sql = "DELETE FROM costumer WHERE costumer_name = '$name'";
+        $sql = "DELETE FROM costumer WHERE costumer_name = '{$this->getCostumer_name()}'";
         $result = $this->db->query($sql);
-        
 
         return $result;
     }

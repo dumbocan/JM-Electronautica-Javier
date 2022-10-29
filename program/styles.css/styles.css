@@ -32,7 +32,7 @@ th{
 .work td,
 .observations td,
 .description td{
-    font-size: 15px;
+    font-size: 13px;
 }
 .observations li{
     float: left;
@@ -137,7 +137,7 @@ th{
     width: 6%;
 }
 .line3-2{
-    width: 13%;
+    width: 15%;
 }
 .line3-3{
     width: 7%;
@@ -167,7 +167,7 @@ th{
     width: 0%;
 }
 .line3-6{
-    width: 0%;
+    width: 14%;
 }
 .work{
     border: 1px black solid;
