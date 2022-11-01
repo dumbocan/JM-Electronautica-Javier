@@ -42,25 +42,36 @@
           </tr>
         </table>
       <div class="observations">
-        <table>
+        <table style="border: 2px: color:red;">
           <tr>
             <th>
               Observaciones y material utilizado
             </th>
           </tr>
-                   
+            </table>
+                     
              <?php foreach($get_detail as $ddata):?>
-          <tr>  
-            <td><!-- observaciones y material entre <li>-->
-              <li>
-                <?=$ddata['material_quantity']?>        
-                <?=$ddata['material_name']?>     
-                <?=$ddata['detail_price']?>
-              </li> 
-            </td>
-          </tr>
+          <!-- observaciones y material entre <li>-->
+                
+                    <li>
+                        <table >
+                            <tr>
+                                <td class="quantity">
+                                    <?=$ddata['material_quantity']?>        
+                                </td>
+                                <td class="material2">    
+                                    <?=$ddata['material_name']?>     
+                                </td>
+                                <td>    
+                                    <?=$ddata['detail_price']?>
+                                </td>
+                            </tr>        
+                        </table>
+                    </li> 
+               
+           
         <?php endforeach;?>
-        </table>
+        
       </div>
     </div>
     <div class="footer">
@@ -82,7 +93,7 @@
       <table id="firm">
           <tr>
             <th id="tecnico">
-              Firma tecnico
+              Firma cliente
             </th>
           </tr>
           <tr id="firm">

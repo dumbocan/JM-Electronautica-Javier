@@ -30,15 +30,20 @@ th{
     border-collapse: collapse;
 }
 .work td,
-.observations td,
+
 .description td{
     font-size: 13px;
+}
+.observations td{
+    font-size: 12;
 }
 .observations li{
     float: left;
     display: grid;
-    max-width: 335px;
-    min-width: 335px;
+    max-width: 500px;
+    min-width: 500px;
+    font-size: 13px;
+
 }
 .header{
     height: 174px;
@@ -242,15 +247,19 @@ th{
 .observations{
     margin-top: 44px;
     border: 1px black solid;
-    height: 180px;
+    height: 190px;
     display: block; 
 }
 #observations{
     width: 1020px;
     border-collapse: collapse;    
 }
+
+
+
 .footer{   
-    height: 130px;
+    height: 135px;
+    padding-top: 10px;
 }
 #tecnico{
     border-collapse: collapse;
@@ -355,4 +364,23 @@ display: inline-flex;
 
 .header_small{
     font-size: small;
+}
+.inline_list{
+    list-style: none;
+    float: left;
+    margin-left: 20px;
+    display: block;
+}
+.inline_list > li{
+    list-style: none;
+    float: left;
+    margin-left: 20px;
+    display: block;
+}
+.quantity{
+    padding-left: 10px;
+    width: 35px;
+}
+.material2{
+    width: 360px;
 }
