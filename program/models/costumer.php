@@ -154,13 +154,16 @@ class Costumer
         if ($save) {
             $result = true;
         }
-        $id = mysqli_insert_id($this->db);
-        $iduser = $this->setCostumer_id($id);
-
-        return $result.$iduser;
+       
+        return $result;
     }
 
-    public function getOne()
+    public function get_last_id()
     {
+        $sql = 'SELECT costumer_id FROM costumer ORDER BY costumer_id DESC LIMIT 1 ;';
+        $id = $this->db->query($sql);
+        $result = mysqli_fetch_object($id);
+
+        return $result;
     }
 }

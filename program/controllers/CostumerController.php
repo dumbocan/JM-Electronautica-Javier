@@ -181,15 +181,16 @@ class CostumerController extends BoatController
                 $costumer->setEmail($email);
 
                 $save = $costumer->save();
-                var_dump($save);
-                $id = $costumer->getCostumer_id();
-                $_SESSION['id'] = $id;
+                
+                $id = $costumer->get_last_id();
+                $costumer -> setCostumer_id($id->costumer_id);
                 $boat = new Boat();
 
                 $boat->setBoat_name($boat_name);
                 $boat->setMarina($marina);
                 $boat->setType($type);
-                $boat->setCostumer_id($id);
+                $boat->setCostumer_id($id->costumer_id);
+               
 
                 $saveBoat = $boat->save();
 

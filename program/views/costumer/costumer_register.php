@@ -1,11 +1,11 @@
-
+<!--Utilizo el mismo formulario para insertar o para editar, solo me cambia el action -->
 
 <?php if (isset($cos) && is_object($cos)):?>
     
-   
 <H1>Editar cliente <?=$cos->costumer_name; ?></H1>
 
 <?php $url_action = base_url.'costumer/update'; ?>
+
 <?php else: ?>
     
 <h1>Registro clientes</h1>
