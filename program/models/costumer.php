@@ -2,7 +2,7 @@
 
 class Costumer
 {
-    private $costumer_id;
+    public $costumer_id;
     private $costumer_name;
     private $address;
     private $passport;
@@ -154,7 +154,7 @@ class Costumer
         if ($save) {
             $result = true;
         }
-       
+
         return $result;
     }
 

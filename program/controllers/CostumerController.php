@@ -181,16 +181,15 @@ class CostumerController extends BoatController
                 $costumer->setEmail($email);
 
                 $save = $costumer->save();
-                
+
                 $id = $costumer->get_last_id();
-                $costumer -> setCostumer_id($id->costumer_id);
+                $costumer->setCostumer_id($id->costumer_id);
                 $boat = new Boat();
 
                 $boat->setBoat_name($boat_name);
                 $boat->setMarina($marina);
                 $boat->setType($type);
                 $boat->setCostumer_id($id->costumer_id);
-               
 
                 $saveBoat = $boat->save();
 
@@ -207,7 +206,8 @@ class CostumerController extends BoatController
         }
         if ($_SESSION['register'] == 'complete') {
             //require_once 'views/project/description.php';
-            header('location:'.base_url.'costumer/ok');
+            //header('location:'.base_url.'costumer/ok');
+            require_once 'views/costumer/costumer_ok.php';
         } else {
             header('location:'.base_url.'costumer/costumer_register');
         }

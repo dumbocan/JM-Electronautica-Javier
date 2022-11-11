@@ -1,7 +1,7 @@
 <?php
 class Database{
     public static function connect(){
-        $db = new mysqli('localhost', 'javier', 'monleon', 'jm test');
+        $db = new mysqli('localhost', 'javier', 'monleon', 'jm');
         $db ->query("SET NAMES 'utf8'");
         
         /* comprobar conexión */

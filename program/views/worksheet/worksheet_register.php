@@ -6,7 +6,7 @@
 <h1>Trabajos realizados en proyecto <?= $project_data->project_number; ?> <?=$project_data->boat_name; ?></h1>
  <table>
         <tr class="header_small">
-           <!-- <th style="width: 50px;">ID</th>  -->
+          
             <th style="width: 160px;">Fecha</th>
             <th style="width: 1160px;">Descripcion</th>
             <th style="width: 120px;">Hora de entrada</th>

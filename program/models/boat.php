@@ -6,7 +6,7 @@ class Boat
     private $boat_name;
     private $marina;
     private $type;
-    private $costumer_id;
+    public $costumer_id;
 
     private $db;
 
@@ -91,18 +91,18 @@ class Boat
         $name = $this->getBoat_name();
         $sql = "SELECT * FROM `boat` WHERE boat_name LIKE '%$name%'";
         $result = $this->db->query($sql);
-   
-        return $result; 
+
+        return $result;
     }
 
-  public function boat_name($data)
-  {
-    $sql = "SELECT * FROM boat b INNER JOIN costumer c ON c.costumer_id = b.costumer_id WHERE boat_id = '$data'";
-    $get_result = $this->db->query($sql);
-    $result=mysqli_fetch_object($get_result);
-   
-    return $result;
-  }
+    public function boat_name($data)
+    {
+        $sql = "SELECT * FROM boat b INNER JOIN costumer c ON c.costumer_id = b.costumer_id WHERE boat_id = '$data'";
+        $get_result = $this->db->query($sql);
+        $result = mysqli_fetch_object($get_result);
+
+        return $result;
+    }
 
     public function getData($id)
     {
@@ -119,9 +119,7 @@ class Boat
 
     public function update()
     {
-        
-
-    $sql = "UPDATE boat SET 
+        $sql = "UPDATE boat SET 
     
     boat_name = '{$this->getBoat_name()}',
     marina = '{$this->getMarina()}',   
@@ -129,14 +127,13 @@ class Boat
     costumer_id = '{$this->getCostumer_id()}'
     
     WHERE costumer_id = '{$this->getCostumer_id()}';";
-   
-    $save = $this->db->query($sql);
 
-    
+        $save = $this->db->query($sql);
+
         if ($save) {
             $result = true;
         }
-            return $result;
 
+        return $result;
     }
 }
