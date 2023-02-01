@@ -58,8 +58,7 @@
 <?php if (isset($project_data) && $project_data->project_state != 'f'):?>
 <?php $project_data->project_state = 's'; ?>
 <form action="<?=base_url; ?>worksheet/save_worksheet" method="POST">   
-            <td>
-            </td>
+            
             <td>
                 <input type="date" name="worksheet_date" >
             </td>

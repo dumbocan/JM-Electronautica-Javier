@@ -33,9 +33,10 @@ class worksheetController extends projectController
             $worksheet->setProject_id($number);
             $project->setProject_id($number);
             $search_worksheet = $worksheet->get_worksheet();
-
+var_dump($worksheet->get_worksheet());
             $project_data = $project->getProject();
-            $details = $detail->get_detail($worksheet->getworksheet_id());
+          $details = $detail->get_detail($project->getProject_id());
+          //$details = $detail->get_detail($worksheet->getWorksheet_id());
         }
         //busco si hay material incorporado al proyecto
         if (isset($_POST['detail_save'])) {
@@ -56,7 +57,7 @@ class worksheetController extends projectController
             $detail->setMaterial_quantity($material_quantity);
             $detail->setDetail_price($detail_price);
             $detail->setDetail_discount($detail_discount);
-            //var_dump($detail);
+            var_dump($detail);
             $save = $detail->save_detail();
 
             // busca si hay hojas de trabajo anteriores para mostrar

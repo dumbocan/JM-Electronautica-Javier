@@ -174,7 +174,7 @@ class Detail
     }
 
     public function get_detail($project_id)
-    {                                                                                                                    //project_id
+    {            var_dump($project_id);                                                                                                        //project_id
         $sql = "SELECT * FROM  detail d  INNER JOIN worksheet w ON w.worksheet_id = d.worksheet_id 
                                          INNER JOIN material m ON d.material_id = m.material_id           
                                                     WHERE project_id = $project_id ORDER BY worksheet_date";

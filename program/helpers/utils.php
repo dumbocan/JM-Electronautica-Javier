@@ -25,12 +25,21 @@ class Utils
     {
         $db = Database::connect();
         $db ->query("SET GLOBAL event_scheduler = ON;");
+        $eventName = "reset".$table;
+        $checkEvent = $db->query("SHOW EVENTS LIKE '$eventName'");
+        if ($checkEvent->num_rows == 0) {
         $sql = "
-        CREATE EVENT reset".$table."
+        CREATE EVENT $eventName
         ON SCHEDULE EVERY 1 MONTH STARTS (select adddate(last_day(curdate()), 1))
         DO truncate table ".$table."_number;
         ";
         $query = $db->query($sql);
+        }
+
+
+
+
+
         
         
     }
