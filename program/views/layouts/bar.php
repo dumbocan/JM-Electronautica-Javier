@@ -8,7 +8,7 @@
     <a href="<?=base_url; ?>material/show_material">Gestion de materiales</a>
     <a href="<?=base_url; ?>user/logout">Salir</a>
     <?php else: ?>
-        <?php var_dump(isset($_SESSION['admin'])); ?>
+       
     <a href="<?=base_url; ?>user/index">login</a>
     <?php endif; ?>
 </div>

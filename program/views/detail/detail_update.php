@@ -28,7 +28,7 @@
                             <form  action="<?=base_url; ?>detail/update_detail" method="POST">
                                 <input type="hidden" name="detail_id" value="<?=$detail -> detail_id?>">
                                 <input type="hidden" name="subcategory_id" value="<?=$detail -> subcategory_id?>">
-                                <?php isset($category_id) == true ? $category_id = $show_category -> category_id : $category_id ='';var_dump($category_id);?>
+                                <?php isset($category_id) == true ? $category_id = $show_category -> category_id : $category_id ='';//var_dump($category_id);?>
                                 <button class="submit" name="count" value="<?=$count-1?>">
                                     <abbr title="Atras"> <i class="fa fa-step-backward"></i></button></abbr>    
                                 </button>   

@@ -34,7 +34,7 @@ class Utils
         DO truncate table ".$table."_number;
         ";
         $query = $db->query($sql);
-        }
+}
 
 
 

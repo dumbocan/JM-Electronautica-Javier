@@ -133,7 +133,7 @@ class subcategory
              serial_number = '{$this -> getserial_number()}',
 
              category_id = '{$this -> getcategory_id()}'
-             ;"; var_dump($sql);
+             ;"; //var_dump($sql);
         $save = $this->db -> query($sql);
         $result = false;
         if ($save) {

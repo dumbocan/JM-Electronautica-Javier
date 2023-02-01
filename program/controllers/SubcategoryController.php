@@ -41,7 +41,7 @@ class subcategoryController extends DetailController
     public function save_subcategory()
     {
         Utils::isAdmin();
-       var_dump($_POST);
+      // var_dump($_POST);
        $add = 0;
         $subcategory_name = $_POST['subcategory_name'];
         $subcategory_stock = $_POST['subcategory_stock'];

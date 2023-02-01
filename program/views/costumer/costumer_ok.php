@@ -1,5 +1,5 @@
 <?php
-var_dump($boat->costumer_id);
+// var_dump($boat->costumer_id);
     if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'):?>
     <strong id="ok">Registro completado correctamente</strong>
     <?php elseif (isset($_SESSION['register']) && $_SESSION['register'] == 'failed'):?>
