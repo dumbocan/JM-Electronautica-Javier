@@ -85,8 +85,11 @@
 </table>
 <h3>Total horas: <?=($total_hours->total); ?></h3>
 <br>
-
-
+<!-- Mandar a imprimir pagina sin material -->
+<form action="<?=base_url; ?>worksheet/print" method="POST">
+    <input type="hidden" name="project_id" value="<?=$project->project_id; ?>" >
+    <button type="submit" >Imprimir</button>
+</form>
 
 
 <table>
